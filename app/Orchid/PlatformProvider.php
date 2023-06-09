@@ -9,7 +9,6 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -74,14 +73,12 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission(Policy::MAIN)
                 ->icon('bs.people')
                 ->route('platform.systems.users')
-                ->permission('platform.systems.users')
                 ->title(__('Access Controls')),
 
             Menu::make(__('Roles'))
                 ->permission(Policy::MAIN)
                 ->icon('bs.lock')
                 ->route('platform.systems.roles')
-                ->permission('platform.systems.roles')
                 ->divider(),
 
             Menu::make('Documentation')
@@ -90,13 +87,6 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.box-arrow-up-right')
                 ->url('https://orchid.software/en/docs')
                 ->target('_blank'),
-
-            Menu::make('Changelog')
-                ->permission(Policy::MAIN)
-                ->icon('bs.box-arrow-up-right')
-                ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
-                ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK),
         ];
     }
 
@@ -108,9 +98,6 @@ class PlatformProvider extends OrchidServiceProvider
     public function permissions(): array
     {
         return [
-            ItemPermission::group(__('System'))
-                ->addPermission('platform.systems.roles', __('Roles'))
-                ->addPermission('platform.systems.users', __('Users')),
             ItemPermission::group(__('Orchid.Permissions.Group.Menu'))
                 ->addPermission(Policy::MAIN, __('Orchid.Permissions.Menu.Main')),
         ];
