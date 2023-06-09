@@ -37,10 +37,12 @@ class AddRolesSeeder extends Seeder
         return StdOutput::SUCCESS;
     }
 
-    private function getFile(string $name): bool|string
+    private function getFile(string $name)
     {
         $path = database_path() . "/seeders/orchid/permissions";
-        return file_get_contents("$path/$name.json");
+        $content = file_get_contents("$path/$name.json");
+
+        return json_decode($content);
     }
 
     private function getRole(string $name): array
