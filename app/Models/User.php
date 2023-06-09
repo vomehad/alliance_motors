@@ -7,6 +7,10 @@ use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Platform\Models\User as Authenticatable;
 
+/**
+ * @property int $id
+ * @property string $name
+ */
 class User extends Authenticatable
 {
     /**

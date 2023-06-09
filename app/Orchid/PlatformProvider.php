@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use App\Interfaces\Policy;
+use App\Interfaces\Permissions;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
@@ -35,54 +35,54 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             Menu::make('Get Started')
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.book')
                 ->title('Navigation')
                 ->route(config('platform.index')),
 
             Menu::make('Example Screen')
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.collection')
                 ->route('platform.example')
                 ->badge(fn () => 6),
 
             Menu::make('Form Elements')
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.journal')
                 ->route('platform.example.fields')
                 ->active('*/form/examples/*'),
 
             Menu::make('Overview Layouts')
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.columns-gap')
                 ->route('platform.example.layouts')
                 ->active('*/layout/examples/*'),
 
             Menu::make('Charts')
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.bar-chart')
                 ->route('platform.example.charts'),
 
             Menu::make('Cards')
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.card-text')
                 ->route('platform.example.cards')
                 ->divider(),
 
             Menu::make(__('Users'))
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.people')
                 ->route('platform.systems.users')
                 ->title(__('Access Controls')),
 
             Menu::make(__('Roles'))
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->icon('bs.lock')
                 ->route('platform.systems.roles')
                 ->divider(),
 
             Menu::make('Documentation')
-                ->permission(Policy::MAIN)
+                ->permission(Permissions::MAIN)
                 ->title('Docs')
                 ->icon('bs.box-arrow-up-right')
                 ->url('https://orchid.software/en/docs')
@@ -99,7 +99,7 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             ItemPermission::group(__('Orchid.Permissions.Group.Menu'))
-                ->addPermission(Policy::MAIN, __('Orchid.Permissions.Menu.Main')),
+                ->addPermission(Permissions::MAIN, __('Orchid.Permissions.Menu.Main')),
         ];
     }
 }

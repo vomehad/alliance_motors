@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface Policy
+interface Permissions
 {
     public const MAIN = 'main';
 }
