@@ -1,0 +1,36 @@
+/* Max WIdth  */
+$maxWidth: $maxWidthContainer;
+/* Max WIdth  */
+
+/* Adaptive */
+@mixin adaptiv-font($pcSize, $mobileSize) {
+    $addSize: $pcSize - $mobileSize;
+    $addMobileSize: $addSize + $addSize * 0.7;
+    @media (max-width: 767.98px){
+        font-size: calc(#{$mobileSize + px} + #{$addMobileSize} * ((100vw - 320px) / #{$maxWidth}));
+    }
+    @media (min-width: 767.98px){
+        font-size: calc(#{$mobileSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+    }
+}
+/* Adaptive */
+
+// /* Link */
+// @mixin link($linkColor, $onHover, $linkWeight, $linkPcSize, $linkMobileSize){
+//     text-decoration: none;
+//     @include adaptiv-font($linkPcSize, $linkMobileSize);
+//     color: $linkColor;
+//     font-weight: $linkWeight;
+//     transition: all .3s ease;
+//     &:hover{color: $onHover;}
+// }
+// /* @include link(green,yellow,800,32,18) */
+// /* Link */
+
+// /* Container */
+//     @mixin container($size){
+//         max-width: #{$size + px};
+//         margin: 0 auto;
+//         padding: 0 10px;
+//     }
+// /* Container */

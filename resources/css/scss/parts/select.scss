@@ -1,0 +1,113 @@
+.select {
+    width: 100%;
+    position: relative;
+    z-index: 110;
+    border: none;
+    outline: none;
+    background: inherit;
+    margin: 0px 8px 0px 0px;
+   
+    &.open {
+        .select__dropdown {
+            display: block;
+        }
+
+        .select__input {
+            border-bottom: none;
+            div {
+                color: red;
+            }
+            svg {
+                path {
+                    fill: red;
+                }
+            }
+        }
+
+        .select__backdrop {
+            display: block;
+        }
+    }
+
+    &__input {
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        width: max-content;
+        user-select: none;
+        
+        div {
+            color: #B3B3B3;
+            font-size: 1rem;
+            cursor: pointer;
+            font-style: normal;
+            pointer-events: none;
+            font-weight: 500;
+            line-height: 120%;
+            margin: 0 .5rem 0 0;
+            transition: .3s ease color;
+        }
+        svg {
+            pointer-events: none;
+            path {
+                transition: .3s ease fill;
+            }
+        }
+    }
+
+    &__dropdown {
+        display: none;
+        position: absolute;
+        border-radius: 6px;
+        border: 1px solid #EEE;
+        background: #FFF;
+        box-shadow: 
+            0px 8px 16px -2px rgba(27, 36, 44, 0.12) , 
+            0px 2px 2px -1px rgba(27, 35, 44, 0.04);
+        top: 46px;
+        right: 0;
+        padding: 2px 0;
+        width: max-content;
+        max-height: 144px;
+        overflow-y: auto;
+        @media (max-width: 574.98px){
+            left: 0;
+        }
+    }
+
+    &__list {
+        padding: 4px 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__backdrop {
+        position: fixed;
+        display: none;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: transparent;
+    }
+
+    &__item {
+        font-size: 14px;
+        padding: 0 12px;
+        &:not(:last-child){
+            margin: 0px 0px 4px 0px;
+        }
+        &.selected {
+            color: #B40D16;
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: #F4F6F8;
+            transition: .15s background-color ease-in;
+        }
+    }
+
+}

@@ -1,0 +1,23 @@
+<div class="cars">
+  <div class="select-filter">
+    <div class="flex items-center">
+      <div id="select-filter"></div>
+    </div>
+    <div class="flex items-center">
+      <a href="/" class="popup_btn filter-show">
+        <img src="../img/icons/filter-filter.svg" alt="Filter">
+      </a>
+    </div>
+  </div>
+  <div class="cars_container">
+    <div class="cars_buy car homeCars">
+      <ul class="car_list"></ul>
+    </div>
+    @@include('../static/filter.html',{})
+  </div>
+  <div class="watch">
+    <a href="/" class="watch-link" target="_blank" id="show-more">
+      <button type="button" class="btn-watch">Посмотреть еще</button>
+    </a>
+  </div>
+</div>

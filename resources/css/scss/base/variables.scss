@@ -1,0 +1,294 @@
+/* Container */
+$maxWidthContainer: 1216;
+/* Container */
+.deletePadding {
+  padding: 0;
+}
+
+.show767{
+  display: none;
+  @media (max-width: 767.98px){
+    display: block;
+  }
+}
+
+.show992 {
+  display: none !important;
+  @media (max-width: 992px){
+    display: block !important;
+  }
+}
+
+.w-100{
+  width: 100%;
+}
+
+.wrap-text {
+  white-space: normal !important;
+}
+
+.wrap-balance {
+  -webkit-text-wrap: balance;
+}
+
+.full575 {
+  @media (max-width: 574.98px){
+    width: 100% !important;
+  }
+}
+
+.hide575 {
+  @media (max-width: 574.98px){
+    display: none !important;
+  }
+}
+
+.hide992 {
+  @media (max-width: 991.98px){
+    display: none !important;
+  }
+}
+.hide768 {
+  @media (max-width: 767.98px){
+    display: none !important;
+  }
+}
+
+
+.flex {
+  display: flex !important;
+}
+.inline-flex {
+  display: inline-flex !important;
+}
+
+.items-center {
+  align-items: center !important;
+}
+.items-end {
+  align-items: end !important;
+}
+.self-end {
+  align-self: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between !important;
+}
+
+.h22 {
+  height: 22px !important; 
+}
+
+.mx-auto {
+  margin: 0 auto !important;
+}
+.m-0 {
+  margin: 0 !important;
+}
+.ml-4px {
+  margin: 0 0 0 4px !important;
+}
+.mx-1 {
+  margin: 0 8px !important;
+}
+.mx-2 {
+  margin: 0 12px !important;
+}
+.mx-3 {
+  margin: 0 1rem !important;
+}
+.mx-4 {
+  margin: 0 20px !important;
+}
+.mx-5 {
+  margin: 0 24px !important;
+}
+.my-1 {
+  margin: 8px 0 !important;
+}
+.my-2 {
+  margin: 12px 0 !important;
+}
+.my-3 {
+  margin: 1rem 0 !important;
+}
+.my-4 {
+  margin: 20px 0 !important;
+}
+.my-5 {
+  margin: 24px 0 !important;
+}
+.p-0 {
+  padding: 0 !important;
+}
+.px-1 {
+  padding: 0 8px !important;
+}
+.px-2 {
+  padding: 0 12px !important;
+}
+.px-3 {
+  padding: 0 1rem !important;
+}
+.px-4 {
+  padding: 0 20px !important;
+}
+.px-5 {
+  padding: 0 24px !important;
+}
+.py-1 {
+  padding: 8px 0 !important;
+}
+.py-2 {
+  padding: 12px 0 !important;
+}
+.py-3 {
+  padding: 1rem 0 !important;
+}
+.py-4 {
+  padding: 20px 0 !important;
+}
+.py-5 {
+  padding: 24px 0 !important;
+}
+.column {
+  flex-direction: column !important;
+}
+
+.f-nowrap{
+  flex-wrap: nowrap;
+}
+.justify-center{
+  justify-content: center !important;
+}
+.justify-end{
+  justify-content: end !important;
+}
+.mt-1 {
+  margin: 8px 0 0 0 !important;
+}
+.mt-2 {
+  margin: 12px 0 0 0 !important;
+}
+.mt-3 {
+  margin: 1rem 0 0 0 !important;
+}
+.mt-4 {
+  margin: 20px 0 0 0 !important;
+}
+.mt-5 {
+  margin: 24px 0 0 0 !important;
+}
+
+.mr-1 {
+  margin: 0 8px 0 0 !important;
+}
+.mr-2 {
+  margin: 0 12px 0 0 !important;
+}
+.mr-3 {
+  margin: 0 1rem 0 0 !important;
+}
+.mr-4 {
+  margin: 0 20px 0 0 !important;
+}
+.mr-5 {
+  margin: 0 24px 0 0 !important;
+}
+
+.mb-1 {
+  margin: 0 0 8px 0 !important;
+}
+.mb-2 {
+  margin: 0 0 12px 0 !important;
+}
+.mb-3 {
+  margin: 0 0 1rem 0 !important;
+}
+.mb-4 {
+  margin: 0 0 20px 0 !important;
+}
+.mb-5 {
+  margin: 0 0 24px 0 !important;
+}
+
+.ml-1 {
+  margin: 0 0 0 8px !important;
+}
+.ml-2 {
+  margin: 0 0 0 12px !important;
+}
+.ml-3 {
+  margin: 0 0 0 1rem !important;
+}
+.ml-4 {
+  margin: 0 0 0 20px !important;
+}
+.ml-5 {
+  margin: 0 0 0 24px !important;
+}
+
+.pt-1 {
+  padding: 8px 0 0 0 !important;
+}
+.pt-2 {
+  padding: 12px 0 0 0 !important;
+}
+.pt-3 {
+  padding: 1rem 0 0 0 !important;
+}
+.pt-4 {
+  padding: 20px 0 0 0 !important;
+}
+.pt-5 {
+  padding: 24px 0 0 0 !important;
+}
+
+.pr-1 {
+  padding: 0 8px 0 0 !important;
+}
+.pr-2 {
+  padding: 0 12px 0 0 !important;
+}
+.pr-3 {
+  padding: 0 1rem 0 0 !important;
+}
+.pr-4 {
+  padding: 0 20px 0 0 !important;
+}
+.pr-5 {
+  padding: 0 24px 0 0 !important;
+}
+
+.pb-1 {
+  padding: 0 0 8px 0 !important;
+}
+.pb-2 {
+  padding: 0 0 12px 0 !important;
+}
+.pb-3 {
+  padding: 0 0 1rem 0 !important;
+}
+.pb-4 {
+  padding: 0 0 20px 0 !important;
+}
+.pb-5 {
+  padding: 0 0 24px 0 !important;
+}
+
+.pl-1 {
+  padding: 0 0 0 8px !important;
+}
+.pl-2 {
+  padding: 0 0 0 12px !important;
+}
+.pl-3 {
+  padding: 0 0 0 1rem !important;
+}
+.pl-4 {
+  padding: 0 0 0 20px !important;
+}
+.pl-5 {
+  padding: 0 0 0 24px !important;
+}
