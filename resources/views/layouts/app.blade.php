@@ -191,9 +191,10 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
         </div>
     </div>
 </footer>
-<script src="
-    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
-  ?_v=20230802212924"></script>
-<script src="js/app.min.js?_v=20230802212924"></script>
+{{--<script src="--}}
+{{--    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js--}}
+{{--  ?_v=20230802212924"></script>--}}
+<script src="js/splide.min.js"></script>
+<script src="js/app.min.js"></script>
 </body>
 </html>

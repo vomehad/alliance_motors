@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens;
 
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 
@@ -24,7 +26,7 @@ class PlatformScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Get Started';
+        return 'Контакты';
     }
 
     /**
@@ -32,7 +34,7 @@ class PlatformScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Welcome to your Orchid application.';
+        return '';
     }
 
     /**
@@ -53,8 +55,24 @@ class PlatformScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::view('platform::partials.update-assets'),
-            Layout::view('platform::partials.welcome'),
+            Layout::rows([
+                Input::make('tel')
+                    ->type('tel')
+                    ->title('Телефон')
+                    ->horizontal(),
+                CheckBox::make('checkbox')
+//                    ->title('Checkbox')
+                    ->placeholder('Показать на сайте'),
+            ]),
+            Layout::rows([
+                Input::make('tel')
+                    ->type('tel')
+                    ->title('Телефон')
+                    ->horizontal(),
+                CheckBox::make('checkbox')
+//                    ->title('Checkbox')
+                    ->placeholder('Показать на сайте'),
+            ]),
         ];
     }
 }
