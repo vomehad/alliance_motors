@@ -5,10 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alliance</title>
-    <link href="
-https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
-?_v=20230802212924" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css?_v=20230802212924" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css?_v=20230802212924" />
+{{--    <link rel="stylesheet" href="{{ Illuminate\Support\Facades\Vite::asset('resources/css/style.css') }}" />--}}
 </head>
 
 <body>
@@ -134,29 +133,19 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                     <div class="footer-menu_body">
                         <ul class="footer-menu_list">
                             <li class="footer-menu_item">
-                                <a class="footer-menu_link" href="{{ route('main') }}">
-                                    Главная
-                                </a>
+                                <a class="footer-menu_link" href="{{ route('main') }}">Главная</a>
                             </li>
                             <li class="footer-menu_item">
-                                <a class="footer-menu_link" href="{{ route('catalog') }}">
-                                    Каталог
-                                </a>
+                                <a class="footer-menu_link" href="{{ route('catalog') }}">Каталог</a>
                             </li>
                             <li class="footer-menu_item">
-                                <a class="footer-menu_link" href="{{ route('credit') }}">
-                                    Кредит
-                                </a>
+                                <a class="footer-menu_link" href="{{ route('credit') }}">Кредит</a>
                             </li>
                             <li class="footer-menu_item">
-                                <a class="footer-menu_link" href="{{ route('about') }}">
-                                    О компании
-                                </a>
+                                <a class="footer-menu_link" href="{{ route('about') }}">О компании</a>
                             </li>
                             <li class="footer-menu_item">
-                                <a class="footer-menu_link" href="{{ route('contacts') }}">
-                                    Контакты
-                                </a>
+                                <a class="footer-menu_link" href="{{ route('contacts') }}">Контакты</a>
                             </li>
                         </ul>
                     </div>
@@ -167,17 +156,13 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                 <div class="footer-phone_1 footer-phone">
                     <p class="footer-phone_text">Ростовское шоссе, 7</p>
                     <a href="tel:+786120054986" class="footer-phone_number">
-                        <img src="../img/icons/phone.svg">
-                        +7 (861) 205-49-86
-                        </span>
+                        <img src="../img/icons/phone.svg">+7 (861) 205-49-86</span>
                     </a>
                 </div>
                 <div class="footer-phone_2 footer-phone">
                     <p class="footer-phone_text">Ростовское шоссе, 17</p>
                     <a href="tel:+786120054986" class="footer-phone_number">
-                        <img src="../img/icons/phone.svg">
-                        +7 (861) 205-49-86
-                        </span>
+                        <img src="../img/icons/phone.svg">+7 (861) 205-49-86</span>
                     </a>
                 </div>
             </div>
@@ -191,10 +176,9 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
         </div>
     </div>
 </footer>
-{{--<script src="--}}
-{{--    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js--}}
-{{--  ?_v=20230802212924"></script>--}}
-<script src="js/splide.min.js"></script>
-<script src="js/app.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js?_v=20230802212924"></script>
+{{--<script src="js/splide.min.js"></script>--}}
+{{--<script src="js/app.min.js"></script>--}}
+<script src="{{ Illuminate\Support\Facades\Vite::asset('resources/js/app.js') }}"></script>
 </body>
 </html>

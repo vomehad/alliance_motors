@@ -1,131 +1,125 @@
-import { dynamicAdaptiv } from "./modules/dynamicAdapt.js";
+import {dynamicAdaptiv} from "./modules/dynamicAdapt.js";
+import {menu} from "./modules/menu.js";
+import {popup} from "./modules/popup.js";
+import {SelectModule} from "./modules/select.js";
+
 dynamicAdaptiv();
-import { menu } from "./modules/menu.js";
+
 menu();
-import { popup } from "./modules/popup.js";
-import { SelectModule } from "./modules/select.js";
 
 window.addEventListener("scroll", () => {
-  const header_scroll = document.querySelector(".header");
-  const phone_contact = document.querySelectorAll(".phone_text");
-  const phone_number = document.querySelectorAll(".phone_number");
-  const deleteMargin = document.querySelector(".phone_1");
-  header_scroll.classList.toggle("_scroll", window.scrollY > 10);
-  const logo = document.querySelector(".logo");
-  const logo_scroll = document.querySelector(".logo-scroll");
-  logo.classList.toggle("_show", window.scrollY > 10);
-  logo_scroll.classList.toggle("_show", window.scrollY > 10);
-  for (let i = 0; i < phone_contact.length; i++) {
-    const element = phone_contact[i];
-    element.classList.toggle(
-      "_scroll",
-      window.scrollY > 10 && window.innerWidth >= 992
-    );
-  }
-  for (let i = 0; i < phone_number.length; i++) {
-    phone_number[0].classList.toggle(
-      "_isActive",
-      window.scrollY > 10 && window.innerWidth >= 992
-    );
-    phone_number[1].classList.toggle(
-      "_scroll",
-      window.scrollY > 10 && window.innerWidth >= 992
-    );
-  }
+    const header_scroll = document.querySelector(".header");
+    const phone_contact = document.querySelectorAll(".phone_text");
+    const phone_number = document.querySelectorAll(".phone_number");
+    const deleteMargin = document.querySelector(".phone_1");
+    header_scroll.classList.toggle("_scroll", window.scrollY > 10);
+    const logo = document.querySelector(".logo");
+    const logo_scroll = document.querySelector(".logo-scroll");
+    logo.classList.toggle("_show", window.scrollY > 10);
+    logo_scroll.classList.toggle("_show", window.scrollY > 10);
+    for (let i = 0; i < phone_contact.length; i++) {
+        const element = phone_contact[i];
+        element.classList.toggle(
+            "_scroll",
+            window.scrollY > 10 && window.innerWidth >= 992
+        );
+    }
+    for (let i = 0; i < phone_number.length; i++) {
+        phone_number[0].classList.toggle(
+            "_isActive",
+            window.scrollY > 10 && window.innerWidth >= 992
+        );
+        phone_number[1].classList.toggle(
+            "_scroll",
+            window.scrollY > 10 && window.innerWidth >= 992
+        );
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (
-    window.location.href.includes("http://localhost:3000") ||
-    window.location.href.includes("http://localhost:3000/index.html") ||
-    window.location.href.includes(
-      "https://alliance-pi.vercel.app/index.html"
-    ) ||
-    window.location.href.includes("https://alliance-pi.vercel.app/")
-  ) {
-    if (document.querySelector("#homeSplide")) {
-      const splideIndex = new Splide("#homeSplide", {
-        type: "loop",
-        autoplay: true,
-        interval: 3000,
-        perPage: 1,
-        gap: "24px",
-      });
-      splideIndex.mount();
+    const path = window.location.pathname;
+
+    if (path === '/') {
+        if (document.querySelector("#homeSplide")) {
+            const splideIndex = new Splide("#homeSplide", {
+                type: "loop",
+                autoplay: true,
+                interval: 3000,
+                perPage: 1,
+                gap: "24px",
+            });
+            splideIndex.mount();
+        }
     }
-  }
-  if (
-    window.location.href.includes("http://localhost:3000/detail.html") ||
-    window.location.href.includes(
-      "https://alliance-pi.vercel.app/detail.html"
-    )
-  ) {
-    if (document.querySelector("#detailSplite")) {
-      const splide = new Splide("#detailSplite", {
-        type: "loop",
-        padding:
-          window.innerWidth <= 575
-            ? "12px"
-            : window.innerWidth >= 575
-              ? "24px"
-              : "12px",
-        autoplay: true,
-        speed: 1000,
-        interval: 3000,
-        perPage:
-          window.innerWidth >= 1023
-            ? 3
-            : window.innerWidth >= 767
-              ? 2
-              : window.innerWidth >= 574
-                ? 1
-                : 1,
-        perMove: 1,
-      });
-      splide.mount();
+    if (path === '/detail') {
+        if (document.querySelector("#detailSplite")) {
+            const splide = new Splide("#detailSplite", {
+                type: "loop",
+                padding:
+                    window.innerWidth <= 575
+                        ? "12px"
+                        : window.innerWidth >= 575
+                        ? "24px"
+                        : "12px",
+                autoplay: true,
+                speed: 1000,
+                interval: 3000,
+                perPage:
+                    window.innerWidth >= 1023
+                        ? 3
+                        : window.innerWidth >= 767
+                        ? 2
+                        : window.innerWidth >= 574
+                            ? 1
+                            : 1,
+                perMove: 1,
+            });
+            splide.mount();
+        }
     }
-  }
 });
 
 const popupBlock = document.querySelector('.popup');
 if (popupBlock) {
-  popup();
+    popup();
 }
 
 let paginationLinks = document.querySelectorAll(".pagination .pagination-link");
 
 if (paginationLinks.length) {
-  for (let i = 0; i < paginationLinks.length; i++) {
-    const element = paginationLinks[i];
-    element.addEventListener("click", (e) => {
-      e.preventDefault();
-      let currentPage = document.querySelector(
-        ".pagination .pagination-active"
-      );
-      currentPage.classList.remove("pagination-active");
-      element.classList.add("pagination-active");
-    });
-    window.addEventListener("resize", () => {
-      resize(paginationLinks);
-    });
-  }
-  function resize(array) {
-    if (window.innerWidth <= 575) {
-      array[2].style.display = "none";
-      array[3].style.display = "none";
-    } else {
-      array[2].style.display = "flex";
-      array[3].style.display = "flex";
+    for (let i = 0; i < paginationLinks.length; i++) {
+        const element = paginationLinks[i];
+        element.addEventListener("click", (e) => {
+            e.preventDefault();
+            let currentPage = document.querySelector(
+                ".pagination .pagination-active"
+            );
+            currentPage.classList.remove("pagination-active");
+            element.classList.add("pagination-active");
+        });
+        window.addEventListener("resize", () => {
+            resize(paginationLinks);
+        });
     }
-  }
-  resize(paginationLinks);
+
+    function resize(array) {
+        if (window.innerWidth <= 575) {
+            array[2].style.display = "none";
+            array[3].style.display = "none";
+        } else {
+            array[2].style.display = "flex";
+            array[3].style.display = "flex";
+        }
+    }
+
+    resize(paginationLinks);
 }
 
 const checkbox = document.querySelector(".checkbox");
 if (checkbox) {
-  checkbox.addEventListener("click", () =>
-    checkbox.classList.toggle("_active")
-  );
+    checkbox.addEventListener("click", () =>
+        checkbox.classList.toggle("_active")
+    );
 }
 
 let hide_text = document.querySelector(".hide-text");
@@ -134,17 +128,17 @@ let see_all = document.querySelector(".see-all");
 let hide_li = document.querySelector(".hide-li");
 
 if (see_all) {
-  see_all.addEventListener("click", () => {
-    hide_li.classList.toggle("_active");
-    hide_text.classList.toggle("_active");
-    detail_img.classList.toggle("_active");
-    see_all.style.display = "none";
-  });
+    see_all.addEventListener("click", () => {
+        hide_li.classList.toggle("_active");
+        hide_text.classList.toggle("_active");
+        detail_img.classList.toggle("_active");
+        see_all.style.display = "none";
+    });
 }
 const homeSelect = document.querySelector("#select-filter");
 const catalogSelect = document.querySelector("#select-catalog");
 if (homeSelect || catalogSelect) {
-  SelectModule();
+    SelectModule();
 }
 
 const filterSelect = document.querySelector(".filterSelect");
@@ -153,170 +147,260 @@ const filterSelect_list = document.querySelector(".filterSelect_list");
 const filterSelect_value = document.querySelector(".filterSelect_value");
 
 const filterSelectMarka = [
-  { id: 1, value: "Все марки" },
-  { id: 2, value: "Renault" },
-  { id: 3, value: "Volkswagen" },
-  { id: 4, value: "Kia" },
-  { id: 5, value: "Lada" },
-  { id: 6, value: "Cherry" },
-  { id: 7, value: "Arkana" },
-  { id: 8, value: "Arkana" },
+    {id: 1, value: "Все марки"},
+    {id: 2, value: "Renault"},
+    {id: 3, value: "Volkswagen"},
+    {id: 4, value: "Kia"},
+    {id: 5, value: "Lada"},
+    {id: 6, value: "Cherry"},
+    {id: 7, value: "Arkana"},
+    {id: 8, value: "Arkana"},
 ];
 
 function renderFilterSelect(array = [], selectedId) {
-  const items = array.map((item) => {
-    return `
+    const items = array.map((item) => {
+        return `
     <div class="flex items-center h22 mb-1">
       <input type="checkbox" class="filterCheckbox" name="${item.id}" id="${item.id}" value="${item.value}">
       <label class="filter_text" for="${item.id}">${item.value}</label><br>
     </div>
     `;
-  });
-  return `
+    });
+    return `
     <div>${items?.join("")}</div>
   `;
 }
 
 if (filterSelect) {
-  filterSelect_select.addEventListener("click", () => {
-    filterSelect.classList.toggle("show");
-  });
-  filterSelect_list.innerHTML = renderFilterSelect(filterSelectMarka);
+    filterSelect_select.addEventListener("click", () => {
+        filterSelect.classList.toggle("show");
+    });
+    filterSelect_list.innerHTML = renderFilterSelect(filterSelectMarka);
 }
 document.addEventListener("click", (e) => {
-  const isClickInside = filterSelect?.contains(e.target);
-  if (!isClickInside) {
-    filterSelect?.classList.remove("show");
-  }
+    const isClickInside = filterSelect?.contains(e.target);
+    if (!isClickInside) {
+        filterSelect?.classList.remove("show");
+    }
 });
 const carList = document.getElementById("filterSelect_list");
 const filterCheckboxes = carList?.querySelectorAll(".filterCheckbox");
 filteredFunc();
 
 function filteredFunc() {
-  const filteredCars = [];
-  if (filterCheckboxes?.length) {
-    for (let i = 0; i < filterCheckboxes?.length; i++) {
-      const checkbox = filterCheckboxes[i];
-      if (checkbox.checked) {
-        if (!filterCheckboxes[0]?.checked) {
-          const newCar = {
-            id: checkbox.id,
-            value: checkbox.value,
-          };
-          filteredCars.push(newCar);
-          console.log(filteredCars);
+    const filteredCars = [];
+    if (filterCheckboxes?.length) {
+        for (let i = 0; i < filterCheckboxes?.length; i++) {
+            const checkbox = filterCheckboxes[i];
+            if (checkbox.checked) {
+                if (!filterCheckboxes[0]?.checked) {
+                    const newCar = {
+                        id: checkbox.id,
+                        value: checkbox.value,
+                    };
+                    filteredCars.push(newCar);
+                    console.log(filteredCars);
+                }
+            }
+            filterSelect_value.innerHTML =
+                filteredCars.length > 0
+                    ? `Выбрано ${filteredCars.length}`
+                    : "Выберите марку";
         }
-      }
-      filterSelect_value.innerHTML =
-        filteredCars.length > 0
-          ? `Выбрано ${filteredCars.length}`
-          : "Выберите марку";
+        if (filterCheckboxes[0].checked) {
+            filterSelect_value.innerHTML = "Все марки";
+            filteredCars.push(...filterSelectMarka);
+            console.log(filteredCars);
+        }
     }
-    if (filterCheckboxes[0].checked) {
-      filterSelect_value.innerHTML = "Все марки";
-      filteredCars.push(...filterSelectMarka);
-      console.log(filteredCars);
-    }
-  }
 }
+
 for (let i = 0; i < filterCheckboxes?.length; i++) {
-  const checkbox = filterCheckboxes[i];
-  checkbox.addEventListener("change", filteredFunc);
+    const checkbox = filterCheckboxes[i];
+    checkbox.addEventListener("change", filteredFunc);
 }
 if (filterSelect_value) {
-  filterSelect_value.innerHTML = "Выберите марку";
+    filterSelect_value.innerHTML = "Выберите марку";
 }
 
 const gotoBlockScroll = document.querySelector(".detail-goto");
 const toBlockComplectation = document.querySelector(".detail-complectation");
 
 if (gotoBlockScroll) {
-  gotoBlockScroll.addEventListener("click", () => {
-    toBlockComplectation.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
+    gotoBlockScroll.addEventListener("click", () => {
+        toBlockComplectation.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+        });
     });
-  });
 }
 
 const sales_person = document.querySelector(".sales_person");
 const sales_person2 = document.querySelector(".sales_person2");
 
 if (sales_person && sales_person2) {
-  const personsList = [
-    { src: "./img/persons/person-1.png", alt: "person-1", name: "Нибиуллин", br: true, surname: "Константин", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-2.png", alt: "person-2", name: "Приреченский", br: true, surname: "Владислав", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-3.png", alt: "person-3", name: "Михаливченков", br: true, surname: "Константин", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-4.png", alt: "person-4", name: "Волобуев", br: false, surname: "Кирилл", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-5.png", className: "hide575 hidePerson", alt: "person-5", name: "Волобуев", br: false, surname: "Кирилл", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-6.png", className: "hide575 hidePerson", alt: "person-6", name: "Волобуев", br: false, surname: "Кирилл", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-7.png", className: "hide992 hidePerson", alt: "person-7", name: "Волобуев", br: false, surname: "Кирилл", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-2.png", className: "hide992 hidePerson", alt: "person-2", name: "Волобуев", br: false, surname: "Кирилл", job: "Менеджер по продажам" },
-  ];
+    const personsList = [
+        {
+            src: "./img/persons/person-1.png",
+            alt: "person-1",
+            name: "Нибиуллин",
+            br: true,
+            surname: "Константин",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-2.png",
+            alt: "person-2",
+            name: "Приреченский",
+            br: true,
+            surname: "Владислав",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-3.png",
+            alt: "person-3",
+            name: "Михаливченков",
+            br: true,
+            surname: "Константин",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-4.png",
+            alt: "person-4",
+            name: "Волобуев",
+            br: false,
+            surname: "Кирилл",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-5.png",
+            className: "hide575 hidePerson",
+            alt: "person-5",
+            name: "Волобуев",
+            br: false,
+            surname: "Кирилл",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-6.png",
+            className: "hide575 hidePerson",
+            alt: "person-6",
+            name: "Волобуев",
+            br: false,
+            surname: "Кирилл",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-7.png",
+            className: "hide992 hidePerson",
+            alt: "person-7",
+            name: "Волобуев",
+            br: false,
+            surname: "Кирилл",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-2.png",
+            className: "hide992 hidePerson",
+            alt: "person-2",
+            name: "Волобуев",
+            br: false,
+            surname: "Кирилл",
+            job: "Менеджер по продажам"
+        },
+    ];
 
-  const personsList2 = [
-    { src: "./img/persons/person-1.png", alt: "person-1", name: "Нибиуллин", br: true, surname: "Константин", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-2.png", alt: "person-2", name: "Приреченский", br: true, surname: "Владислав", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-3.png", alt: "person-3", name: "Михаливченков", br: true, surname: "Константин", job: "Менеджер по продажам" },
-    { src: "./img/persons/person-4.png", alt: "person-4", name: "Волобуев", br: false, surname: "Кирилл", job: "Менеджер по продажам" },
-  ];
+    const personsList2 = [
+        {
+            src: "./img/persons/person-1.png",
+            alt: "person-1",
+            name: "Нибиуллин",
+            br: true,
+            surname: "Константин",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-2.png",
+            alt: "person-2",
+            name: "Приреченский",
+            br: true,
+            surname: "Владислав",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-3.png",
+            alt: "person-3",
+            name: "Михаливченков",
+            br: true,
+            surname: "Константин",
+            job: "Менеджер по продажам"
+        },
+        {
+            src: "./img/persons/person-4.png",
+            alt: "person-4",
+            name: "Волобуев",
+            br: false,
+            surname: "Кирилл",
+            job: "Менеджер по продажам"
+        },
+    ];
 
-  function personsTemplate(array = []) {
-    const arr = array?.map(el => {
-      return `<li class="${el.className ?? ''}">
+    function personsTemplate(array = []) {
+        const arr = array?.map(el => {
+            return `<li class="${el.className ?? ''}">
         <img src="${el.src}" alt="${el.alt}">
         <h4>${el.name} ${el.br ? `<br />` : ""} ${el.surname}</h4>
         <p>${el.job}</p>
       </li> `
-    });
+        });
 
-    return `<ul class="sales_grid">${arr?.join('')}</ul>`
-  }
-  sales_person.innerHTML = personsTemplate(personsList);
-  sales_person2.innerHTML = personsTemplate(personsList2);
-
-  const morePerson = document.querySelector('.morePerson');
-  const morePerson2 = document.querySelector('.morePerson2');
-
-  if (
-    window.innerWidth <= 575 && personsList.length > 4
-    ||
-    window.innerWidth <= 575 && personsList2.length > 4
-  ) {
-    morePerson.style.display = "block";
-    morePerson2.style.display = "block";
-  } else {
-    morePerson.style.display = "none";
-    morePerson2.style.display = "none";
-  }
-
-  const hidePersons = document.querySelectorAll('.hidePerson');
-  morePerson?.addEventListener('click', () => {
-    for (let i = 0; i < hidePersons.length; i++) {
-      const el = hidePersons[i];
-      el.classList.toggle('showPerson');
-      morePerson.classList.add('hideButtonPerson')
+        return `<ul class="sales_grid">${arr?.join('')}</ul>`
     }
-  })
 
-  const hidePersons2 = document.querySelectorAll('.hidePerson2');
-  morePerson2?.addEventListener('click', () => {
-    for (let i = 0; i < hidePersons2.length; i++) {
-      const el = hidePersons2[i];
-      el.classList.toggle('showPerson');
-      morePerson2.classList.add('hideButtonPerson')
+    sales_person.innerHTML = personsTemplate(personsList);
+    sales_person2.innerHTML = personsTemplate(personsList2);
+
+    const morePerson = document.querySelector('.morePerson');
+    const morePerson2 = document.querySelector('.morePerson2');
+
+    if (
+        window.innerWidth <= 575 && personsList.length > 4
+        ||
+        window.innerWidth <= 575 && personsList2.length > 4
+    ) {
+        morePerson.style.display = "block";
+        morePerson2.style.display = "block";
+    } else {
+        morePerson.style.display = "none";
+        morePerson2.style.display = "none";
     }
-  })
+
+    const hidePersons = document.querySelectorAll('.hidePerson');
+    morePerson?.addEventListener('click', () => {
+        for (let i = 0; i < hidePersons.length; i++) {
+            const el = hidePersons[i];
+            el.classList.toggle('showPerson');
+            morePerson.classList.add('hideButtonPerson')
+        }
+    })
+
+    const hidePersons2 = document.querySelectorAll('.hidePerson2');
+    morePerson2?.addEventListener('click', () => {
+        for (let i = 0; i < hidePersons2.length; i++) {
+            const el = hidePersons2[i];
+            el.classList.toggle('showPerson');
+            morePerson2.classList.add('hideButtonPerson')
+        }
+    })
 }
 
 const vakancies_block = document.querySelector('.vakancies_block');
 
 if (vakancies_block) {
-  function templateVakancies(array = [], WRITE_DESCRIPTION) {
-    const arr = array.map((el) => {
-      return `
+    function templateVakancies(array = [], WRITE_DESCRIPTION) {
+        const arr = array.map((el) => {
+            return `
       <li>
         <div class="vakancies-item">
           <div class="vakancies-item_text">
@@ -329,7 +413,7 @@ if (vakancies_block) {
             <button class="splide_my-btn-next vakancies_arrow"></button>
           </div>
         </div>
-        
+
         <div class="vakancies-item_text_show">
           <!-- ========== DISCRIPTION START ====== -->
 
@@ -357,36 +441,37 @@ if (vakancies_block) {
         </div>
       </li>
       `
-    })
-    return `
+        })
+        return `
       <div class="vakancies_list">
         ${arr?.join('')}
       </div>`
-  }
-  const vakancies = [
-    { title: 'Автомойщик в Автосалон', price: '50 000 — 80 000' },
-    { title: 'мЕНЕДЖЕР ПО ПРОДАЖАМ', price: '80 000 — 100 000' },
-    { title: 'Автомойщик в Автосалон', price: '80 000 — 100 000' }
-  ]
+    }
 
-  vakancies_block.innerHTML = templateVakancies(vakancies)
-  let accardions = document.querySelectorAll(".vakancies-item");
+    const vakancies = [
+        {title: 'Автомойщик в Автосалон', price: '50 000 — 80 000'},
+        {title: 'мЕНЕДЖЕР ПО ПРОДАЖАМ', price: '80 000 — 100 000'},
+        {title: 'Автомойщик в Автосалон', price: '80 000 — 100 000'}
+    ]
 
-  for (let i = 0; i < accardions.length; i++) {
-    const acc = accardions[i];
+    vakancies_block.innerHTML = templateVakancies(vakancies)
+    let accardions = document.querySelectorAll(".vakancies-item");
 
-    acc.addEventListener("click", function () {
-      this.classList.toggle('_active');
-      const panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null
-        panel.style.padding = '0rem 24px'
-      } else {
-        panel.style.padding = '1rem 24px'
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
-    });
-  }
+    for (let i = 0; i < accardions.length; i++) {
+        const acc = accardions[i];
+
+        acc.addEventListener("click", function () {
+            this.classList.toggle('_active');
+            const panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null
+                panel.style.padding = '0rem 24px'
+            } else {
+                panel.style.padding = '1rem 24px'
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
 }
 
 
@@ -395,44 +480,45 @@ const submitRequiredFormHome = document.querySelector('.submitRequiredFormHome')
 const submitRequiredFormCredit = document.querySelector('.submitRequiredFormCredit');
 
 if (submitRequiredForm || submitRequiredFormHome || submitRequiredFormCredit) {
-  submitRequiredForm?.addEventListener('click', () => {
-    const input_1 = document.querySelector('.input-1');
-    const input_2 = document.querySelector('.input-2');
-    const myForm = {
-      name: input_1.value,
-      number: input_2.value
-    }
-    console.log(myForm);
-    alert(JSON.stringify(myForm))
-  })
+    submitRequiredForm?.addEventListener('click', () => {
+        const input_1 = document.querySelector('.input-1');
+        const input_2 = document.querySelector('.input-2');
+        const myForm = {
+            name: input_1.value,
+            number: input_2.value
+        }
+        console.log(myForm);
+        alert(JSON.stringify(myForm))
+    })
 
-  submitRequiredFormHome?.addEventListener('click', () => {
-    const input_1 = document.querySelector('.inputHome-1');
-    const input_2 = document.querySelector('.inputHome-2');
-    const myForm = {
-      name: input_1.value,
-      number: input_2.value
-    }
-    console.log(myForm);
-    alert(JSON.stringify(myForm))
-  })
+    submitRequiredFormHome?.addEventListener('click', () => {
+        const input_1 = document.querySelector('.inputHome-1');
+        const input_2 = document.querySelector('.inputHome-2');
+        const myForm = {
+            name: input_1.value,
+            number: input_2.value
+        }
+        console.log(myForm);
+        alert(JSON.stringify(myForm))
+    })
 
-  submitRequiredFormCredit?.addEventListener('click', () => {
-    const input_1 = document.querySelector('.inputCredit-1');
-    const input_2 = document.querySelector('.inputCredit-2');
-    const myForm = {
-      name: input_1.value,
-      number: input_2.value
-    }
-    console.log(myForm);
-    alert(JSON.stringify(myForm))
-  })
+    submitRequiredFormCredit?.addEventListener('click', () => {
+        const input_1 = document.querySelector('.inputCredit-1');
+        const input_2 = document.querySelector('.inputCredit-2');
+        const myForm = {
+            name: input_1.value,
+            number: input_2.value
+        }
+        console.log(myForm);
+        alert(JSON.stringify(myForm))
+    })
 }
 const cars_buy = document.querySelector('.homeCars');
 const cars_buy2 = document.querySelector('.catalogCars');
+
 function templateCars(array = []) {
-  const arr = array.map(el => {
-    return `
+    const arr = array.map(el => {
+        return `
     <li class="car_info car-info">
       <div class="car-info_container">
         <a href="../${el.link}.html" target="_blank">
@@ -490,156 +576,658 @@ function templateCars(array = []) {
       </div>
     </li>
     `
-  })
-  // return `<ul class="car_list">${arr?.join('')}</ul>`
-  return arr?.join('')
+    })
+
+    return arr?.join('')
 }
 
 if (cars_buy) {
-  const carsPerPage = 9;
-  let currentPage = 1;
-  let displayedCarsCount = 0;
+    const carsPerPage = 9;
+    let currentPage = 1;
+    let displayedCarsCount = 0;
 
-  const homeCarList = [
-    { id: 1, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 2, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 3, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 4, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 5, link: 'detail', img: 'car_5', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 6, link: 'detail', img: 'car_6', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 7, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 8, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 9, link: 'detail', img: 'car_6', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 10, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 11, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 12, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 13, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 14, link: 'detail', img: 'car_5', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 15, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 16, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 17, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 18, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 19, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 20, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-  ];
-  const totalCarsCount = homeCarList.length;
-  showCars();
-
-  function showCars() {
-    const startIndex = displayedCarsCount;
-    const endIndex = startIndex + carsPerPage;
-    const carsToShow = homeCarList.slice(startIndex, endIndex);
-    if (carsToShow.length > 0) {
-      const list = document.querySelector(".car_list");
-      list.insertAdjacentHTML("beforeend", templateCars(carsToShow));
-      displayedCarsCount += carsToShow.length;
-    }
-    if (displayedCarsCount >= totalCarsCount) {
-      showMoreButton.style.display = "none";
-    }
-  }
-  const showMoreButton = document.querySelector("#show-more");
-  showMoreButton?.addEventListener("click", (e) => {
-    currentPage++;
+    const homeCarList = [
+        {
+            id: 1,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 2,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 3,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 4,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 5,
+            link: 'detail',
+            img: 'car_5',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 6,
+            link: 'detail',
+            img: 'car_6',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 7,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 8,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 9,
+            link: 'detail',
+            img: 'car_6',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 10,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 11,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 12,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 13,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 14,
+            link: 'detail',
+            img: 'car_5',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 15,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 16,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 17,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 18,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 19,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 20,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+    ];
+    const totalCarsCount = homeCarList.length;
     showCars();
-    e.preventDefault();
-  });
+
+    function showCars() {
+        const startIndex = displayedCarsCount;
+        const endIndex = startIndex + carsPerPage;
+        const carsToShow = homeCarList.slice(startIndex, endIndex);
+        if (carsToShow.length > 0) {
+            const list = document.querySelector(".car_list");
+            list.insertAdjacentHTML("beforeend", templateCars(carsToShow));
+            displayedCarsCount += carsToShow.length;
+        }
+        if (displayedCarsCount >= totalCarsCount) {
+            showMoreButton.style.display = "none";
+        }
+    }
+
+    const showMoreButton = document.querySelector("#show-more");
+    showMoreButton?.addEventListener("click", (e) => {
+        currentPage++;
+        showCars();
+        e.preventDefault();
+    });
 }
 if (cars_buy2) {
-  const carsPerPage = 15;
-  let currentPage = 1;
-  let displayedCarsCount = 0;
+    const carsPerPage = 15;
+    let currentPage = 1;
+    let displayedCarsCount = 0;
 
-  const catalogCarList = [
-    { id: 1, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 2, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 3, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 4, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 5, link: 'detail', img: 'car_5', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 6, link: 'detail', img: 'car_6', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 7, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 8, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 9, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 10, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 11, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 12, link: 'detail', img: 'car_5', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 13, link: 'detail', img: 'car_6', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 14, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 15, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 16, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 17, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 18, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 19, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 20, link: 'detail', img: 'car_5', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 21, link: 'detail', img: 'car_6', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 22, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 23, link: 'detail', img: 'car_4', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 24, link: 'detail', img: 'car_2', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 25, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 26, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 27, link: 'detail', img: 'car_5', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 28, link: 'detail', img: 'car_6', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 29, link: 'detail', img: 'car_3', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-    { id: 30, link: 'detail', img: 'car_1', name: 'Kia Carnival', year: 2018, price: '2 850 000', minPrice: '16 600', km: '1 000 000', speed: '1.2 л (98 л.с.)' },
-  ];
+    const catalogCarList = [
+        {
+            id: 1,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 2,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 3,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 4,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 5,
+            link: 'detail',
+            img: 'car_5',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 6,
+            link: 'detail',
+            img: 'car_6',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 7,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 8,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 9,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 10,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 11,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 12,
+            link: 'detail',
+            img: 'car_5',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 13,
+            link: 'detail',
+            img: 'car_6',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 14,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 15,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 16,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 17,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 18,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 19,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 20,
+            link: 'detail',
+            img: 'car_5',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 21,
+            link: 'detail',
+            img: 'car_6',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 22,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 23,
+            link: 'detail',
+            img: 'car_4',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 24,
+            link: 'detail',
+            img: 'car_2',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 25,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 26,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 27,
+            link: 'detail',
+            img: 'car_5',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 28,
+            link: 'detail',
+            img: 'car_6',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 29,
+            link: 'detail',
+            img: 'car_3',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+        {
+            id: 30,
+            link: 'detail',
+            img: 'car_1',
+            name: 'Kia Carnival',
+            year: 2018,
+            price: '2 850 000',
+            minPrice: '16 600',
+            km: '1 000 000',
+            speed: '1.2 л (98 л.с.)'
+        },
+    ];
 
-  const totalCarsCount = catalogCarList.length;
-  showCars();
-
-  function showCars() {
-    const startIndex = displayedCarsCount;
-    const endIndex = startIndex + carsPerPage;
-    const carsToShow = catalogCarList.slice(startIndex, endIndex);
-    if (carsToShow.length > 0) {
-      const list = document.querySelector(".car_list");
-      list.insertAdjacentHTML("beforeend", templateCars(carsToShow));
-      displayedCarsCount += carsToShow.length;
-    }
-    if (displayedCarsCount >= totalCarsCount) {
-      showMoreButton.style.display = "none";
-    }
-  }
-  const showMoreButton = document.querySelector("#show-more");
-  showMoreButton?.addEventListener("click", (e) => {
-    currentPage++;
+    const totalCarsCount = catalogCarList.length;
     showCars();
-    e.preventDefault();
-  });
 
-  // для запуска локальной бд
+    function showCars() {
+        const startIndex = displayedCarsCount;
+        const endIndex = startIndex + carsPerPage;
+        const carsToShow = catalogCarList.slice(startIndex, endIndex);
+        if (carsToShow.length > 0) {
+            const list = document.querySelector(".car_list");
+            list.insertAdjacentHTML("beforeend", templateCars(carsToShow));
+            displayedCarsCount += carsToShow.length;
+        }
+        if (displayedCarsCount >= totalCarsCount) {
+            showMoreButton.style.display = "none";
+        }
+    }
 
-  // (async function fetchData(){
-  //   const response = await fetch(`http://localhost:3000/catalogCarList`);
-  //   const data = response.json();
-  //   cars_buy2.innerHTML = templateCars(data);
-  // })()
+    const showMoreButton = document.querySelector("#show-more");
+    showMoreButton?.addEventListener("click", (e) => {
+        currentPage++;
+        showCars();
+        e.preventDefault();
+    });
+
+    // для запуска локальной бд
+
+    // (async function fetchData(){
+    //   const response = await fetch(`http://localhost:3000/catalogCarList`);
+    //   const data = response.json();
+    //   cars_buy2.innerHTML = templateCars(data);
+    // })()
 }
 const filterShow = document.querySelector('.filter-show');
 const filterClose = document.querySelectorAll('.filter-close');
 
 
 if (filterShow) {
-  const body = document.querySelector('.filter_body');
-  const header_filter = document.querySelector('.header-filter');
-  const header_container = document.querySelector('.header_container')
+    const body = document.querySelector('.filter_body');
+    const header_filter = document.querySelector('.header-filter');
+    const header_container = document.querySelector('.header_container')
 
-  filterShow?.addEventListener('click', (e) => {
-    e.preventDefault();
-    body.classList.add('_active');
-    document.body.classList.add('_active');
-    header_filter.classList.add('_active');
-    header_container.classList.add('_active')
-  })
-
-  for (let i = 0; i < filterClose?.length; i++) {
-    const element = filterClose[i];
-    
-    element.addEventListener('click', (e) => {
-      body.classList.remove('_active');
-      document.body.classList.remove('_active');
-      header_filter.classList.remove('_active');
-      header_container.classList.remove('_active')
+    filterShow?.addEventListener('click', (e) => {
+        e.preventDefault();
+        body.classList.add('_active');
+        document.body.classList.add('_active');
+        header_filter.classList.add('_active');
+        header_container.classList.add('_active')
     })
-    
-  }
+
+    for (let i = 0; i < filterClose?.length; i++) {
+        const element = filterClose[i];
+
+        element.addEventListener('click', (e) => {
+            body.classList.remove('_active');
+            document.body.classList.remove('_active');
+            header_filter.classList.remove('_active');
+            header_container.classList.remove('_active')
+        })
+
+    }
 }
