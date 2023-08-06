@@ -7,6 +7,33 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Car
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $count
+ * @property int $price
+ * @property bool $pickup
+ * @property bool $store
+ * @property string $description
+ * @property string $url
+ * @property int $vehicle_mileage
+ * @property int $year
+ * @property string $steering_wheel
+ * @property string $pts
+ * @property int $pts_owners
+ * @property string $engine
+ * @property string $wheel_drive
+ *
+ * @property Model $model
+ * @property Generation $generation
+ * @property KppType $kppType
+ * @property CarColor $carColor
+ * @property CarBody $carBody
+ * @property Currency $currency
+ */
 class Car extends EloquentModel
 {
     use HasFactory, SoftDeletes;
@@ -34,15 +61,10 @@ class Car extends EloquentModel
         'kpp_type_id',
         'generation_id',
         'model_id',
+        'expert_id',
     ];
 
-    protected $casts = [
-        'price' => 'integer',
-        'pickup' => 'boolean',
-        'store' => 'boolean',
-    ];
-
-    //====================== relations =====================================
+//====================== relations =====================================
     public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);

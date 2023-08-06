@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
-use App\Models\Car;
-use App\Models\CarBody;
-use App\Models\CarColor;
-use App\Models\Currency;
-use App\Models\Generation;
-use App\Models\KppType;
-use App\Models\Model;
-use App\Models\VehicleConfiguration;
+use App\Services\CarService;
+use App\Services\DictService;
+use App\Services\ExpertService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
+use Throwable;
 
 class MainController extends Controller
 {
+    private ExpertService $expertService;
+
+    private DictService $dictService;
+
+    private CarService $carService;
+
+    public function __construct(ExpertService $expertService, DictService $dictService, CarService $carService)
+    {
+        $this->expertService = $expertService;
+        $this->dictService = $dictService;
+        $this->carService = $carService;
+    }
+
     public function index(): View|Factory|Application
     {
         return view('index');
@@ -49,92 +58,47 @@ class MainController extends Controller
 
     public function xml()
     {
-    $xmlFile = file_get_contents('https://media.cm.expert/stock/export/cmexpert/yml/all/f435138a516b22adae4aea5ddea11706.xml');
+        $autos = $this->expertService->getAutos();
 
-    $xmlObject = simplexml_load_string($xmlFile);
+        try {
+            foreach ($autos as $key => $auto) {
+                dump($auto['name']);
+                $expertDto = $this->expertService->parseSource($auto);
 
-    $jsonFormatData = json_encode($xmlObject);
-    $result = json_decode($jsonFormatData);
+                $brand = $this->dictService->createBrand($expertDto);
+                $model = $this->dictService->createModel($expertDto, $brand);
+                $generation = $this->dictService->createGeneration($expertDto, $model);
+                $configuration = $this->dictService->createConfiguration($expertDto, $generation);
+                $kppType = $this->dictService->createKppType($expertDto);
+                $carBody = $this->dictService->createCarBody($expertDto);
+                $carColor = $this->dictService->createCarColor($expertDto);
+                $currency = $this->dictService->createCurrency($expertDto);
 
-    $autos = $result->shop->offers->offer;
+                $carDto = $this->carService->parseSource($auto);
+                $car = $this->carService->getCar($expertDto->expertId);
 
-    try {
-        foreach ($autos as $key => $auto) {
-//            dd($auto);
-            $params = $auto->param;
-            $source['brand'] = $auto->vendor;
-            $source['model'] = end($params);
-            $source['generation'] = prev($params);
-            $source['kpp'] = prev($params);
-            $source['body'] = $params[2];
-            $source['color'] = $params[4];
-            $source['currency'] = $auto->currencyId;
-            $source['mileage'] = reset($params);
-            $source['year'] = next($params);
-            $source['steering_wheel'] = next($params);
-//        dump($source);
-//        continue;
-            $brand = Brand::firstOrCreate([
-                'name' => $source['brand'],
-            ]);
-            $model = Model::firstOrCreate([
-                'name' => $source['model'],
-                'brand_id' => $brand->id,
-            ]);
-            $generation = Generation::firstOrCreate([
-                'name' => $source['generation'],
-                'model_id' => $model->id,
-            ]);
-            $configuration = VehicleConfiguration::firstOrCreate([
-                'name' => $auto->model,
-                'generation_id' => $generation->id,
-            ]);
-            $kppType = KppType::firstOrCreate([
-                'name' => $source['kpp'],
-            ]);
-            $carBody = CarBody::firstOrCreate([
-                'name' => $source['body'],
-            ]);
-            $carColor = CarColor::firstOrCreate([
-                'name' => $source['color'],
-            ]);
-            $currency = Currency::firstOrCreate([
-                'name' => $source['currency'],
-            ]);
-            $car = Car::firstOrCreate([
-                'name' => $auto->name,
-                'count' => $auto->count,
-                'price' => $auto->price,
-                'currency_id' => $currency->id,
-                'pickup' => $auto->pickup,
-                'store' => $auto->store,
-                'description' => $auto->description,
-                'url' => $auto->url,
-                'vehicle_mileage' => $source['mileage'],
-                'year' => $source['year'],
-                'car_body_id' => $carBody->id,
-                'steering_wheel' => $source['steering_wheel'],
-                'car_color_id' => $carColor->id,
-                'pts' => isset($params[11]) ? $params[5] : null,
-                'pts_owners' => isset($params[11]) ? $params[6] : $params[5],
-                'engine' => isset($params[11]) ? $params[7] : $params[6],
-                'wheel_drive' => $params[3],
-                'kpp_type_id' => $kppType->id,
-                'generation_id' => $generation->id,
-                'model_id' => $model->id,
-            ]);
+                $carDto->model = $model;
+                $carDto->generation = $generation;
+                $carDto->kppType = $kppType;
+                $carDto->carColor = $carColor;
+                $carDto->carBody = $carBody;
+                $carDto->currency = $currency;
 
-            if ($car) {
+                if ($car) {
+                    $car = $this->carService->updateCar($carDto, $car);
+                } else {
+                    $car = $this->carService->createCar($carDto, $expertDto);
+                }
+
+                $this->carService->addPictures(Arr::get($auto, 'picture'), $car);
+
                 dump("Обновлено $car->name");
-            } else {
-                dump("Ошибка $auto->name");
             }
+        } catch (Throwable $ex) {
+            dump($auto['name']);
+            dd($ex->getMessage(), $ex->getTraceAsString());
         }
-    } catch (\Throwable $ex) {
-        dd($ex->getMessage());
-    }
-    dd('Обновление окончено');
-    dd($result->shop->offers->offer);
-
+        dd('Обновление окончено');
+        dd($result->shop->offers->offer);
     }
 }

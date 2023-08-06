@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Currency
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $name
+ */
 class Currency extends EloquentModel
 {
     use HasFactory, SoftDeletes;

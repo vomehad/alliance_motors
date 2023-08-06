@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class CarBody
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $name
+ */
 class CarBody extends EloquentModel
 {
     use HasFactory, SoftDeletes;

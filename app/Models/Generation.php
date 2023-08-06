@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Generation
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $name
+ */
 class Generation extends EloquentModel
 {
     use HasFactory, SoftDeletes;

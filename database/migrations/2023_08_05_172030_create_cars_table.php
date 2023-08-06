@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->tinyInteger('count');
             $table->string('price');
+            $table->string('expert_id')->index();
             $table->foreignId('currency_id')->constrained('currencies')->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('delivery')->nullable();
             $table->boolean('pickup')->nullable();
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->foreignId('car_body_id')->constrained('car_bodies')->cascadeOnDelete()->cascadeOnUpdate();
             $table->tinyText('steering_wheel');
             $table->foreignId('car_color_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->tinyText('pts');
+            $table->tinyText('pts')->nullable();
             $table->tinyInteger('pts_owners');
             $table->string('engine');
             $table->tinyText('wheel_drive');
