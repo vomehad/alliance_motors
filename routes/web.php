@@ -9,3 +9,4 @@ Route::get('/credit', [PageController::class, 'credit'])->name('credit');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/detail/{id}', [PageController::class, 'detail'])->name('detail');

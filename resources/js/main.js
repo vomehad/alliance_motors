@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             splideIndex.mount();
         }
     }
-    if (path === '/detail') {
+    if (path.includes('detail')) {
         if (document.querySelector("#detailSplite")) {
             const splide = new Splide("#detailSplite", {
                 type: "loop",
@@ -809,7 +809,7 @@ if (cars_buy) {
         },
     ];
     const totalCarsCount = homeCarList.length;
-    showCars();
+    // showCars();
 
     function showCars() {
         const startIndex = displayedCarsCount;
@@ -1171,7 +1171,7 @@ if (cars_buy2) {
     ];
 
     const totalCarsCount = catalogCarList.length;
-    showCars();
+    // showCars();
 
     function showCars() {
         const startIndex = displayedCarsCount;

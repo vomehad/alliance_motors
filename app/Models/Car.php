@@ -94,5 +94,10 @@ class Car extends EloquentModel
     {
         return $this->belongsTo(Model::class);
     }
+
+    public function pictures(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(Picture::class,'picturable', 'entity', 'entity_id');
+    }
 // ============================= end relations ===================================
 }

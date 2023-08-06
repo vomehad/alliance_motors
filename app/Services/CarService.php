@@ -13,6 +13,37 @@ use Illuminate\Support\Arr;
 
 class CarService
 {
+    public function getAll(): \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        $relations = [
+            'pictures',
+            'kpp',
+            'body',
+            'currency',
+            'color',
+            'generation',
+            'model',
+        ];
+
+        return Car::query()->with($relations)->paginate();
+        return Car::query()->with($relations)->get();
+    }
+
+    public function getOneById(int $id): Car|EloquentModel
+    {
+        $relations = [
+            'pictures',
+            'kpp',
+            'body',
+            'currency',
+            'color',
+            'generation',
+            'model',
+        ];
+
+        return Car::query()->with($relations)->where(['id' => $id])->first();
+    }
+
     public function getCar(string $expertId): ?EloquentModel
     {
         return Car::query()->where(['expert_id' => $expertId])->first();

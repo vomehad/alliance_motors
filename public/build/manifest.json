@@ -1,11 +1,15 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-4ed993c7.js",
+    "file": "assets/app-68c2d18e.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
+  "resources/img/icons/check.svg": {
+    "file": "assets/check-89c221e9.svg",
+    "src": "resources/img/icons/check.svg"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-88b9f755.js",
+    "file": "assets/app-1a2b9b06.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

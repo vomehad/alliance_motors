@@ -18,4 +18,9 @@ class Picture extends Model
         'entity',
         'entity_id',
     ];
+
+    public function picturable()
+    {
+        return $this->morphTo();
+    }
 }

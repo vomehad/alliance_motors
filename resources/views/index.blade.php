@@ -117,7 +117,11 @@
             </div>
             <div class="cars_container">
                 <div class="cars_buy car homeCars">
-                    <ul class="car_list"></ul>
+                    <ul class="car_list">
+                        @foreach($cars as $car)
+                            @include('part.car_info', ['car' => $car])
+                        @endforeach
+                    </ul>
                 </div>
 
                 <div class="filter_body">

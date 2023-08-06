@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alliance</title>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css?_v=20230802212924" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.min.css?_v=20230802212924" />
-{{--    <link rel="stylesheet" href="{{ Illuminate\Support\Facades\Vite::asset('resources/css/style.css') }}" />--}}
+{{--    <link rel="stylesheet" href="css/style.min.css" />--}}
+    <link rel="stylesheet" href="{{ Illuminate\Support\Facades\Vite::asset('resources/css/app.css') }}" />
 </head>
 
 <body>
