@@ -43,7 +43,8 @@
         <ul class="splide__list">
             @foreach($car->pictures as $picture)
                 <li class="splide__slide splide-li">
-                    <a href="{{ $picture->id }}" class="popup-link">
+{{--                    <a href="{{ $picture->id }}" class="popup-link">--}}
+                    <a href="#car1" class="popup-link">
                         <img class="splide-img" src="{{ $picture->src }}" alt="{{ $picture->src }}"/>
                     </a>
                 </li>
@@ -151,7 +152,7 @@
                     </div>
                 </div>
                 <div class="detail-img" data-da="details-right,1,992">
-                    <img src="{{ url('/img/detail-car/detail-img.png') }}" />
+                    <img src="{{ $car->pictures->first()->src }}" />
                 </div>
             </div>
             <div class="details-right">
