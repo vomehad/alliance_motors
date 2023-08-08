@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -72,17 +73,17 @@ class Car extends EloquentModel
 
     public function body(): BelongsTo
     {
-        return $this->belongsTo(CarBody::class);
+        return $this->belongsTo(CarBody::class, 'car_body_id', 'id');
     }
 
     public function color(): BelongsTo
     {
-        return $this->belongsTo(CarColor::class);
+        return $this->belongsTo(CarColor::class, 'car_color_id', 'id');
     }
 
     public function kpp(): BelongsTo
     {
-        return $this->belongsTo(KppType::class);
+        return $this->belongsTo(KppType::class, 'kpp_type_id', 'id');
     }
 
     public function generation(): BelongsTo
@@ -95,9 +96,43 @@ class Car extends EloquentModel
         return $this->belongsTo(Model::class);
     }
 
-    public function pictures(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function pictures(): MorphMany
     {
-        return $this->morphMany(Picture::class,'picturable', 'entity', 'entity_id');
+        return $this->morphMany(Picture::class, 'picturable', 'entity', 'entity_id');
     }
 // ============================= end relations ===================================
+
+    public function getMileage(): string
+    {
+        return "$this->vehicle_mileage км";
+    }
+
+    public function getPrice(): string
+    {
+        return "$this->price ₽";
+    }
+
+    public function getMinPrice(): string
+    {
+        $month = 7 * 12;
+        $sum = $this->price / $month;
+
+        $fullSum = round($sum + 0.07 * $sum, 0);
+
+        return "$fullSum ₽ / мин. платеж";
+    }
+
+    public function getFuelType(): string
+    {
+        list($fuel, $v, $power) = explode(',', $this->engine);
+
+        return trim($fuel);
+    }
+
+    public function getMotorType(): string
+    {
+        list($fuel, $v, $power) = explode(',', $this->engine);
+
+        return trim($v) . ', ' . trim($power);
+    }
 }
