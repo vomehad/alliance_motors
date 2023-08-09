@@ -9,15 +9,15 @@
                         <h1 class="footer_title map-contact_title">Контакты</h1>
                         <ul>
                             <li>
-                                <img src="../img/icons/geo.svg" alt="Geo">
+                                <img src="{{ url('/img/icons/geo.svg') }}" alt="Geo">
                                 <p>Краснодар, ул. Ростовское шоссе, 7 <br><a href="tel:+89180259393">8 (918) 025-93-93</a></p>
                             </li>
                             <li>
-                                <img src="../img/icons/geo.svg" alt="Geo">
+                                <img src="{{ url('/img/icons/geo.svg') }}" alt="Geo">
                                 <p>Краснодар, ул. Ростовское шоссе, 7 <br><a href="tel:+89180259393">8 (918) 025-93-93</a></p>
                             </li>
                             <li>
-                                <img src="../img/icons/mail.svg" alt="Mail">
+                                <img src="{{ url('/img/icons/mail.svg') }}" alt="Mail">
                                 <p><a href="mailto:alliance.motors@bk.ru" class="m-0">alliance.motors@bk.ru</a></p>
                             </li>
                         </ul>
@@ -48,12 +48,12 @@
         </div>
         <div class="gallery">
             <ul class="gallery_container">
-                <picture><source srcset="../img/salon/salon-1.webp" type="image/webp"><img src="../img/salon/salon-1.png" alt="salon-1" class="salon-1"></picture>
-                <picture><source srcset="../img/salon/salon-2.webp" type="image/webp"><img src="../img/salon/salon-2.png" alt="salon-2" class="salon-2"></picture>
-                <picture><source srcset="../img/salon/salon-3.webp" type="image/webp"><img src="../img/salon/salon-3.png" alt="salon-3" class="salon-3"></picture>
-                <picture><source srcset="../img/salon/salon-4.webp" type="image/webp"><img src="../img/salon/salon-4.png" alt="salon-4" class="salon-4"></picture>
-                <picture><source srcset="../img/salon/salon-5.webp" type="image/webp"><img src="../img/salon/salon-5.png" alt="salon-5" class="salon-5"></picture>
-                <picture><source srcset="../img/salon/salon-6.webp" type="image/webp"><img src="../img/salon/salon-6.png" alt="salon-6" class="salon-6"></picture>
+                <picture><source srcset="{{ url('/img/salon/salon-1.webp') }}" type="image/webp"><img src="{{ url('/img/salon/salon-1.png') }}" alt="salon-1" class="salon-1"></picture>
+                <picture><source srcset="{{ url('/img/salon/salon-2.webp') }}" type="image/webp"><img src="{{ url('/img/salon/salon-2.png') }}" alt="salon-2" class="salon-2"></picture>
+                <picture><source srcset="{{ url('/img/salon/salon-3.webp') }}" type="image/webp"><img src="{{ url('/img/salon/salon-3.png') }}" alt="salon-3" class="salon-3"></picture>
+                <picture><source srcset="{{ url('/img/salon/salon-4.webp') }}" type="image/webp"><img src="{{ url('/img/salon/salon-4.png') }}" alt="salon-4" class="salon-4"></picture>
+                <picture><source srcset="{{ url('/img/salon/salon-5.webp') }}" type="image/webp"><img src="{{ url('/img/salon/salon-5.png') }}" alt="salon-5" class="salon-5"></picture>
+                <picture><source srcset="{{ url('/img/salon/salon-6.webp') }}" type="image/webp"><img src="{{ url('/img/salon/salon-6.png') }}" alt="salon-6" class="salon-6"></picture>
             </ul>
         </div>
     </div>
@@ -66,27 +66,9 @@
                     <div class="flex justify-between items-center">
                         <h1 class="submit_title">Заявка успешно отправлена</h1>
                         <a href="#header" class="close-popup close-modal">
-                            <svg
-                                width="40"
-                                height="40"
-                                viewBox="0 0 40 40"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M30 10L10 30"
-                                    stroke="white"
-                                    stroke-width="1.1"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M10 10L30 30"
-                                    stroke="white"
-                                    stroke-width="1.1"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
@@ -105,60 +87,20 @@
                     <div class="flex justify-between items-center">
                         <h1 class="submit_title">Оставить заявку</h1>
                         <a href="#header" class="close-popup close-modal">
-                            <svg
-                                width="40"
-                                height="40"
-                                viewBox="0 0 40 40"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M30 10L10 30"
-                                    stroke="white"
-                                    stroke-width="1.1"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M10 10L30 30"
-                                    stroke="white"
-                                    stroke-width="1.1"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
-                    <form action="/" class="submit_form" id="submit">
-                        <input
-                            required
-                            type="text"
-                            id="name"
-                            minlength="2"
-                            placeholder="Имя"
-                            class="input-1"
-                        />
-                        <input
-                            required
-                            type="tel"
-                            id="tel"
-                            placeholder="+7 (___) ___-__-__"
-                            class="input-2"
-                        />
+                    <form action="{{ route('main') }}" class="submit_form" id="submit">
+                        <input required type="text" id="name" minlength="2" placeholder="Имя" class="input-1"/>
+                        <input required type="tel" id="tel" placeholder="+7 (___) ___-__-__" class="input-2"/>
                         <a href="#win" class="btn-link popup-link w-100">
-                            <button
-                                type="submit"
-                                form="/"
-                                class="btn zayavka-btn w-100 submitRequiredForm"
-                            >
-                                Отправить
-                            </button>
+                            <button type="submit" form="/" class="btn zayavka-btn w-100 submitRequiredForm">Отправить</button>
                         </a>
                     </form>
-                    <p>
-                        Нажимая на кнопку “Отправить”, вы даете согласие на обработку перс.
-                        данных
-                    </p>
+                    <p>Нажимая на кнопку “Отправить”, вы даете согласие на обработку перс. данных</p>
                 </div>
             </div>
         </div>

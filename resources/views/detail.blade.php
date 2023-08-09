@@ -43,9 +43,8 @@
         <ul class="splide__list">
             @foreach($car->pictures as $picture)
                 <li class="splide__slide splide-li">
-{{--                    <a href="{{ $picture->id }}" class="popup-link">--}}
-                    <a href="#car1" class="popup-link">
-                        <img class="splide-img" src="{{ $picture->src }}" alt="{{ $picture->src }}"/>
+                    <a href="#car1" class="popup-link" data-src="{{ $picture->src }}">
+                        <img class="splide-img" src="{{ $picture->src }}" alt="{{ $picture->name }}"/>
                     </a>
                 </li>
             @endforeach
@@ -104,36 +103,18 @@
                 <div class="detail-akciya">
                     <h1>акции</h1>
                     <ul>
-                        <li>
-                            <img src="{{ url('/img/icons/gift-1.svg') }}" />
-                            <p>Масляный сервис бесплатно</p>
-                        </li>
-                        <li>
-                            <img src="{{ url('/img/icons/gift-2.svg') }}" />
-                            <p>ОСАГО в подарок</p>
-                        </li>
+                        <li><img src="{{ url('/img/icons/gift-1.svg') }}" /><p>Масляный сервис бесплатно</p></li>
+                        <li><img src="{{ url('/img/icons/gift-2.svg') }}" /><p>ОСАГО в подарок</p></li>
                     </ul>
                 </div>
                 <div class="detail-benefits">
                     <h1>Преимущества</h1>
                     <div class="credit-grid detail-grid">
                         <ul class="row-1 detail-row-1">
-                            <li>
-                                <img src="{{ url('/img/icons/doc.svg') }}" alt="Document" />
-                                <p>Оформление<br />по 2 документам</p>
-                            </li>
-                            <li>
-                                <img src="{{ url('/img/icons/valuta.svg') }}" alt="Rubl" />
-                                <p>Без первоначального взноса</p>
-                            </li>
-                            <li>
-                                <img src="{{ url('/img/icons/kacko.svg') }}" alt="KASKO" />
-                                <p>Без оформления<br />КАСКО</p>
-                            </li>
-                            <li>
-                                <img src="{{ url('/img/icons/russia.svg') }}" alt="Russia" />
-                                <p>Все регионы РФ<br />(в т.ч. Кавказ и Крым)</p>
-                            </li>
+                            <li><img src="{{ url('/img/icons/doc.svg') }}" alt="Document" /><p>Оформление<br />по 2 документам</p></li>
+                            <li><img src="{{ url('/img/icons/valuta.svg') }}" alt="Rubl" /><p>Без первоначального взноса</p></li>
+                            <li><img src="{{ url('/img/icons/kacko.svg') }}" alt="KASKO" /><p>Без оформления<br />КАСКО</p></li>
+                            <li><img src="{{ url('/img/icons/russia.svg') }}" alt="Russia" /><p>Все регионы РФ<br />(в т.ч. Кавказ и Крым)</p></li>
                         </ul>
                         <li class="without-comissia flex items-center">
                             <img src="{{ url('/img/icons/without-comissia.svg') }}" alt="Без комиссий"/>
@@ -192,9 +173,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="detail-logo">
-                        <img src="{{ url('/img/logo.svg') }}" />
-                    </div>
+                    <div class="detail-logo"><img src="{{ url('/img/logo.svg') }}" /></div>
                 </div>
                 <div class="detail-complectation">
                     <h1>Комплектация</h1>
@@ -293,9 +272,9 @@
 
 <div class="popup" id="car1">
     <div class="popup__body">
-        <a href="#header" class="popup__close close-popup close-car">
-            <img src="{{ url('/img/close.svg') }}" />
-        </a>
+{{--        <a href="#header" class="popup__close close-popup close-car">--}}
+{{--            <img src="{{ url('/img/close.svg') }}" />--}}
+{{--        </a>--}}
         <div class="popup__content popup-car-content">
             <img src="{{ url('/img/big-car.png') }}" alt="CAR" class="popup-car" />
         </div>

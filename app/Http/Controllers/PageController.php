@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Services\CarService;
+use App\Services\DictService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -13,28 +14,41 @@ class PageController extends Controller
 {
     private CarService $carService;
 
-    public function __construct(CarService $carService)
+    private DictService $dictService;
+
+    public function __construct(CarService $carService, DictService $dictService)
     {
         $this->carService = $carService;
+        $this->dictService = $dictService;
     }
 
     public function index(): View|Factory|Application
     {
         $cars = $this->carService->getAll();
+        $brands = $this->dictService->getBrandList();
 
         return view('index', [
             'cars' => $cars,
+            'brands' => $brands
         ]);
     }
 
     public function catalog(): View|Factory|Application
     {
-        return view('catalog');
+        $cars = $this->carService->getAll();
+
+        return view('catalog', [
+            'cars' => $cars,
+        ]);
     }
 
     public function credit(): View|Factory|Application
     {
-        return view('credit');
+        $cars = $this->carService->getAll();
+
+        return view('credit', [
+            'cars' => $cars,
+        ]);
     }
 
     public function about(): View|Factory|Application

@@ -4,10 +4,8 @@
     <div class="wrapper">
         <section class="splide" id="homeSplide" aria-label="Splide">
             <div class="splide__arrows">
-                <button type="button" aria-controls="splide01-track" class="splide__arrow homeNextSlide splide__arrow--prev splide_my-btn-prev">
-                </button>
-                <button class="splide__arrow splide__arrow--next homePrevSlide splide_my-btn-next ">
-                </button>
+                <button type="button" aria-controls="splide01-track" class="splide__arrow homeNextSlide splide__arrow--prev splide_my-btn-prev"></button>
+                <button class="splide__arrow splide__arrow--next homePrevSlide splide_my-btn-next "></button>
             </div>
             <div class="splide__track">
                 <div class="splide__list">
@@ -15,17 +13,15 @@
                         <div class="slide_block">
                             <div class="slide">
                                 <div class="car-img_block">
-                                    <picture><source srcset="../img/jeep.webp" type="image/webp"><img src="../img/jeep.png" alt="Jeep" class="car-img"></picture>
+                                    <picture>
+                                        <source srcset="{{ url('/img/jeep.webp') }}" type="image/webp">
+                                        <img src="{{ url('/img/jeep.webp') }}" alt="Jeep" class="car-img">
+                                    </picture>
                                 </div>
                                 <div class="slide_container">
                                     <div class="slide_texts">
-                                        <div class="slide_title">
-                                            кредит<br />
-                                            <span>ОТ 7%</span>
-                                        </div>
-                                        <div class="slide_text">при<br class="hide575"/>
-                                            оставлениИ заявки
-                                        </div>
+                                        <div class="slide_title">кредит<br /><span>ОТ 7%</span></div>
+                                        <div class="slide_text">при<br class="hide575"/>оставлениИ заявки</div>
                                     </div>
                                     <div class="slide_btn">
                                         <a href="#submit-application" class="btn-slide-link popup-link">
@@ -38,7 +34,7 @@
                     </div>
                     <div class="splide__slide">
                         <div class="slide_block">
-                            <div class="slide-2" style="background: url(../../img/slide-2.png) no-repeat center;">
+                            <div class="slide-2" style="background: url({{ url('/img/slide-2.png') }}) no-repeat center;">
                                 <div class="slide-2_container">
                                     <div class="slide-2_texts full575">
                                         <h1>акция</h1>
@@ -58,7 +54,7 @@
                     </div>
                     <div class="splide__slide">
                         <div class="slide_block">
-                            <div class="slide-3" style="background: url(../../img/slide-3.png) no-repeat center;">
+                            <div class="slide-3" style="background: url({{ url('/img/slide-3.png') }}) no-repeat center;">
                                 <div class="slide-3_container">
                                     <div class="slide-3_texts">
                                         <h1>акция</h1>
@@ -78,27 +74,24 @@
             </div>
         </section>
 
-
-
-
         <div class="benefits">
             <div class="benefits_container">
                 <ul class="benefits_body">
                     <li class="benefits_item">
                         <span class="benefits_title">Автокредит</span>
-                        <img src="../img/benefit_1.svg" class="benefits_figure-1">
+                        <img src={{ url('/img/benefit_1.svg') }} class="benefits_figure-1">
                     </li>
                     <li class="benefits_item">
                         <span class="benefits_title">пРОДАЖА</span>
-                        <img src="../img/benefit_2.svg" class="benefits_figure-2">
+                        <img src={{ url('/img/benefit_2.svg') }} class="benefits_figure-2">
                     </li>
                     <li class="benefits_item">
                         <span class="benefits_title">КОМИССИЯ</span>
-                        <img src="../img/benefit_3.svg" class="benefits_figure-3">
+                        <img src={{ url('/img/benefit_3.svg') }} class="benefits_figure-3">
                     </li>
                     <li class="benefits_item">
                         <span class="benefits_title">трейд-ин</span>
-                        <img src="../img/benefit_4.svg" class="benefits_figure-4">
+                        <img src={{ url('/img/benefit_4.svg') }} class="benefits_figure-4">
                     </li>
                 </ul>
             </div>
@@ -110,8 +103,8 @@
                     <div id="select-filter"></div>
                 </div>
                 <div class="flex items-center">
-                    <a href="/" class="popup_btn filter-show">
-                        <img src="../img/icons/filter-filter.svg" alt="Filter">
+                    <a href="{{ route('main') }}" class="popup_btn filter-show">
+                        <img src={{ url('/img/icons/filter-filter.svg') }} alt="Filter">
                     </a>
                 </div>
             </div>
@@ -131,19 +124,8 @@
                                 <div class="flex justify-between items-center">
                                     <h1 class="filter_title">Фильтр</h1>
                                     <button type="button" class="btn-clear">
-                                        <svg
-                                            width="16"
-                                            height="17"
-                                            viewBox="0 0 16 17"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
-                                                d="M3.89211 5.66088L3.90686 5.9232L4.19943 11.1245C4.25922 12.1873 4.28911 12.7187 4.51506 13.1221C4.71395 13.4772 5.01646 13.7632 5.38217 13.9418C5.79762 14.1447 6.32988 14.1447 7.39438 14.1447H8.60623C9.67074 14.1447 10.203 14.1447 10.6184 13.9418C10.9842 13.7632 11.2867 13.4772 11.4856 13.1221C11.7115 12.7187 11.7414 12.1873 11.8012 11.1245L12.0938 5.9232L12.1085 5.66088H12.7952C12.9989 5.66088 13.1641 5.49574 13.1641 5.29202C13.1641 5.0883 12.9989 4.92316 12.7952 4.92316H10.1013C10.0768 4.8329 10.0463 4.74535 10.0102 4.66092C9.71999 3.98224 9.07032 3.5059 8.31121 3.45266C8.24132 3.44775 8.16098 3.44775 8.00031 3.44775C7.83963 3.44775 7.75929 3.44775 7.6894 3.45266C6.9303 3.5059 6.28063 3.98224 5.99045 4.66092C5.95436 4.74535 5.92382 4.8329 5.89933 4.92316H3.2048C3.00108 4.92316 2.83594 5.0883 2.83594 5.29202C2.83594 5.49574 3.00108 5.66088 3.2048 5.66088H3.89211ZM8.78844 4.66092C8.6351 4.54061 8.44615 4.46458 8.24124 4.45021C8.21496 4.44836 8.17726 4.44775 8.00031 4.44775C7.82335 4.44775 7.78565 4.44836 7.75938 4.4502C7.55447 4.46458 7.36551 4.54061 7.21217 4.66092L8.78844 4.66092ZM5.19786 11.0683L4.90844 5.9232H11.0922L10.8028 11.0683C10.772 11.6157 10.7514 11.9677 10.7149 12.2352C10.68 12.4906 10.6398 12.5857 10.6131 12.6334C10.5136 12.811 10.3624 12.954 10.1795 13.0433C10.1303 13.0673 10.0332 13.102 9.77623 13.1225C9.50713 13.144 9.1545 13.1447 8.60623 13.1447H7.39438C6.84611 13.1447 6.49348 13.144 6.22438 13.1225C5.96739 13.102 5.87027 13.0673 5.82108 13.0433C5.63822 12.954 5.48697 12.811 5.38752 12.6334C5.36077 12.5857 5.32063 12.4906 5.28573 12.2352C5.24919 11.9677 5.22865 11.6157 5.19786 11.0683ZM6.656 6.76751C6.656 6.49137 6.43214 6.26751 6.156 6.26751C5.87986 6.26751 5.656 6.49137 5.656 6.76751L5.656 12.3004C5.656 12.5766 5.87986 12.8004 6.156 12.8004C6.43214 12.8004 6.656 12.5766 6.656 12.3004L6.656 6.76751ZM8.50031 6.76751C8.50031 6.49137 8.27645 6.26751 8.00031 6.26751C7.72416 6.26751 7.50031 6.49137 7.50031 6.76751V12.3004C7.50031 12.5766 7.72416 12.8004 8.00031 12.8004C8.27645 12.8004 8.50031 12.5766 8.50031 12.3004V6.76751ZM9.84461 6.26751C10.1208 6.26751 10.3446 6.49137 10.3446 6.76751V12.3004C10.3446 12.5766 10.1208 12.8004 9.84461 12.8004C9.56847 12.8004 9.34461 12.5766 9.34461 12.3004V6.76751C9.34461 6.49137 9.56847 6.26751 9.84461 6.26751Z"
-                                                fill="#8E8E8E"
-                                            />
+                                        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.89211 5.66088L3.90686 5.9232L4.19943 11.1245C4.25922 12.1873 4.28911 12.7187 4.51506 13.1221C4.71395 13.4772 5.01646 13.7632 5.38217 13.9418C5.79762 14.1447 6.32988 14.1447 7.39438 14.1447H8.60623C9.67074 14.1447 10.203 14.1447 10.6184 13.9418C10.9842 13.7632 11.2867 13.4772 11.4856 13.1221C11.7115 12.7187 11.7414 12.1873 11.8012 11.1245L12.0938 5.9232L12.1085 5.66088H12.7952C12.9989 5.66088 13.1641 5.49574 13.1641 5.29202C13.1641 5.0883 12.9989 4.92316 12.7952 4.92316H10.1013C10.0768 4.8329 10.0463 4.74535 10.0102 4.66092C9.71999 3.98224 9.07032 3.5059 8.31121 3.45266C8.24132 3.44775 8.16098 3.44775 8.00031 3.44775C7.83963 3.44775 7.75929 3.44775 7.6894 3.45266C6.9303 3.5059 6.28063 3.98224 5.99045 4.66092C5.95436 4.74535 5.92382 4.8329 5.89933 4.92316H3.2048C3.00108 4.92316 2.83594 5.0883 2.83594 5.29202C2.83594 5.49574 3.00108 5.66088 3.2048 5.66088H3.89211ZM8.78844 4.66092C8.6351 4.54061 8.44615 4.46458 8.24124 4.45021C8.21496 4.44836 8.17726 4.44775 8.00031 4.44775C7.82335 4.44775 7.78565 4.44836 7.75938 4.4502C7.55447 4.46458 7.36551 4.54061 7.21217 4.66092L8.78844 4.66092ZM5.19786 11.0683L4.90844 5.9232H11.0922L10.8028 11.0683C10.772 11.6157 10.7514 11.9677 10.7149 12.2352C10.68 12.4906 10.6398 12.5857 10.6131 12.6334C10.5136 12.811 10.3624 12.954 10.1795 13.0433C10.1303 13.0673 10.0332 13.102 9.77623 13.1225C9.50713 13.144 9.1545 13.1447 8.60623 13.1447H7.39438C6.84611 13.1447 6.49348 13.144 6.22438 13.1225C5.96739 13.102 5.87027 13.0673 5.82108 13.0433C5.63822 12.954 5.48697 12.811 5.38752 12.6334C5.36077 12.5857 5.32063 12.4906 5.28573 12.2352C5.24919 11.9677 5.22865 11.6157 5.19786 11.0683ZM6.656 6.76751C6.656 6.49137 6.43214 6.26751 6.156 6.26751C5.87986 6.26751 5.656 6.49137 5.656 6.76751L5.656 12.3004C5.656 12.5766 5.87986 12.8004 6.156 12.8004C6.43214 12.8004 6.656 12.5766 6.656 12.3004L6.656 6.76751ZM8.50031 6.76751C8.50031 6.49137 8.27645 6.26751 8.00031 6.26751C7.72416 6.26751 7.50031 6.49137 7.50031 6.76751V12.3004C7.50031 12.5766 7.72416 12.8004 8.00031 12.8004C8.27645 12.8004 8.50031 12.5766 8.50031 12.3004V6.76751ZM9.84461 6.26751C10.1208 6.26751 10.3446 6.49137 10.3446 6.76751V12.3004C10.3446 12.5766 10.1208 12.8004 9.84461 12.8004C9.56847 12.8004 9.34461 12.5766 9.34461 12.3004V6.76751C9.34461 6.49137 9.56847 6.26751 9.84461 6.26751Z" fill="#8E8E8E"/>
                                         </svg>
                                         Очистить
                                     </button>
@@ -159,23 +141,19 @@
                                     <div class="filterSelect_container">
                                         <div class="filterSelect_select">
                                             <div class="filterSelect_value"></div>
-                                            <svg
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 16 16"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
-                                                    d="M1.24603 5.21967C1.57407 4.92678 2.10593 4.92678 2.43397 5.21967L8 10.1893L13.566 5.21967C13.8941 4.92678 14.4259 4.92678 14.754 5.21967C15.082 5.51256 15.082 5.98744 14.754 6.28033L8.59397 11.7803C8.26593 12.0732 7.73407 12.0732 7.40603 11.7803L1.24603 6.28033C0.91799 5.98744 0.91799 5.51256 1.24603 5.21967Z"
-                                                    fill="#8E8E8E"
-                                                />
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.24603 5.21967C1.57407 4.92678 2.10593 4.92678 2.43397 5.21967L8 10.1893L13.566 5.21967C13.8941 4.92678 14.4259 4.92678 14.754 5.21967C15.082 5.51256 15.082 5.98744 14.754 6.28033L8.59397 11.7803C8.26593 12.0732 7.73407 12.0732 7.40603 11.7803L1.24603 6.28033C0.91799 5.98744 0.91799 5.51256 1.24603 5.21967Z" fill="#8E8E8E"/>
                                             </svg>
                                         </div>
                                         <div class="filterSelect_dropdown">
-                                            <ul class="filterSelect_list" id="filterSelect_list"></ul>
+                                            <ul class="filterSelect_list" id="filterSelect_list">
+                                                @foreach($brands as $brand)
+                                                    <div class="flex items-center h22 mb-1">
+                                                        <input type="checkbox" class="filterCheckbox" name="{{ $brand->id }}" id="{{ $brand->id }}" value="{{ $brand->name }}">
+                                                        <label class="filter_text" for="{{ $brand->id }}">{{ $brand->name }}</label><br>
+                                                    </div>
+                                                @endforeach
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -321,7 +299,7 @@
 
             </div>
             <div class="watch">
-                <a href="/" class="watch-link" target="_blank" id="show-more">
+                <a href="{{ route('main') }}" class="watch-link" target="_blank" id="show-more">
                     <button type="button" class="btn-watch">Посмотреть еще</button>
                 </a>
             </div>
@@ -333,7 +311,7 @@
                     <h1>хочешь</h1>
                     <p>оформить автокредит легко и просто?</p>
                 </div>
-                <form action="/" class="form_action">
+                <form action="{{ route('main') }}" class="form_action">
                     <input required type="text" name="name" id="name" class="inputHome-1" placeholder="Имя">
                     <input required type="tel" name="tel" id="tel" class="inputHome-2" placeholder="+7 (123) 456-78-90">
                     <input type="submit" class="submitRequiredFormHome" name="submitForm" id="submitForm" value="Отправить заявку">
@@ -349,27 +327,9 @@
                             <div class="flex justify-between items-center">
                                 <h1 class="submit_title">Заявка успешно отправлена</h1>
                                 <a href="#header" class="close-popup close-modal">
-                                    <svg
-                                        width="40"
-                                        height="40"
-                                        viewBox="0 0 40 40"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M30 10L10 30"
-                                            stroke="white"
-                                            stroke-width="1.1"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                        <path
-                                            d="M10 10L30 30"
-                                            stroke="white"
-                                            stroke-width="1.1"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </a>
                             </div>
@@ -388,60 +348,20 @@
                             <div class="flex justify-between items-center">
                                 <h1 class="submit_title">Оставить заявку</h1>
                                 <a href="#header" class="close-popup close-modal">
-                                    <svg
-                                        width="40"
-                                        height="40"
-                                        viewBox="0 0 40 40"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M30 10L10 30"
-                                            stroke="white"
-                                            stroke-width="1.1"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                        <path
-                                            d="M10 10L30 30"
-                                            stroke="white"
-                                            stroke-width="1.1"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </a>
                             </div>
-                            <form action="/" class="submit_form" id="submit">
-                                <input
-                                    required
-                                    type="text"
-                                    id="name"
-                                    minlength="2"
-                                    placeholder="Имя"
-                                    class="input-1"
-                                />
-                                <input
-                                    required
-                                    type="tel"
-                                    id="tel"
-                                    placeholder="+7 (___) ___-__-__"
-                                    class="input-2"
-                                />
+                            <form action="{{ route('main') }}" class="submit_form" id="submit">
+                                <input required type="text" id="name" minlength="2" placeholder="Имя" class="input-1"/>
+                                <input required type="tel" id="tel" placeholder="+7 (___) ___-__-__" class="input-2"/>
                                 <a href="#win" class="btn-link popup-link w-100">
-                                    <button
-                                        type="submit"
-                                        form="/"
-                                        class="btn zayavka-btn w-100 submitRequiredForm"
-                                    >
-                                        Отправить
-                                    </button>
+                                    <button type="submit" form="/" class="btn zayavka-btn w-100 submitRequiredForm">Отправить</button>
                                 </a>
                             </form>
-                            <p>
-                                Нажимая на кнопку “Отправить”, вы даете согласие на обработку перс.
-                                данных
-                            </p>
+                            <p>Нажимая на кнопку “Отправить”, вы даете согласие на обработку перс. данных</p>
                         </div>
                     </div>
                 </div>
@@ -451,7 +371,6 @@
         <a href="#submit-application" class="btn-link full575 show992 popup-link" data-da="menu_body,5,992">
             <button type="submit" form="/" class="btn zayavka-btn full575">Оставить заявку</button>
         </a>
-
 
     </div>
 </main>

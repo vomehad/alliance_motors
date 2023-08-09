@@ -64,4 +64,9 @@ class DictService
     {
         return Currency::firstOrCreate(['name' => $dto->currency]);
     }
+
+    public function getBrandList(): \Illuminate\Database\Eloquent\Collection
+    {
+        return Brand::all();
+    }
 }
