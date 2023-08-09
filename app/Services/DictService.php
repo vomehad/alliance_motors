@@ -13,6 +13,8 @@ use App\Models\Generation;
 use App\Models\KppType;
 use App\Models\Model;
 use App\Models\VehicleConfiguration;
+use Illuminate\Database\Eloquent\Collection;
+use stdClass;
 
 class DictService
 {
@@ -65,8 +67,40 @@ class DictService
         return Currency::firstOrCreate(['name' => $dto->currency]);
     }
 
-    public function getBrandList(): \Illuminate\Database\Eloquent\Collection
+    public function getBrandList(): Collection
     {
-        return Brand::all();
+        $brands = Brand::query()
+            ->where(['active' => true])
+            ->orderBy('name')
+            ->get();
+
+        $first = new StdClass();
+        $first->id = 0;
+        $first->name = 'все марки';
+        $brands->prepend($first);
+
+        return $brands;
+    }
+
+    public function getModelsByBrands(string $ids): Collection
+    {
+        $brandIds = explode(',', $ids);
+
+        $models = Model::query()
+            ->whereIn('brand_id', $brandIds)
+            ->orderBy('name')
+            ->get();
+
+        $first = new StdClass();
+        $first->id = 0;
+        $first->name = 'все модели';
+        $models->prepend($first);
+
+        return $models;
+    }
+
+    public function getKppTypes(): Collection
+    {
+        return KppType::query()->get();
     }
 }
