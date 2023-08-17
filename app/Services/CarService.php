@@ -22,7 +22,7 @@ class CarService
             'currency',
             'color',
             'generation',
-            'model',
+            'model.brand',
         ];
 
         return Car::query()->with($relations)->paginate();
@@ -38,7 +38,7 @@ class CarService
             'currency',
             'color',
             'generation',
-            'model',
+            'model.brand',
         ];
 
         return Car::query()->with($relations)->where(['id' => $id])->first();

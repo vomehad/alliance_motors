@@ -9,3 +9,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('brands', [MainController::class, 'getBrands'])->name('api.brands');
+Route::get('models', [MainController::class, 'getModels'])->name('api.brands');
+
+Route::name('car')->prefix('car')->group(function() {
+    Route::get('list', [MainController::class, 'getCarList'])->name('api.car.list');
+    Route::get('{id}', [MainController::class, 'getOneCar'])->name('api.car.one');
+});

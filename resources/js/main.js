@@ -175,7 +175,7 @@ if (filterSelect) {
     filterSelect_select.addEventListener("click", () => {
         filterSelect.classList.toggle("show");
     });
-    // filterSelect_list.innerHTML = renderFilterSelect(filterSelectMarka);
+    filterSelect_list.innerHTML = renderFilterSelect(filterSelectMarka);
 }
 document.addEventListener("click", (e) => {
     const isClickInside = filterSelect?.contains(e.target);
