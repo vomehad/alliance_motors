@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CarService;
 use App\Services\DictService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,9 @@ class MainController extends Controller
         return $this->distService->getModelsByBrands($request->query->get('brands'));
     }
 
-    public function getCarList()
+    public function getCarList(Request $request): LengthAwarePaginator
     {
-        return $this->carService->getAll();
+        return $this->carService->getAll($request->query->all());
     }
 
     public function getOneCar(int $id)

@@ -8,12 +8,14 @@ use App\Dto\CarDto;
 use App\Dto\ExpertDto;
 use App\Models\Car;
 use App\Models\Picture;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
 
 class CarService
 {
-    public function getAll(): \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function getAll(array $params): LengthAwarePaginator
     {
         $relations = [
             'pictures',
@@ -25,8 +27,51 @@ class CarService
             'model.brand',
         ];
 
-        return Car::query()->with($relations)->paginate();
-        return Car::query()->with($relations)->get();
+        $query = Car::query()->with($relations);
+
+        if (Arr::get($params, 'brand')) {
+            $brands = explode(',', Arr::get($params, 'brand'));
+            $query->whereHas('model', function (Builder $q) use ($brands) {
+                return $q->whereIn('brand_id', $brands);
+            });
+        }
+
+        if (Arr::get($params, 'model')) {
+            $models = explode(',', Arr::get($params, 'model'));
+            $query->whereIn('model_id', $models);
+        }
+
+        if (Arr::get($params, 'year')) {
+            [$from, $to] = explode(',', Arr::get($params, 'year'));
+            if ($from) {
+                $query->where('year', '>=', $from);
+            }
+            if ($to) {
+                $query->where('year', '<=', $to);
+            }
+        }
+
+        if (Arr::get($params, 'price')) {
+            [$from, $to] = explode(',', Arr::get($params, 'price'));
+            if ($from) {
+                $query->where('price', '>=', $from);
+            }
+            if ($to) {
+                $query->where('price', '<=', $to);
+            }
+        }
+
+        if (Arr::get($params, 'mileage')) {
+            [$from, $to] = explode(',', Arr::get($params, 'mileage'));
+            if ($from) {
+                $query->where('vehicle_mileage', '>=', $from);
+            }
+            if ($to) {
+                $query->where('vehicle_mileage', '<=', $to);
+            }
+        }
+
+        return $query->paginate();
     }
 
     public function getOneById(int $id): Car|EloquentModel
