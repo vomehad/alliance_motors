@@ -71,6 +71,21 @@ class CarService
             }
         }
 
+        if (Arr::get($params, 'wheel_drive')) {
+            $drive = Arr::get($params, 'wheel_drive');
+            $query->where('wheel_drive', $drive);
+        }
+
+        if (Arr::get($params, 'kpp')) {
+            $kppType = Arr::get($params, 'kpp');
+            $query->where('kpp', $kppType);
+        }
+
+        if (Arr::get($params, 'fuel')) {
+            $fuel = Arr::get($params, 'fuel');
+            $query->where('fuel', $fuel);
+        }
+
         return $query->paginate();
     }
 
