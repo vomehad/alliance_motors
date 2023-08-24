@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string $name
  * @property boolean $active
+ *
+ * @property Model[] $models
  */
 class Brand extends EloquentModel
 {
@@ -25,7 +27,7 @@ class Brand extends EloquentModel
         'name',
     ];
 
-    public function model(): HasMany
+    public function models(): HasMany
     {
         return $this->hasMany(Model::class);
     }

@@ -13,27 +13,34 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property int $id
- * @property string $name
- * @property int $count
+ * @property string $vin
+ * @property string $year
+ * @property string $registry_year
+ * @property int $doors_count
  * @property int $price
- * @property bool $pickup
- * @property bool $store
+ * @property string $expert_id
  * @property string $description
+ * @property bool $availability
  * @property string $url
  * @property int $vehicle_mileage
- * @property int $year
  * @property string $steering_wheel
  * @property string $pts
  * @property int $pts_owners
- * @property string $engine
  * @property string $wheel_drive
+ * @property int $currency_id
+ * @property int $engine_id
+ * @property int $car_body_id
+ * @property int $car_color_id
+ * @property int $kpp_type_id
+ * @property int $vehicle_configuration_id
+ * @property boolean $active
  *
- * @property Model $model
- * @property Generation $generation
- * @property KppType $kppType
- * @property CarColor $carColor
- * @property CarBody $carBody
  * @property Currency $currency
+ * @property Engine $engine
+ * @property CarBody $body
+ * @property CarColor $color
+ * @property KppType $kpp
+ * @property VehicleConfiguration $configuration
  */
 class Car extends EloquentModel
 {
@@ -42,27 +49,25 @@ class Car extends EloquentModel
     protected $table = 'cars';
 
     protected $fillable = [
-        'name',
-        'count',
+        'vin',
+        'year',
+        'registry_year',
+        'doors_count',
         'price',
-        'currency_id',
-        'pickup',
-        'store',
+        'expert_id',
         'description',
+        'availability',
         'url',
         'vehicle_mileage',
-        'year',
-        'car_body_id',
         'steering_wheel',
-        'car_color_id',
         'pts',
         'pts_owners',
-        'engine',
         'wheel_drive',
+        'currency_id',
+        'car_body_id',
+        'car_color_id',
         'kpp_type_id',
-        'generation_id',
-        'model_id',
-        'expert_id',
+        'vehicle_configuration_id',
     ];
 
 //====================== relations =====================================
@@ -86,14 +91,9 @@ class Car extends EloquentModel
         return $this->belongsTo(KppType::class, 'kpp_type_id', 'id');
     }
 
-    public function generation(): BelongsTo
+    public function configuration(): BelongsTo
     {
-        return $this->belongsTo(Generation::class);
-    }
-
-    public function model(): BelongsTo
-    {
-        return $this->belongsTo(Model::class);
+        return $this->belongsTo(VehicleConfiguration::class, 'vehicle_configuration_id', 'id');
     }
 
     public function pictures(): MorphMany

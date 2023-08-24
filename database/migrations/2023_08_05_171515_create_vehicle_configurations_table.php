@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('generations', function (Blueprint $table) {
+        Schema::create('vehicle_configurations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description');
             $table->foreignId('model_id')->constrained('models')->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('active')->default(true);
             $table->softDeletes();
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('generations');
+        Schema::dropIfExists('vehicle_configurations');
     }
 };

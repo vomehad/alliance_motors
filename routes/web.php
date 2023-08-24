@@ -10,3 +10,5 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/detail/{id}', [PageController::class, 'detail'])->name('detail');
+
+Route::get('/xml', [\App\Http\Controllers\Controller::class, 'getCars']);

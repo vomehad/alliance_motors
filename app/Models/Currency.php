@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $id
  * @property string $name
+ *
+ * @property Car[] $cars
  */
 class Currency extends EloquentModel
 {
@@ -24,7 +26,7 @@ class Currency extends EloquentModel
         'name',
     ];
 
-    public function car(): HasMany
+    public function cars(): HasMany
     {
         return $this->hasMany(Car::class);
     }
