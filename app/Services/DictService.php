@@ -39,11 +39,12 @@ class DictService
         ]);
     }
 
-    public function createConfiguration(ExpertDto $dto, Generation $generation): VehicleConfiguration
+    public function createConfiguration(ExpertDto $dto, Model $model): VehicleConfiguration
     {
         return VehicleConfiguration::firstOrCreate([
             'name' => $dto->configuration,
-            'generation_id' => $generation->id,
+            'description' => $dto->extras,
+            'model_id' => $model->id,
         ]);
     }
 

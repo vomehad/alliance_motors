@@ -12,6 +12,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
+use stdClass;
 
 class CarService
 {
@@ -72,18 +73,18 @@ class CarService
         }
 
         if (Arr::get($params, 'wheel_drive')) {
-            $drive = Arr::get($params, 'wheel_drive');
-            $query->where('wheel_drive', $drive);
+            $drive = array_filter(explode(',', Arr::get($params, 'wheel_drive')));
+            $query->whereIn('wheel_drive', $drive);
         }
 
         if (Arr::get($params, 'kpp')) {
-            $kppType = Arr::get($params, 'kpp');
+            $kppType = array_filter(explode(',', Arr::get($params, 'kpp')));
             $query->where('kpp', $kppType);
         }
 
         if (Arr::get($params, 'fuel')) {
-            $fuel = Arr::get($params, 'fuel');
-            $query->where('fuel', $fuel);
+            $fuel = array_filter(explode(',', Arr::get($params, 'fuel')));
+            $query->whereIn('fuel', $fuel);
         }
 
         return $query->paginate();
@@ -129,30 +130,30 @@ class CarService
         return $car;
     }
 
-    public function parseSource(array $source): CarDto
+    public function parseSource(StdClass $source): CarDto
     {
-        $params = Arr::get($source, 'param');
-//        dd(Arr::get($params, 3), $params, $source);
-
         $dto = new CarDto();
 
-        $dto->name = Arr::get($source, 'name');
-        $dto->count = Arr::get($source, 'count');
-        $dto->price = Arr::get($source, 'price');
-        $dto->pickup = Arr::get($source, 'pickup');
-        $dto->store = Arr::get($source, 'store');
-        $dto->description = Arr::get($source, 'description');
-        $dto->url = Arr::get($source, 'url');
-        $dto->vehicle_mileage = Arr::get($params, 0);
-        $dto->year = Arr::get($params, 1);
-        $dto->steering_wheel = Arr::get($params, 3);
-        $dto->pts = isset($params[11]) ? $params[5] : null;
-        $dto->pts_owners = isset($params[11]) ? $params[6] : $params[5];
-        $dto->engine = isset($params[11]) ? $params[7] : $params[6];
-        $dto->wheel_drive = isset($params[11]) ? $params[8] : $params[7];
-//        dd($dto);
+        $dto->vin = $source->vin;
+        $dto->year = $source->year;
+        $dto->registry_year = $source->registry_year;
+        $dto->doors_count = $source->doors_count;
+        $dto->price = $source->price;
+        $dto->description = $source->description;
+        $dto->availability = $source->availability;
+        $dto->url = $source->url;
+        $dto->vehicle_mileage = $source->run;
+        $dto->steering_wheel = $source->wheel;
+        $dto->pts = $source->pts;
+        $dto->pts_owners = $source->owners_number;
+        $dto->wheel_drive = $source->drive;
 
         return $dto;
+    }
+
+    public function parseStock(array $source)
+    {
+
     }
 
     public function addPictures(array $pictures, Car $car)

@@ -12,6 +12,7 @@ namespace App\Dto;
  * @property string $model
  * @property string $generation
  * @property string $configuration
+ * @property string $description
  * @property string $kpp
  * @property string $body
  * @property string $color
@@ -19,6 +20,7 @@ namespace App\Dto;
  * @property string $mileage
  * @property string $year
  * @property string $steeringWheel
+ * @property string $extras
  */
 class ExpertDto
 {
@@ -27,10 +29,12 @@ class ExpertDto
     public ?string $model;
     public ?string $generation;
     public ?string $configuration;
+    public ?string $description;
     public ?string $kpp;
     public ?string $body;
     public ?string $color;
     public ?string $currency;
     public ?string $mileage;
     public ?string $steeringWheel;
+    public ?string $extras;
 }

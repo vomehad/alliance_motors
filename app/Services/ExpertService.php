@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Dto\ExpertDto;
 use Illuminate\Support\Arr;
+use stdClass;
 
 class ExpertService
 {
@@ -55,5 +56,24 @@ class ExpertService
         $source->steeringWheel = array_reverse($params)[3];
 
         return $source;
+    }
+
+    public function parseStock(StdClass $data): ExpertDto
+    {
+        $dto = new ExpertDto();
+        $dto->expertId = $data->unique_id;
+        $dto->brand = $data->mark_id;
+        $dto->model = $data->folder_id;
+        $dto->configuration = $data->modification_id;
+        $dto->description = $data->description;
+        $dto->kpp = $data->gearbox;
+        $dto->body = $data->body_type;
+        $dto->color = $data->color;
+        $dto->currency = $data->currency;
+        $dto->mileage = $data->run;
+        $dto->year = $data->year;
+        $dto->steeringWheel = $data->wheel;
+
+        return $dto;
     }
 }
