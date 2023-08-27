@@ -31,9 +31,9 @@ class ExpertService
         $xml = file_get_contents(self::CM_EXPERT_STOCK_URL);
         $object = simplexml_load_string($xml);
         $json = json_encode($object);
-        $result = json_decode($json);
+        $result = json_decode($json, true);
 
-        return $result->cars->car;
+        return Arr::get($result, 'cars.car');
     }
 
     public function parseSource(array $auto): ExpertDto
@@ -58,26 +58,26 @@ class ExpertService
         return $source;
     }
 
-    public function parseStock(StdClass $data): ExpertDto
+    public function parseStock(array $data): ExpertDto
     {
         $dto = new ExpertDto();
 
-        $dto->expertId = $data->unique_id;
-        $dto->brand = $data->mark_id;
-        $dto->model = !empty($data->folder_id) ? $data->folder_id : '';
-        $dto->configuration = !empty($data->modification_id) ? $data->modification_id : '';
-        $dto->description = $data->description;
-        $dto->kpp = $data->gearbox;
-        $dto->body = $data->body_type;
-        $dto->color = $data->color;
-        $dto->currency = $data->currency;
-        $dto->mileage = $data->run;
-        $dto->year = $data->year;
-        $dto->steeringWheel = $data->wheel;
-        $dto->extras = is_string($data->extras) ? $data->extras : '';
-        $dto->engine_power = $data->engine_power;
-        $dto->engine_volume = $data->engine_volume;
-        $dto->engine_type = $data->engine_type;
+        $dto->expertId = Arr::get($data, 'unique_id');
+        $dto->brand = Arr::get($data, 'mark_id');
+        $dto->model = Arr::get($data, "folder_id") ?? Arr::get($data, 'group_id');
+        $dto->configuration = Arr::get($data, 'modification_id') ?? 'default';
+        $dto->description = Arr::get($data, 'description');
+        $dto->kpp = Arr::get($data, 'gearbox');
+        $dto->body = Arr::get($data, "body_type");
+        $dto->color = Arr::get($data, 'color');
+        $dto->currency = Arr::get($data, 'currency');
+        $dto->mileage = Arr::get($data, 'run');
+        $dto->year = Arr::get($data, 'year');
+        $dto->steeringWheel = Arr::get($data, 'wheel');
+        $dto->extras = json_encode(Arr::get($data, 'extras'));
+        $dto->engine_power = Arr::get($data, 'engine_power');
+        $dto->engine_volume = Arr::get($data, 'engine_volume');
+        $dto->engine_type = Arr::get($data, 'engine_type');
 
         return $dto;
     }

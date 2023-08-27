@@ -27,20 +27,19 @@ namespace App\Dto;
  */
 class ExpertDto
 {
-    public ?string $expertId;
-    public ?string $brand;
-    public ?string $model;
-    public ?string $generation;
+    public string $expertId;
+    public string $brand;
+    public string $model;
     public ?string $configuration;
-    public ?string $description;
-    public ?string $kpp;
-    public ?string $body;
-    public ?string $color;
-    public ?string $currency;
-    public ?string $mileage;
-    public ?string $steeringWheel;
-    public ?string $extras;
-    public ?string $engine_volume;
-    public ?string $engine_power;
-    public ?string $engine_type;
+    public string $description;
+    public string $kpp;
+    public string $body;
+    public string $color;
+    public string $currency;
+    public string $mileage;
+    public string $steeringWheel;
+    public string $extras;
+    public string $engine_volume;
+    public string $engine_power;
+    public string $engine_type;
 }

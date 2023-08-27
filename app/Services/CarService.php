@@ -87,7 +87,7 @@ class CarService
 
         if (Arr::get($params, 'wheel_drive')) {
             $drive = array_filter(explode(',', Arr::get($params, 'wheel_drive')));
-            $drive = array_map(fn ($type) => self::FUEL[$type], $drive);
+            $drive = array_map(fn ($type) => self::DRIVE[$type], $drive);
             $query->whereIn('wheel_drive', $drive);
         }
 
@@ -150,23 +150,23 @@ class CarService
         return $car;
     }
 
-    public function parseSource(StdClass $source): CarDto
+    public function parseSource(array $source): CarDto
     {
         $dto = new CarDto();
 
-        $dto->vin = $source->vin;
-        $dto->year = $source->year;
-        $dto->registry_year = $source->registry_year;
-        $dto->doors_count = $source->doors_count;
-        $dto->price = $source->price;
-        $dto->description = $source->description;
-        $dto->availability = $source->availability;
-        $dto->url = $source->url;
-        $dto->vehicle_mileage = $source->run;
-        $dto->steering_wheel = $source->wheel;
-        $dto->pts = !empty($source->pts) ? $source->pts : '';
-        $dto->pts_owners = $source->owners_number;
-        $dto->wheel_drive = $source->drive;
+        $dto->vin = Arr::get($source, 'vin');
+        $dto->year = Arr::get($source, 'year');
+        $dto->registry_year = Arr::get($source, 'registry_year');
+        $dto->doors_count = Arr::get($source, 'doors_count');
+        $dto->price = Arr::get($source, 'price');
+        $dto->description = Arr::get($source, 'description');
+        $dto->availability = Arr::get($source, 'availability');
+        $dto->url = Arr::get($source, 'url');
+        $dto->vehicle_mileage = Arr::get($source, 'run');
+        $dto->steering_wheel = Arr::get($source, 'wheel');
+        $dto->pts = Arr::get($source, 'pts');
+        $dto->pts_owners = Arr::get($source, 'owners_number');
+        $dto->wheel_drive = Arr::get($source, 'drive');
 
         return $dto;
     }

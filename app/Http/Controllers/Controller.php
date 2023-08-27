@@ -34,9 +34,7 @@ class Controller extends BaseController
         $data = $service->getAutoStock();
 
         foreach ($data as $auto) {
-//            dump($auto);
             $expertDto = $service->parseStock($auto);
-//            dd($expertDto);
 
             $brand = $dictService->createBrand($expertDto);
             $model = $dictService->createModel($expertDto, $brand);
@@ -62,7 +60,7 @@ class Controller extends BaseController
                 $car = $carService->createCar($carDto, $expertDto);
             }
 
-            $carService->addPictures($auto->images->image, $car);
+            $carService->addPictures(Arr::get($auto, 'images.image'), $car);
         }
     }
 }
