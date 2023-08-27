@@ -22,6 +22,7 @@ class KppType extends EloquentModel
 
     protected $fillable = [
         'name',
+        'type',
     ];
 
     public function car(): HasMany

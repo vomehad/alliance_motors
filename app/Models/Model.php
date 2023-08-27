@@ -35,9 +35,4 @@ class Model extends EloquentModel
     {
         return $this->belongsTo(Brand::class);
     }
-
-    public function generation(): HasMany
-    {
-        return $this->hasMany(Generation::class);
-    }
 }

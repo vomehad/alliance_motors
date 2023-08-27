@@ -21,6 +21,9 @@ namespace App\Dto;
  * @property string $year
  * @property string $steeringWheel
  * @property string $extras
+ * @property string $engine_volume
+ * @property string $engine_power
+ * @property string $engine_type
  */
 class ExpertDto
 {
@@ -37,4 +40,7 @@ class ExpertDto
     public ?string $mileage;
     public ?string $steeringWheel;
     public ?string $extras;
+    public ?string $engine_volume;
+    public ?string $engine_power;
+    public ?string $engine_type;
 }

@@ -26,7 +26,7 @@ use App\Models\Model;
  * @property int $vehicle_mileage
  * @property string $steering_wheel
  * @property string $pts
- * @property int $pts_owners
+ * @property string $pts_owners
  * @property string $wheel_drive
  *
  * @property int $configuration_id
@@ -48,23 +48,23 @@ class CarDto
     public ?int $vehicle_mileage;
     public ?string $steering_wheel;
     public ?string $pts;
-    public ?int $pts_owners;
+    public ?string $pts_owners;
     public ?string $wheel_drive;
 
     public ?int $configuration_id;
     public ?int $currency_id;
-    public ?CarColor $carColor;
-    public ?CarBody $carBody;
-    public ?Currency $currency;
+    public ?int $car_color_id;
+    public ?int $car_body_id;
+    public ?int $kpp_id;
 
     public function toArray(): array
     {
         return [
             'vin' => $this->vin,
             'year' => $this->year,
-            'price' => $this->registry_year,
+            'registry_year' => $this->registry_year,
             'doors_count' => $this->doors_count,
-            'pickup' => $this->price,
+            'price' => $this->price,
             'description' => $this->description,
             'availability' => $this->availability,
             'url' => $this->url,
@@ -73,6 +73,11 @@ class CarDto
             'pts' => $this->pts,
             'pts_owners' => $this->pts_owners,
             'wheel_drive' => $this->wheel_drive,
+            'vehicle_configuration_id' => $this->configuration_id,
+            'currency_id' => $this->currency_id,
+            'car_body_id' => $this->car_body_id,
+            'car_color_id' => $this->car_color_id,
+            'kpp_type_id' => $this->kpp_id,
         ];
     }
 }

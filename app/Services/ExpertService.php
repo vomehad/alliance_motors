@@ -61,10 +61,11 @@ class ExpertService
     public function parseStock(StdClass $data): ExpertDto
     {
         $dto = new ExpertDto();
+
         $dto->expertId = $data->unique_id;
         $dto->brand = $data->mark_id;
-        $dto->model = $data->folder_id;
-        $dto->configuration = $data->modification_id;
+        $dto->model = !empty($data->folder_id) ? $data->folder_id : '';
+        $dto->configuration = !empty($data->modification_id) ? $data->modification_id : '';
         $dto->description = $data->description;
         $dto->kpp = $data->gearbox;
         $dto->body = $data->body_type;
@@ -73,6 +74,10 @@ class ExpertService
         $dto->mileage = $data->run;
         $dto->year = $data->year;
         $dto->steeringWheel = $data->wheel;
+        $dto->extras = is_string($data->extras) ? $data->extras : '';
+        $dto->engine_power = $data->engine_power;
+        $dto->engine_volume = $data->engine_volume;
+        $dto->engine_type = $data->engine_type;
 
         return $dto;
     }

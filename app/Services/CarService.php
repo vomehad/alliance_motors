@@ -16,16 +16,29 @@ use stdClass;
 
 class CarService
 {
+    const DRIVE = [
+        'fwd' => 'Передний',
+        'rwd' => 'Задний',
+        'awd' => 'Полный',
+    ];
+    const FUEL = [
+        'benzin' => 'Бензин',
+        'electro' => 'Электро',
+        'diesel' => 'Дизель',
+        'hybrid' => 'Гибрид',
+        'hbo' => 'ГБО',
+    ];
+
     public function getAll(array $params): LengthAwarePaginator
     {
         $relations = [
-            'pictures',
-            'kpp',
-            'body',
             'currency',
+            'body',
             'color',
-            'generation',
-            'model.brand',
+            'kpp',
+            'configuration.model.brand',
+            'configuration.engine',
+            'pictures',
         ];
 
         $query = Car::query()->with($relations);
@@ -74,17 +87,24 @@ class CarService
 
         if (Arr::get($params, 'wheel_drive')) {
             $drive = array_filter(explode(',', Arr::get($params, 'wheel_drive')));
+            $drive = array_map(fn ($type) => self::FUEL[$type], $drive);
             $query->whereIn('wheel_drive', $drive);
         }
 
         if (Arr::get($params, 'kpp')) {
             $kppType = array_filter(explode(',', Arr::get($params, 'kpp')));
-            $query->where('kpp', $kppType);
+            $query->whereHas('kpp', function(Builder $q) use ($kppType) {
+                return $q->whereIn('type', $kppType);
+            });
         }
 
         if (Arr::get($params, 'fuel')) {
             $fuel = array_filter(explode(',', Arr::get($params, 'fuel')));
-            $query->whereIn('fuel', $fuel);
+            $fuel = array_map(fn ($type) => self::FUEL[$type], $fuel);
+
+            $query->whereHas('configuration.engine', function (Builder $q) use ($fuel) {
+                $q->whereIn('type', $fuel);
+            });
         }
 
         return $query->paginate();
@@ -144,7 +164,7 @@ class CarService
         $dto->url = $source->url;
         $dto->vehicle_mileage = $source->run;
         $dto->steering_wheel = $source->wheel;
-        $dto->pts = $source->pts;
+        $dto->pts = !empty($source->pts) ? $source->pts : '';
         $dto->pts_owners = $source->owners_number;
         $dto->wheel_drive = $source->drive;
 

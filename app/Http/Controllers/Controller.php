@@ -34,13 +34,14 @@ class Controller extends BaseController
         $data = $service->getAutoStock();
 
         foreach ($data as $auto) {
-            dump($auto);
+//            dump($auto);
             $expertDto = $service->parseStock($auto);
 //            dd($expertDto);
 
             $brand = $dictService->createBrand($expertDto);
             $model = $dictService->createModel($expertDto, $brand);
             $configuration = $dictService->createConfiguration($expertDto, $model);
+            $engine = $dictService->createEngine($expertDto, $configuration);
             $kppType = $dictService->createKppType($expertDto);
             $carBody = $dictService->createCarBody($expertDto);
             $carColor = $dictService->createCarColor($expertDto);
@@ -61,8 +62,7 @@ class Controller extends BaseController
                 $car = $carService->createCar($carDto, $expertDto);
             }
 
-            $carService->addPictures(Arr::get($auto->images, 'image'), $car);
-
+            $carService->addPictures($auto->images->image, $car);
         }
     }
 }
