@@ -12,7 +12,6 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
-use stdClass;
 
 class CarService
 {
@@ -113,13 +112,13 @@ class CarService
     public function getOneById(int $id): Car|EloquentModel
     {
         $relations = [
-            'pictures',
-            'kpp',
-            'body',
             'currency',
+            'body',
             'color',
-            'generation',
-            'model.brand',
+            'kpp',
+            'configuration.model.brand',
+            'configuration.engine',
+            'pictures',
         ];
 
         return Car::query()->with($relations)->where(['id' => $id])->first();
