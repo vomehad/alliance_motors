@@ -106,7 +106,7 @@ class CarService
             });
         }
 
-        return $query->paginate();
+        return $query->paginate(9);
     }
 
     public function getOneById(int $id): Car|EloquentModel
