@@ -44,14 +44,16 @@ class CarService
 
         if (Arr::get($params, 'brand')) {
             $brands = explode(',', Arr::get($params, 'brand'));
-            $query->whereHas('model', function (Builder $q) use ($brands) {
+            $query->whereHas('configuration.model', function (Builder $q) use ($brands) {
                 return $q->whereIn('brand_id', $brands);
             });
         }
 
         if (Arr::get($params, 'model')) {
             $models = explode(',', Arr::get($params, 'model'));
-            $query->whereIn('model_id', $models);
+            $query->whereHas('configuration.model', function (Builder $q) use ($models) {
+                return $q->whereIn('id', $models);
+            });
         }
 
         if (Arr::get($params, 'year')) {
