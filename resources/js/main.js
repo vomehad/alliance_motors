@@ -85,7 +85,6 @@ if (popupBlock) {
 }
 
 let paginationLinks = document.querySelectorAll(".pagination .pagination-link");
-
 if (paginationLinks.length) {
     for (let i = 0; i < paginationLinks.length; i++) {
         const element = paginationLinks[i];
@@ -126,7 +125,6 @@ let hide_text = document.querySelector(".hide-text");
 let detail_img = document.querySelector(".detail-img");
 let see_all = document.querySelector(".see-all");
 let hide_li = document.querySelector(".hide-li");
-
 if (see_all) {
     see_all.addEventListener("click", () => {
         hide_li.classList.toggle("_active");
@@ -135,6 +133,7 @@ if (see_all) {
         see_all.style.display = "none";
     });
 }
+
 const homeSelect = document.querySelector("#select-filter");
 const catalogSelect = document.querySelector("#select-catalog");
 if (homeSelect || catalogSelect) {
@@ -177,12 +176,14 @@ if (filterSelect) {
     });
     filterSelect_list.innerHTML = renderFilterSelect(filterSelectMarka);
 }
+
 document.addEventListener("click", (e) => {
     const isClickInside = filterSelect?.contains(e.target);
     if (!isClickInside) {
         filterSelect?.classList.remove("show");
     }
 });
+
 const carList = document.getElementById("filterSelect_list");
 const filterCheckboxes = carList?.querySelectorAll(".filterCheckbox");
 filteredFunc();
