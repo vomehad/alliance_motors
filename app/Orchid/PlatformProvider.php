@@ -38,6 +38,18 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.book')
                 ->route('platform.main'),
 
+            Menu::make('Авто')
+                ->icon('bs.car')
+                ->route('platform.auto'),
+
+            Menu::make('Персонал')
+                ->icon('bs.person')
+                ->route('platform.persons'),
+
+            Menu::make('Вакансии')
+                ->icon('bs.vacancy')
+                ->route('platform.vacancies'),
+
             Menu::make('Form Elements')
                 ->icon('bs.journal')
                 ->route('platform.example.fields')
