@@ -31,6 +31,7 @@ class UserEditScreen extends Screen
     /**
      * Fetch data to be displayed on the screen.
      *
+     * @param User $user
      * @return array
      */
     public function query(User $user): iterable

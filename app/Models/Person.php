@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Orchid\Presenters\PersonPresenter;
+use Orchid\Attachment\Attachable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Platform\Models\User as Authenticatable;
+use Orchid\Screen\AsSource;
 
 /**
  * Class Person
@@ -18,6 +20,8 @@ use Orchid\Platform\Models\User as Authenticatable;
  */
 class Person extends Authenticatable
 {
+    use AsSource, Attachable;
+
     protected $table = 'persons';
 
     /**

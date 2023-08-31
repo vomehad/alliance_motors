@@ -88,12 +88,16 @@ Route::screen('persons', PersonListScreen::class)->name('platform.persons')
         ->parent('platform.index')
         ->push(__('Persons'), route('platform.persons'))
     );
-// Platform > Persons > Edit
+// Platform > Persons > Create
+Route::screen('persons/create', PersonEditScreen::class)->name('platform.persons.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.persons')
+        ->push(__('Person'), route('platform.persons.create'))
+    );// Platform > Persons > Edit
 Route::screen('persons/{person}/edit', PersonEditScreen::class)->name('platform.persons.edit')
     ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.index')
         ->parent('platform.persons')
-        ->push(__('Person'), route('platform.index'))
+        ->push(__('Person'), route('platform.persons.edit'))
     );
 
 // Platform > Vacancies

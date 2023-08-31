@@ -4,13 +4,12 @@
 namespace App\Orchid\Screens\Person;
 
 
+use App\Http\Requests\PersonRequest;
 use App\Models\Person;
 use App\Orchid\Layouts\Person\PersonEditLayout;
+use Orchid\Attachment\File;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class PersonEditScreen extends Screen
 {
@@ -25,7 +24,7 @@ class PersonEditScreen extends Screen
 
     public function name(): ?string
     {
-        return "Редактируем";
+        return $this->person->exists ? "Редактируем" : "Новый сотрудник";
     }
 
     public function commandBar(): iterable
@@ -51,5 +50,23 @@ class PersonEditScreen extends Screen
         return [
             PersonEditLayout::class,
         ];
+    }
+
+    public function save(Person $person, PersonRequest $request)
+    {
+        $data = $request->validated();
+        dd($request->allFiles());
+        dd($data, new File($request->file('picture')));
+
+//        $person->title = $data['title'];
+//        $post->content = $data['content'];
+//
+//        if ($request->hasFile('cover')) {
+//            $post->cover = $request->file('cover')->store('', 'posts');
+//        }
+//
+//        $post->save();
+
+        return redirect()->back()->withSuccess(__('posts.created'));
     }
 }

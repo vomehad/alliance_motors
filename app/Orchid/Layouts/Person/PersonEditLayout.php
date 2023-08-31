@@ -4,7 +4,9 @@
 namespace App\Orchid\Layouts\Person;
 
 
+use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Rows;
 
@@ -16,6 +18,18 @@ class PersonEditLayout extends Rows
     protected function fields(): iterable
     {
         return [
+            Picture::make('picture')
+                ->title('Picture')
+                ->horizontal()
+            ,
+
+//            Cropper::make('person.picture')
+//                ->title('Cropper')
+//                ->width(500)
+//                ->height(300)
+//                ->horizontal()
+//            ,
+
             Input::make('person.name')
                 ->type('text')
                 ->max(128)
