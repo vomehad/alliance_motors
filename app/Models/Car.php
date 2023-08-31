@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
+use App\Orchid\Presenters\CarPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Access\RoleAccess;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
-use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 
 /**
@@ -52,7 +50,7 @@ use Orchid\Screen\AsSource;
  */
 class Car extends EloquentModel
 {
-    use HasFactory, SoftDeletes, AsSource;
+    use HasFactory, SoftDeletes, AsSource, Filterable;
 
     protected $table = 'cars';
 
@@ -78,31 +76,36 @@ class Car extends EloquentModel
         'vehicle_configuration_id',
     ];
 
-//    /**
-//     * The attributes for which you can use filters in url.
-//     *
-//     * @var array
-//     */
-//    protected $allowedFilters = [
-//        'id' => Where::class,
-//        'name' => Like::class,
-//        'email' => Like::class,
-//        'updated_at' => WhereDateStartEnd::class,
-//        'created_at' => WhereDateStartEnd::class,
-//    ];
-//
-//    /**
-//     * The attributes for which can use sort in url.
-//     *
-//     * @var array
-//     */
-//    protected $allowedSorts = [
-//        'id',
-//        'name',
-//        'email',
-//        'updated_at',
-//        'created_at',
-//    ];
+    /**
+     * The attributes for which you can use filters in url.
+     *
+     * @var array
+     */
+    protected $allowedFilters = [
+        'id' => Where::class,
+        'name' => Like::class,
+        'email' => Like::class,
+        'updated_at' => WhereDateStartEnd::class,
+        'created_at' => WhereDateStartEnd::class,
+    ];
+
+    /**
+     * The attributes for which can use sort in url.
+     *
+     * @var array
+     */
+    protected $allowedSorts = [
+        'id',
+        'name',
+        'email',
+        'updated_at',
+        'created_at',
+    ];
+
+    public function presenter()
+    {
+        return new CarPresenter($this);
+    }
 
 //====================== relations =====================================
     public function currency(): BelongsTo

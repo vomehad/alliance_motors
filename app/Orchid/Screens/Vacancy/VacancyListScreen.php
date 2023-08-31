@@ -6,7 +6,6 @@ namespace App\Orchid\Screens\Vacancy;
 
 use App\Models\Vacancy;
 use App\Orchid\Layouts\Vacancy\VacancyListLayout;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
 class VacancyListScreen extends Screen

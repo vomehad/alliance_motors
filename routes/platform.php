@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Orchid\Screens\Auto\AutoListScreen;
+use App\Orchid\Screens\Car\CarListScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -75,12 +75,12 @@ Route::screen('roles', RoleListScreen::class)
         ->parent('platform.index')
         ->push(__('Roles'), route('platform.systems.roles')));
 
-// Platform > Auto
-Route::screen('auto', AutoListScreen::class)
-    ->name('platform.auto')
+// Platform > Cars
+Route::screen('cars', CarListScreen::class)
+    ->name('platform.cars')
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
-        ->push(__('Auto'), route('platform.auto')));
+        ->push('Каталог', route('platform.cars')));
 
 // Platform > Persons
 Route::screen('persons', PersonListScreen::class)
@@ -99,7 +99,7 @@ Route::screen('vacancies', VacancyListScreen::class)
 // Example...
 Route::screen('example', ExampleScreen::class)
     ->name('platform.example')
-    ->breadcrumbs(fn (Trail $trail) => $trail
+    ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push('Example Screen'));
 
