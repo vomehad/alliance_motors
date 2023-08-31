@@ -4,32 +4,18 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Person;
 
-use App\Models\Car;
 use App\Models\Person;
-use App\Orchid\Layouts\Auto\AutoListLayout;
 use App\Orchid\Layouts\Person\PersonListLayout;
-use App\Orchid\Layouts\User\UserEditLayout;
-use App\Orchid\Layouts\User\UserFiltersLayout;
-use App\Orchid\Layouts\User\UserListLayout;
-use App\Services\CarService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class PersonListScreen extends Screen
 {
-    private CarService $service;
-
-    public function __construct(CarService $service)
-    {
-        $this->service = $service;
-    }
-
     /**
      * Fetch data to be displayed on the screen.
      *
@@ -39,7 +25,6 @@ class PersonListScreen extends Screen
     {
         return [
             'persons' => Person::query()->paginate(),
-//            'autos' => Car::query()->paginate(),
         ];
     }
 
@@ -88,12 +73,10 @@ class PersonListScreen extends Screen
     public function layout(): iterable
     {
         return [
-//            UserFiltersLayout::class,
             PersonListLayout::class,
-//            AutoListLayout::class,
 
-            Layout::modal('asyncEditUserModal', UserEditLayout::class)
-                ->async('asyncGetUser'),
+//            Layout::modal('asyncEditUserModal', UserEditLayout::class)
+//                ->async('asyncGetUser'),
         ];
     }
 

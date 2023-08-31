@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Orchid\Presenters\PersonPresenter;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
-use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Platform\Models\User as Authenticatable;
 
 /**
@@ -37,7 +37,7 @@ class Person extends Authenticatable
      * @var array
      */
     protected $allowedFilters = [
-           'id'         => Where::class,
+        'id' => Where::class,
         'name' => Like::class,
         'surname' => Like::class,
         'job' => Like::class,
@@ -53,4 +53,9 @@ class Person extends Authenticatable
         'surname',
         'job',
     ];
+
+    public function presenter()
+    {
+        return new PersonPresenter($this);
+    }
 }

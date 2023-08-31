@@ -10,14 +10,14 @@ use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
 use Orchid\Support\Presenter;
 
-class CarPresenter extends Presenter implements Searchable, Personable
+class PersonPresenter extends Presenter implements Searchable, Personable
 {
     /**
      * Returns the label for this presenter, which is used in the UI to identify it.
      */
     public function label(): string
     {
-        return 'Cars';
+        return 'Persons';
     }
 
     /**
@@ -25,10 +25,7 @@ class CarPresenter extends Presenter implements Searchable, Personable
      */
     public function title(): string
     {
-        $brand = $this->entity->configuration->model->brand->name;
-        $model = $this->entity->configuration->model->name;
-
-        return "$brand $model";
+        return $this->entity->name;
     }
 
     /**
@@ -36,7 +33,7 @@ class CarPresenter extends Presenter implements Searchable, Personable
      */
     public function subTitle(): string
     {
-        return $this->entity->configuration->name;
+        return $this->entity->surname;
     }
 
     /**
@@ -52,6 +49,7 @@ class CarPresenter extends Presenter implements Searchable, Personable
      */
     public function image(): ?string
     {
+        return "";
         return $this->entity->pictures->first()->src;
     }
 

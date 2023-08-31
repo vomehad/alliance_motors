@@ -30,11 +30,10 @@ class CarListLayout extends Table
                 ->render(fn(Car $car) => new Persona($car->presenter()))
             ,
 
-            TD::make('vehicle_configuration_id', 'Комплектация')
+            TD::make('vin', 'VIN')
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
-                ->render(fn(Car $car) => $car->configuration->name)
             ,
 
             TD::make('year', 'Год выпуска')
@@ -83,7 +82,7 @@ class CarListLayout extends Table
                     ->icon('bs.three-dots-vertical')
                     ->list([
                         Link::make(__('Edit'))
-//                            ->route()
+//                            ->route('platform.')
                             ->icon('bs.pencil'),
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
