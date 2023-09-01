@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Orchid\Presenters;
 
-use Illuminate\Support\Str;
 use Laravel\Scout\Builder;
 use Orchid\Screen\Contracts\Personable;
 use Orchid\Screen\Contracts\Searchable;
@@ -49,9 +48,7 @@ class PersonPresenter extends Presenter implements Searchable, Personable
      */
     public function image(): ?string
     {
-        $this->entity->load('attachment');
-
-        return $this->entity->attachment()->first()?->url;
+        return $this->entity->attachment()->first()?->url();
     }
 
     /**

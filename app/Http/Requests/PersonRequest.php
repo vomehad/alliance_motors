@@ -27,7 +27,7 @@ class PersonRequest extends FormRequest
             'person.surname' => 'required|string|max:128',
             'person.job' => 'required|string|max:128',
             'person.department' => 'required|string|max:128',
-            'person.image_id' => 'required',
+            'person.image' => 'required',
         ];
     }
 }

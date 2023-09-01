@@ -7,12 +7,11 @@ namespace App\Orchid\Screens\Person;
 use App\Http\Requests\PersonRequest;
 use App\Models\Person;
 use App\Orchid\Layouts\Person\PersonEditLayout;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
-use Orchid\Alert\Toast;
-use Orchid\Attachment\File;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Toast;
 
 class PersonEditScreen extends Screen
 {
@@ -20,6 +19,9 @@ class PersonEditScreen extends Screen
 
     public function query(Person $person): iterable
     {
+        $person->load('attachment');
+        $person->image = $person->attachment()->first()?->id;
+
         return [
             'person' => $person,
         ];
@@ -55,15 +57,13 @@ class PersonEditScreen extends Screen
         ];
     }
 
-    public function save(Person $person, PersonRequest $request)
+    public function save(Person $person, PersonRequest $request): RedirectResponse
     {
         $data = Arr::get($request->validated(), 'person');
-//        $data['image_id'] = Arr::get($data, 'image_id.0');
 
         $person->fill($data);
         $person->save();
-        $person->attachment()->syncWithoutDetaching($request->input('person.image_id', []));
-        Alert::info('Сотрудник добавлен');
+        $person->attachment()->sync($request->input('person.image', []));
         $message = Arr::get($data, 'id', false) ? 'Сотрудник обновлён' : 'Сотрудник создан';
         Toast::info($message);
 

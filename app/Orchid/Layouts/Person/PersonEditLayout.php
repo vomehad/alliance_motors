@@ -21,24 +21,11 @@ class PersonEditLayout extends Rows
         return [
             Input::make('person.id')->hidden(),
 
-//            Picture::make('person.image_id')
-//                ->title('Picture')
-//                ->storage('persons')
-////                ->horizontal()
-//            ,
-            Upload::make('person.image_id')
+            Upload::make('person.image')
                 ->title('Picture')
                 ->maxFiles(1)
                 ->storage('persons')
-//                ->horizontal()
             ,
-
-//            Cropper::make('person.picture')
-//                ->title('Cropper')
-//                ->width(500)
-//                ->height(300)
-//                ->horizontal()
-//            ,
 
             Input::make('person.name')
                 ->type('text')
