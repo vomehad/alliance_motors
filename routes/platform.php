@@ -95,9 +95,9 @@ Route::screen('persons/create', PersonEditScreen::class)->name('platform.persons
         ->push(__('Person'), route('platform.persons.create'))
     );// Platform > Persons > Edit
 Route::screen('persons/{person}/edit', PersonEditScreen::class)->name('platform.persons.edit')
-    ->breadcrumbs(fn(Trail $trail) => $trail
+    ->breadcrumbs(fn(Trail $trail, $person) => $trail
         ->parent('platform.persons')
-        ->push(__('Person'), route('platform.persons.edit'))
+        ->push(__('Person'), route('platform.persons.edit', $person))
     );
 
 // Platform > Vacancies

@@ -8,6 +8,7 @@ use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
 
 class PersonEditLayout extends Rows
@@ -18,9 +19,18 @@ class PersonEditLayout extends Rows
     protected function fields(): iterable
     {
         return [
-            Picture::make('picture')
+            Input::make('person.id')->hidden(),
+
+//            Picture::make('person.image_id')
+//                ->title('Picture')
+//                ->storage('persons')
+////                ->horizontal()
+//            ,
+            Upload::make('person.image_id')
                 ->title('Picture')
-                ->horizontal()
+                ->maxFiles(1)
+                ->storage('persons')
+//                ->horizontal()
             ,
 
 //            Cropper::make('person.picture')

@@ -49,8 +49,9 @@ class PersonPresenter extends Presenter implements Searchable, Personable
      */
     public function image(): ?string
     {
-        return "";
-        return $this->entity->pictures->first()->src;
+        $this->entity->load('attachment');
+
+        return $this->entity->attachment()->first()?->url;
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Orchid\Presenters\PersonPresenter;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Orchid\Attachment\Attachable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
@@ -33,6 +35,8 @@ class Person extends Authenticatable
         'name',
         'surname',
         'job',
+        'department',
+//        'image_id',
     ];
 
     /**
@@ -61,5 +65,15 @@ class Person extends Authenticatable
     public function presenter()
     {
         return new PersonPresenter($this);
+    }
+
+    public function picture(): HasOne
+    {
+        return $this->hasOne(Picture::class, 'id', 'image_id');
+    }
+
+    public function pictures(): MorphMany
+    {
+        return $this->morphMany(Picture::class, 'picturable', 'entity', 'entity_id');
     }
 }

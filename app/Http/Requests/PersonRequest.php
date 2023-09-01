@@ -22,11 +22,12 @@ class PersonRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'person.id' => 'nullable',
             'person.name' => 'required|string|max:128',
             'person.surname' => 'required|string|max:128',
             'person.job' => 'required|string|max:128',
             'person.department' => 'required|string|max:128',
-//            'picture' => 'nullable|image',
+            'person.image_id' => 'required',
         ];
     }
 }
