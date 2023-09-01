@@ -19,6 +19,7 @@ use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
+use App\Orchid\Screens\Vacancy\VacancyEditScreen;
 use App\Orchid\Screens\Vacancy\VacancyListScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -105,6 +106,17 @@ Route::screen('vacancies', VacancyListScreen::class)->name('platform.vacancies')
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push(__('Vacancies'), route('platform.vacancies'))
+    );
+// Platform > Vacancies > Create
+Route::screen('vacancies/create', VacancyEditScreen::class)->name('platform.vacancies.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.vacancies')
+        ->push(__('Vacancy'), route('platform.vacancies.create'))
+    );// Platform > Vacancies > Edit
+Route::screen('vacancies/{vacancy}/edit', VacancyEditScreen::class)->name('platform.vacancies.edit')
+    ->breadcrumbs(fn(Trail $trail, $person) => $trail
+        ->parent('platform.vacancies')
+        ->push(__('Vacancy'), route('platform.vacancies.edit', $person))
     );
 
 // Example...

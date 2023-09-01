@@ -69,4 +69,13 @@ class PersonEditScreen extends Screen
 
         return redirect()->route('platform.persons');
     }
+
+    public function remove(Person $person): RedirectResponse
+    {
+        $person->delete();
+
+        Toast::info('Удалён');
+
+        return redirect()->route('platform.persons');
+    }
 }

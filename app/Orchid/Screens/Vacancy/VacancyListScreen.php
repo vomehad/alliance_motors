@@ -6,6 +6,8 @@ namespace App\Orchid\Screens\Vacancy;
 
 use App\Models\Vacancy;
 use App\Orchid\Layouts\Vacancy\VacancyListLayout;
+use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
 class VacancyListScreen extends Screen
@@ -19,12 +21,26 @@ class VacancyListScreen extends Screen
 
     public function name(): ?string
     {
-        return 'Vacancy Manager';
+        return 'Vacancy Management';
     }
 
     public function description(): ?string
     {
         return 'Vacancies';
+    }
+
+    /**
+     * The screen's action buttons.
+     *
+     * @return Action[]
+     */
+    public function commandBar(): iterable
+    {
+        return [
+            Link::make(__('Add'))
+                ->icon('bs.plus-circle')
+                ->route('platform.vacancies.create'),
+        ];
     }
 
     public function layout(): iterable

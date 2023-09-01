@@ -3,10 +3,7 @@
 
 namespace App\Orchid\Layouts\Person;
 
-
-use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
