@@ -50,24 +50,24 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.vacancy')
                 ->route('platform.vacancies'),
 
-            Menu::make('Form Elements')
-                ->icon('bs.journal')
-                ->route('platform.example.fields')
-                ->active('*/form/examples/*'),
-
-            Menu::make('Overview Layouts')
-                ->icon('bs.columns-gap')
-                ->route('platform.example.layouts')
-                ->active('*/layout/examples/*'),
-
-            Menu::make('Charts')
-                ->icon('bs.bar-chart')
-                ->route('platform.example.charts'),
-
-            Menu::make('Cards')
-                ->icon('bs.card-text')
-                ->route('platform.example.cards')
-                ->divider(),
+//            Menu::make('Form Elements')
+//                ->icon('bs.journal')
+//                ->route('platform.example.fields')
+//                ->active('*/form/examples/*'),
+//
+//            Menu::make('Overview Layouts')
+//                ->icon('bs.columns-gap')
+//                ->route('platform.example.layouts')
+//                ->active('*/layout/examples/*'),
+//
+//            Menu::make('Charts')
+//                ->icon('bs.bar-chart')
+//                ->route('platform.example.charts'),
+//
+//            Menu::make('Cards')
+//                ->icon('bs.card-text')
+//                ->route('platform.example.cards')
+//                ->divider(),
 
             Menu::make(__('Users'))
                 ->icon('bs.people')
@@ -81,17 +81,17 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission('platform.systems.roles')
                 ->divider(),
 
-            Menu::make('Documentation')
-                ->title('Docs')
-                ->icon('bs.box-arrow-up-right')
-                ->url('https://orchid.software/en/docs')
-                ->target('_blank'),
-
-            Menu::make('Changelog')
-                ->icon('bs.box-arrow-up-right')
-                ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
-                ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK),
+//            Menu::make('Documentation')
+//                ->title('Docs')
+//                ->icon('bs.box-arrow-up-right')
+//                ->url('https://orchid.software/en/docs')
+//                ->target('_blank'),
+//
+//            Menu::make('Changelog')
+//                ->icon('bs.box-arrow-up-right')
+//                ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
+//                ->target('_blank')
+//                ->badge(fn () => Dashboard::version(), Color::DARK),
         ];
     }
 
