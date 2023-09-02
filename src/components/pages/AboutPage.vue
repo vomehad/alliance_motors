@@ -1,5 +1,4 @@
 <script>
-
 export default {
 
 }
@@ -119,7 +118,7 @@ export default {
               <button type="button" class="primary-btn">Письмо директору</button>
             </div>
             <div class="writing_img">
-              <img src="@img/card-with-red-envelope 1.png">
+              <img src="@img/card-with-red-envelope.png">
             </div>
           </div>
         </section>
