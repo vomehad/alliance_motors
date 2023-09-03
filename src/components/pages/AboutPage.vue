@@ -33,6 +33,17 @@ export default {
           }
         }
       },
+      vacancies: [
+        {
+          id: 0,
+          title: '',
+          description: '',
+          requirements: '',
+          conditions: '',
+          min: '',
+          max: '',
+        }
+      ],
     }
   },
   methods: {
@@ -59,11 +70,22 @@ export default {
       } catch (e) {
         console.log(e)
       }
+    },
+    async getVacancies() {
+      try {
+        const response = await axios.get(`${API_URL}/api/vacancies`);
+        const { data } = response;
+
+        this.vacancies = data;
+      } catch (e) {
+        console.log(e);
+      }
     }
   },
   mounted() {
     this.getSalePersons();
     this.getCreditPersons();
+    this.getVacancies();
   }
 }
 </script>
@@ -227,10 +249,44 @@ export default {
             </div>
           </div>
         </section>
-        <section class="about_vakancies vakancies hidePerson2">
+        <section
+            class="about_vakancies vakancies hidePerson2"
+            v-if="vacancies.length"
+        >
           <h1 class="vakancies_title">ВАКАНСИИ</h1>
           <div class="vakancies_block">
-            <ul class="vakancies_list"></ul>
+            <ul class="vakancies_list">
+              <li
+                  v-for="vacancy in vacancies"
+                  :key="vacancy.id"
+              >
+                <div class="vakancies-item">
+                  <div class="vakancies-item_text">
+                    <h1>{{ vacancy.title }}</h1>
+                    <span>
+              {{ vacancy.min }} - {{ vacancy.max }} ₽
+            </span>
+                  </div>
+                  <div class="vakancies-item_arrow">
+                    <button class="splide_my-btn-next vakancies_arrow"></button>
+                  </div>
+                </div>
+
+                <div class="vakancies-item_text_show">
+                  {{ vacancy.description }}
+                  <br>
+                  <br>
+                  <b>Требования:</b><br>
+                  {{ vacancy.requirements }}
+                  <b>Условия:</b><br>
+                  {{ vacancy.conditions }}
+                  <br>
+                  <b>Контакты для связи:</b><br>
+                  Телефон: <span><a href="tel:+78612054986">+7 (861) 205-49-86</a></span><br>
+                  E-mail: <span><a href="mailto:alliance.motors@bk.ru">alliance.motors@bk.ru</a></span>
+                </div>
+              </li>
+            </ul>
           </div>
         </section>
       </section>
