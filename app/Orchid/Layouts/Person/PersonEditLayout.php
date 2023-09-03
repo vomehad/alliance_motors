@@ -3,6 +3,7 @@
 
 namespace App\Orchid\Layouts\Person;
 
+use App\Models\Person;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Upload;
@@ -48,7 +49,10 @@ class PersonEditLayout extends Rows
             Select::make('person.department')
                 ->required()
                 ->title(__('Department'))
-                ->options([1,2]),
+                ->options([
+                    Person::SALES_DEPARTMENT => Person::SALES_DEPARTMENT_NAME,
+                    Person::CREDIT_DEPARTMENT => Person::CREDIT_DEPARTMENT_NAME,
+                ]),
 
         ];
     }

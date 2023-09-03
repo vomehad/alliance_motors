@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PersonCollection;
 use App\Models\Car;
 use App\Services\CarService;
 use App\Services\DictService;
 use App\Services\SiteService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 class MainController extends Controller
@@ -43,9 +46,11 @@ class MainController extends Controller
         return $this->carService->getOneById($id);
     }
 
-    public function getPersons(): Collection
+    public function getPersons(Request $request): JsonResponse
     {
-        return $this->siteService->getPersons();
+        $persons = $this->siteService->getPersons($request->query->get('department'));
+
+        return (new PersonCollection($persons))->response()->setStatusCode(Response::HTTP_OK);
     }
 
     public function getVacancies(): Collection

@@ -10,9 +10,9 @@ use Illuminate\Support\Collection;
 
 class SiteService
 {
-    public function getPersons(): Collection
+    public function getPersons(string $department): Collection
     {
-        return Person::query()->get();
+        return Person::query()->with(['attachment'])->where(['department' => $department])->get();
     }
 
     public function getVacancies(): Collection

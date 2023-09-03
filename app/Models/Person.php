@@ -6,6 +6,7 @@ use App\Orchid\Presenters\PersonPresenter;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Orchid\Attachment\Attachable;
+use Orchid\Attachment\Models\Attachment;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Platform\Models\User as Authenticatable;
@@ -19,10 +20,17 @@ use Orchid\Screen\AsSource;
  * @property string $name
  * @property string $surname
  * @property string $job
+ * @property string $department
+ * @property Attachment[] $attachment
  */
 class Person extends Authenticatable
 {
     use AsSource, Attachable;
+
+    const SALES_DEPARTMENT = 1;
+    const SALES_DEPARTMENT_NAME = 'ОТДЕЛ ПРОДАЖ';
+    const CREDIT_DEPARTMENT = 2;
+    const CREDIT_DEPARTMENT_NAME = 'ОТДЕЛ КРЕДИТОВАНИЯ И СТРАХОВАНИЯ';
 
     protected $table = 'persons';
 
@@ -36,7 +44,6 @@ class Person extends Authenticatable
         'surname',
         'job',
         'department',
-//        'image_id',
     ];
 
     /**
@@ -75,5 +82,10 @@ class Person extends Authenticatable
     public function pictures(): MorphMany
     {
         return $this->morphMany(Picture::class, 'picturable', 'entity', 'entity_id');
+    }
+
+    public function getPhoto()
+    {
+        return $this->attachment()->first();
     }
 }

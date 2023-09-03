@@ -39,7 +39,13 @@ class PersonListLayout extends Table
 
             TD::make('department', 'Отдел')
                 ->align(TD::ALIGN_RIGHT)
-                ->sort(),
+                ->sort()
+                ->render(fn (Person $person) => match ($person->department) {
+                    '1' => Person::SALES_DEPARTMENT_NAME,
+                    '2' => Person::CREDIT_DEPARTMENT_NAME,
+                    default => '-',
+                })
+            ,
 
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
