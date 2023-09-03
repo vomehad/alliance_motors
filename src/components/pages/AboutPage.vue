@@ -1,6 +1,70 @@
 <script>
-export default {
+import axios from "axios";
+import { API_URL } from "../../main";
 
+export default {
+  data() {
+    return {
+      persons: {
+        sale: {
+          id: 0,
+          name: '',
+          surname: '',
+          job: '',
+          department: '',
+          attachment: {
+            id: 0,
+            name: '',
+            origin_name: '',
+            url: '',
+          }
+        },
+        credit: {
+          id: 0,
+          name: '',
+          surname: '',
+          job: '',
+          department: '',
+          attachment: {
+            id: 0,
+            name: '',
+            origin_name: '',
+            url: '',
+          }
+        }
+      },
+    }
+  },
+  methods: {
+    async getSalePersons() {
+      try {
+        const params = {};
+        params.department = 1;
+        const response = await axios.get(`${API_URL}/api/persons`, {params});
+        const { data: { data: list } } = response;
+
+        this.persons.sale = list;
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async getCreditPersons() {
+      try {
+        const params = {};
+        params.department = 2;
+        const response = await axios.get(`${API_URL}/api/persons`, {params});
+        const { data: { data: list } } = response;
+
+        this.persons.credit = list;
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  },
+  mounted() {
+    this.getSalePersons();
+    this.getCreditPersons();
+  }
 }
 </script>
 
@@ -90,7 +154,28 @@ export default {
               </li>
             </nav>
           </div>
-          <div class="sales_person"></div>
+          <div
+              v-if="Object.keys(persons.sale).length"
+              class="sales_person"
+          >
+            <ul class="sales_grid">
+              <li
+                  v-for="person in persons.sale"
+                  :key="person.id"
+              >
+                <span v-if="person.attachment">
+                  <img
+                      v-if="person.attachment"
+                      :src="person.attachment.url"
+                      :alt="person.attachment.origin_name"
+                  >
+                  <h4>{{ person.name }} {{ person.surname }}</h4>
+                  <p>{{ person.job }}</p>
+                </span>
+              </li>
+            </ul>
+
+          </div>
           <div class="morePerson">Показать ещё</div>
         </section>
         <section class="about_sales sales">
@@ -107,7 +192,27 @@ export default {
               </li>
             </nav>
           </div>
-          <div class="sales_person2"></div>
+          <div
+              v-if="Object.keys(persons.credit).length"
+              class="sales_person2"
+          >
+            <ul class="sales_grid">
+              <li
+                  v-for="person in persons.credit"
+                  :key="person.id"
+              >
+                <span v-if="person.attachment">
+                  <img
+                      v-if="person.attachment"
+                      :src="person.attachment.url"
+                      :alt="person.attachment.origin_name"
+                  >
+                  <h4>{{ person.name }} {{ person.surname }}</h4>
+                  <p>{{ person.job }}</p>
+                </span>
+              </li>
+            </ul>
+          </div>
           <div class="morePerson2">Показать ещё</div>
         </section>
         <section class="about_writing writing hidePerson2">
