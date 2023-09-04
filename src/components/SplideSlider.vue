@@ -57,7 +57,7 @@ export default {
           <div class="slide_block">
             <div
                 class="slide-2"
-                :style="{ 'background': 'url(src/assets/img/slide-2.png) no-repeat center' }">
+                :style="{ 'background': 'url(/src/assets/img/slide-2.png) no-repeat center' }">
               <div class="slide-2_container">
                 <div class="slide-2_texts full575">
                   <h1>акция</h1>
@@ -79,7 +79,7 @@ export default {
           <div class="slide_block">
             <div
                 class="slide-3"
-                :style="{ 'background': `url(src/assets/img/slide-3.png) no-repeat center` }"
+                :style="{ 'background': `url(/src/assets/img/slide-3.png) no-repeat center` }"
             >
               <div class="slide-3_container">
                 <div class="slide-3_texts">
