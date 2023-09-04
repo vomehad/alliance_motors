@@ -18,3 +18,5 @@ Route::name('car')->prefix('car')->group(function() {
 
 Route::get('persons', [MainController::class, 'getPersons'])->name('api.persons');
 Route::get('vacancies', [MainController::class, 'getVacancies'])->name('api.vacancies');
+
+Route::get('settings', [MainController::class, 'getSettings'])->name('api.settings');

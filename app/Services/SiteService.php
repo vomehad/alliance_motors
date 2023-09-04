@@ -19,4 +19,9 @@ class SiteService
     {
         return Vacancy::query()->get();
     }
+
+    public function getSettings()
+    {
+
+    }
 }

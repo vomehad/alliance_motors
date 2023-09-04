@@ -11,11 +11,13 @@ use App\Orchid\Screens\Examples\ExampleFieldsScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\Office\OfficeEditScreen;
+use App\Orchid\Screens\Office\OfficeListScreen;
 use App\Orchid\Screens\Person\PersonEditScreen;
 use App\Orchid\Screens\Person\PersonListScreen;
-use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\Site\SiteListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -25,12 +27,17 @@ use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
 // Main
-Route::screen('/main', PlatformScreen::class)->name('platform.main');
+Route::screen('/main', SiteListScreen::class)->name('platform.site');
+
+// Offices
+Route::screen('/offices', OfficeListScreen::class)->name('platform.offices');
+Route::screen('/offices/{office}/edit', OfficeEditScreen::class)->name('platform.offices.edit');
+Route::screen('/offices/create', OfficeEditScreen::class)->name('platform.offices.create');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)->name('platform.profile')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.index')
+        ->parent('platform.site')
         ->push(__('Profile'), route('platform.profile'))
     );
 
@@ -51,7 +58,7 @@ Route::screen('users/create', UserEditScreen::class)->name('platform.systems.use
 // Platform > System > Users
 Route::screen('users', UserListScreen::class)->name('platform.systems.users')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.index')
+        ->parent('platform.site')
         ->push(__('Users'), route('platform.systems.users'))
     );
 
@@ -72,21 +79,21 @@ Route::screen('roles/create', RoleEditScreen::class)->name('platform.systems.rol
 // Platform > System > Roles
 Route::screen('roles', RoleListScreen::class)->name('platform.systems.roles')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.index')
+        ->parent('platform.site')
         ->push(__('Roles'), route('platform.systems.roles'))
     );
 
 // Platform > Cars
 Route::screen('cars', CarListScreen::class)->name('platform.cars')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.index')
+        ->parent('platform.site')
         ->push('Каталог', route('platform.cars'))
     );
 
 // Platform > Persons
 Route::screen('persons', PersonListScreen::class)->name('platform.persons')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.index')
+        ->parent('platform.site')
         ->push(__('Persons'), route('platform.persons'))
     );
 // Platform > Persons > Create
@@ -104,7 +111,7 @@ Route::screen('persons/{person}/edit', PersonEditScreen::class)->name('platform.
 // Platform > Vacancies
 Route::screen('vacancies', VacancyListScreen::class)->name('platform.vacancies')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.index')
+        ->parent('platform.site')
         ->push(__('Vacancies'), route('platform.vacancies'))
     );
 // Platform > Vacancies > Create
@@ -122,7 +129,7 @@ Route::screen('vacancies/{vacancy}/edit', VacancyEditScreen::class)->name('platf
 // Example...
 Route::screen('example', ExampleScreen::class)->name('platform.example')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.index')
+        ->parent('platform.site')
         ->push('Example Screen')
     );
 
