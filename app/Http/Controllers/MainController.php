@@ -62,4 +62,9 @@ class MainController extends Controller
     {
         return $this->siteService->getVacancies();
     }
+
+    public function pageAbout()
+    {
+        
+    }
 }
