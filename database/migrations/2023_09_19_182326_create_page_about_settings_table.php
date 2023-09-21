@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('value')->nullable();
             $table->string('extra')->nullable();
+            $table->string('type')->nullable();
             $table->boolean('active')->default(true);
             $table->softDeletes();
             $table->timestamps();

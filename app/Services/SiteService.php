@@ -24,4 +24,9 @@ class SiteService
     {
 
     }
+
+    public function getAbout()
+    {
+
+    }
 }
