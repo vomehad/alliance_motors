@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PageAboutSettingCollection;
 use App\Services\SiteService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 class SettingController extends Controller
@@ -19,8 +22,10 @@ class SettingController extends Controller
         return $this->siteService->getSettings();
     }
 
-    public function about(): Collection
+    public function about(): JsonResponse
     {
-        return $this->siteService->pageAbout();
+        return (new PageAboutSettingCollection($this->siteService->pageAbout()))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
     }
 }

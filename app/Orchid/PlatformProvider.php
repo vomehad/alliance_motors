@@ -54,6 +54,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.vacancy')
                 ->route('platform.vacancies'),
 
+            Menu::make('Настройки страницы "О компании"')
+                ->icon('bs.about')
+                ->route('platform.about'),
+
 //            Menu::make('Form Elements')
 //                ->icon('bs.journal')
 //                ->route('platform.example.fields')
