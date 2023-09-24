@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\PageAboutSetting;
 use App\Models\Person;
 use App\Models\Vacancy;
 use Illuminate\Support\Collection;
@@ -12,7 +13,10 @@ class SiteService
 {
     public function getPersons(string $department): Collection
     {
-        return Person::query()->with(['attachment'])->where(['department' => $department])->get();
+        return Person::query()
+            ->with(['attachment'])
+            ->where(['department' => $department])
+            ->get();
     }
 
     public function getVacancies(): Collection
@@ -25,8 +29,8 @@ class SiteService
 
     }
 
-    public function getAbout()
+    public function pageAbout(): Collection
     {
-
+        return PageAboutSetting::query()->get();
     }
 }

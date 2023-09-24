@@ -57,14 +57,4 @@ class MainController extends Controller
     {
         return $this->siteService->getVacancies();
     }
-
-    public function getSettings()
-    {
-        return $this->siteService->getSettings();
-    }
-
-    public function pageAbout()
-    {
-        $this->siteService->getAbout();
-    }
 }
