@@ -44,6 +44,16 @@ export default {
           max: '',
         }
       ],
+      settings: [
+        {
+          id: 0,
+          description: '',
+          value: '',
+          extra: '',
+          name: '',
+          active: false,
+        }
+      ],
     }
   },
   methods: {
@@ -80,12 +90,23 @@ export default {
       } catch (e) {
         console.log(e);
       }
+    },
+    async getAbout() {
+      try {
+        const response = await axios.get(`${API_URL}/api/settings/about`);
+        const { data: { data: list } } = response;
+
+        this.settings = list;
+      } catch (e) {
+        console.log('ABOUT', e);
+      }
     }
   },
   mounted() {
     this.getSalePersons();
     this.getCreditPersons();
     this.getVacancies();
+    this.getAbout();
   }
 }
 </script>
@@ -147,17 +168,9 @@ export default {
         <div class="counter about-counter">
           <div class="counter_container">
             <ul class="counter_row">
-              <li>
-                <span>23+</span>
-                <p>Лет на рынке</p>
-              </li>
-              <li>
-                <span>1000+</span>
-                <p>Машин отличного качества</p>
-              </li>
-              <li>
-                <span>2000+</span>
-                <p>Довольных клиентов за 2022 год</p>
+              <li v-for="achievement in settings">
+                <span>{{ achievement.value }}</span>
+                <p>{{ achievement.extra }}</p>
               </li>
             </ul>
           </div>
