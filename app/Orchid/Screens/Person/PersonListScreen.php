@@ -61,7 +61,7 @@ class PersonListScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('bs.plus-circle')
-                ->route('platform.persons.create'),
+                ->route('persons.create'),
         ];
     }
 
@@ -106,7 +106,7 @@ class PersonListScreen extends Screen
 
     public function remove(Request $request): void
     {
-        User::findOrFail($request->get('id'))->delete();
+        User::query()->findOrFail($request->get('id'))->delete();
 
         Toast::info(__('User was removed'));
     }

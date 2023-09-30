@@ -28,7 +28,7 @@ class PageAboutListScreen extends Screen
         return [
             Link::make("Add")
                 ->icon('bs.plus-circle')
-                ->route('platform.about.create')
+                ->route('about.create')
         ];
     }
 

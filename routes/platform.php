@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Orchid\Screens\Car\CarListScreen;
+use App\Orchid\Screens\Contact\PhotoEditScreen;
+use App\Orchid\Screens\Contact\PhotoListScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -28,42 +30,133 @@ use App\Orchid\Screens\Vacancy\VacancyListScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
+$main = 'platform.index';
+
 // Platform
 Route::screen('/main', SiteListScreen::class)->name('platform.site');
 
 // Platform > Offices
-Route::screen('/offices', OfficeListScreen::class)->name('platform.offices')
+Route::screen('/offices', OfficeListScreen::class)->name('offices')
     ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->push(__('Offices'), route('platform.offices'))
+        ->parent($main)
+        ->push(__('Offices'), route('offices'))
     );
 
 // Platform > Offices > Office
-Route::screen('/offices/{office}/edit', OfficeEditScreen::class)->name('platform.offices.edit')
+Route::screen('/offices/{office}/edit', OfficeEditScreen::class)->name('offices.edit')
     ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.offices')
-        ->push(__('Offices'), route('platform.offices.edit'))
+        ->parent('offices')
+        ->push(__('Offices'), route('offices.edit'))
     );
 
 // Platform > Offices > Office
-Route::screen('/offices/create', OfficeEditScreen::class)->name('platform.offices.create')
+Route::screen('/offices/create', OfficeEditScreen::class)->name('offices.create')
     ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->parent('platform.offices')
-        ->push(__('Offices'), route('platform.offices.create'))
+        ->parent('offices')
+        ->push(__('Offices'), route('offices.create'))
     );
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)->name('platform.profile')
     ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
+        ->parent($main)
         ->push(__('Profile'), route('platform.profile'))
+    );
+
+// Platform > Cars
+Route::screen('cars', CarListScreen::class)->name('platform.cars')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent($main)
+        ->push('Каталог', route('platform.cars'))
+    );
+
+// Platform > Persons
+Route::screen('persons', PersonListScreen::class)->name('persons')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent($main)
+        ->push(__('Persons'), route('persons'))
+    );
+
+// Platform > Persons > Create
+Route::screen('persons/create', PersonEditScreen::class)->name('persons.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('persons')
+        ->push(__('Person'), route('persons.create'))
+    );
+
+// Platform > Persons > Edit
+Route::screen('persons/{person}/edit', PersonEditScreen::class)->name('persons.edit')
+    ->breadcrumbs(fn(Trail $trail, $person) => $trail
+        ->parent('persons')
+        ->push(__('Person'), route('persons.edit', $person))
+    );
+
+// Platform > Vacancies
+Route::screen('vacancies', VacancyListScreen::class)->name('vacancies')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent($main)
+        ->push(__('Vacancies'), route('vacancies'))
+    );
+
+// Platform > Vacancies > Create
+Route::screen('vacancies/create', VacancyEditScreen::class)->name('vacancies.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('vacancies')
+        ->push(__('Vacancy'), route('vacancies.create'))
+    );
+
+// Platform > Vacancies > Edit
+Route::screen('vacancies/{vacancy}/edit', VacancyEditScreen::class)->name('vacancies.edit')
+    ->breadcrumbs(fn(Trail $trail, $person) => $trail
+        ->parent('vacancies')
+        ->push(__('Vacancy'), route('vacancies.edit', $person))
+    );
+
+// Platform > Settings > About
+Route::screen('settings/about', PageAboutListScreen::class)->name('about')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent($main)
+        ->push(__('About'), route('about'))
+    );
+
+// Platform > Settings > About > Create
+Route::screen('settings/about/create', PageAboutEditScreen::class)->name('about.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('about')
+        ->push(__('About'), route('about.create'))
+    );
+
+// Platform > Settings > About > Edit
+Route::screen('settings/about/{about}/edit', PageAboutEditScreen::class)->name('about.edit')
+    ->breadcrumbs(fn(Trail $trail, $about) => $trail
+        ->parent('about')
+        ->push(__('About'), route('about.edit', $about))
+    );
+
+// Platform > Contacts > Photo
+Route::screen('contacts/photo', PhotoListScreen::class)->name('contacts')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent($main)
+        ->push(__('Photo'), route('contacts'))
+    );
+
+// Platform > Contacts > Photo > Create
+Route::screen('contacts/photo/create', PhotoEditScreen::class)->name('contacts.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('contacts')
+        ->push(__('Photo'), route('contacts.create'))
+    );
+
+// Platform > System > Users
+Route::screen('users', UserListScreen::class)->name('platform.systems.users')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent($main)
+        ->push(__('Users'), route('platform.systems.users'))
     );
 
 // Platform > System > Users > User
 Route::screen('users/{user}/edit', UserEditScreen::class)->name('platform.systems.users.edit')
     ->breadcrumbs(fn(Trail $trail, $user) => $trail
-//        ->parent('platform.site')
         ->parent('platform.systems.users')
         ->push($user->name, route('platform.systems.users.edit', $user))
     );
@@ -71,16 +164,15 @@ Route::screen('users/{user}/edit', UserEditScreen::class)->name('platform.system
 // Platform > System > Users > Create
 Route::screen('users/create', UserEditScreen::class)->name('platform.systems.users.create')
     ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
         ->parent('platform.systems.users')
         ->push(__('Create'), route('platform.systems.users.create'))
     );
 
-// Platform > System > Users
-Route::screen('users', UserListScreen::class)->name('platform.systems.users')
+// Platform > System > Roles
+Route::screen('roles', RoleListScreen::class)->name('platform.systems.roles')
     ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->push(__('Users'), route('platform.systems.users'))
+        ->parent($main)
+        ->push(__('Roles'), route('platform.systems.roles'))
     );
 
 // Platform > System > Roles > Role
@@ -95,83 +187,6 @@ Route::screen('roles/create', RoleEditScreen::class)->name('platform.systems.rol
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.systems.roles')
         ->push(__('Create'), route('platform.systems.roles.create'))
-    );
-
-// Platform > System > Roles
-Route::screen('roles', RoleListScreen::class)->name('platform.systems.roles')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->push(__('Roles'), route('platform.systems.roles'))
-    );
-
-// Platform > Cars
-Route::screen('cars', CarListScreen::class)->name('platform.cars')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->push('Каталог', route('platform.cars'))
-    );
-
-// Platform > Persons
-Route::screen('persons', PersonListScreen::class)->name('platform.persons')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->push(__('Persons'), route('platform.persons'))
-    );
-
-// Platform > Persons > Create
-Route::screen('persons/create', PersonEditScreen::class)->name('platform.persons.create')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.persons')
-        ->push(__('Person'), route('platform.persons.create'))
-    );
-
-// Platform > Persons > Edit
-Route::screen('persons/{person}/edit', PersonEditScreen::class)->name('platform.persons.edit')
-    ->breadcrumbs(fn(Trail $trail, $person) => $trail
-        ->parent('platform.persons')
-        ->push(__('Person'), route('platform.persons.edit', $person))
-    );
-
-// Platform > Vacancies
-Route::screen('vacancies', VacancyListScreen::class)->name('platform.vacancies')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->push(__('Vacancies'), route('platform.vacancies'))
-    );
-
-// Platform > Vacancies > Create
-Route::screen('vacancies/create', VacancyEditScreen::class)->name('platform.vacancies.create')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.vacancies')
-        ->push(__('Vacancy'), route('platform.vacancies.create'))
-    );
-
-// Platform > Vacancies > Edit
-Route::screen('vacancies/{vacancy}/edit', VacancyEditScreen::class)->name('platform.vacancies.edit')
-    ->breadcrumbs(fn(Trail $trail, $person) => $trail
-        ->parent('platform.vacancies')
-        ->push(__('Vacancy'), route('platform.vacancies.edit', $person))
-    );
-
-// Platform > Settings > About
-Route::screen('settings/about', PageAboutListScreen::class)->name('platform.about')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-//        ->parent('platform.site')
-        ->push(__('About'), route('platform.about'))
-    );
-
-// Platform > Settings > About > Create
-Route::screen('settings/about/create', PageAboutEditScreen::class)->name('platform.about.create')
-    ->breadcrumbs(fn(Trail $trail) => $trail
-        ->parent('platform.about')
-        ->push(__('About'), route('platform.about.create'))
-    );
-
-// Platform > Settings > About > Edit
-Route::screen('settings/about/{about}/edit', PageAboutEditScreen::class)->name('platform.about.edit')
-    ->breadcrumbs(fn(Trail $trail, $about) => $trail
-        ->parent('platform.about')
-        ->push(__('About'), route('platform.about.edit', $about))
     );
 
 

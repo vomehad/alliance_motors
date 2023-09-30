@@ -44,6 +44,14 @@ return [
             'throw' => false,
         ],
 
+        'contacts' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/contacts'),
+            'url' => env('APP_URL').'/storage/contacts',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

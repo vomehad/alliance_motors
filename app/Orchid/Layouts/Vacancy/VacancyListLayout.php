@@ -39,7 +39,7 @@ class VacancyListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.vacancies.edit', $vacancy->id)
+                            ->route('vacancies.edit', $vacancy->id)
                             ->icon('bs.pencil'),
 
                         Button::make(__('Delete'))

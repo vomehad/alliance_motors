@@ -75,7 +75,7 @@ class VacancyEditScreen extends Screen
         $message = Arr::get($data, 'id', false) ? 'Вакансия обновлена' : 'Вакансия создана';
         Toast::info($message);
 
-        return redirect()->route('platform.vacancies');
+        return redirect()->route('vacancies');
     }
 
     public function remove(Vacancy $vacancy): RedirectResponse
@@ -84,6 +84,6 @@ class VacancyEditScreen extends Screen
 
         Toast::info('Удалён');
 
-        return redirect()->route('platform.vacancies');
+        return redirect()->route('vacancies');
     }
 }

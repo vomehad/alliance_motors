@@ -67,7 +67,7 @@ class PersonEditScreen extends Screen
         $message = Arr::get($data, 'id', false) ? 'Сотрудник обновлён' : 'Сотрудник создан';
         Toast::info($message);
 
-        return redirect()->route('platform.persons');
+        return redirect()->route('persons');
     }
 
     public function remove(Person $person): RedirectResponse
@@ -76,6 +76,6 @@ class PersonEditScreen extends Screen
 
         Toast::info('Удалён');
 
-        return redirect()->route('platform.persons');
+        return redirect()->route('persons');
     }
 }

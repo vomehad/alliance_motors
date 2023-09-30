@@ -55,7 +55,7 @@ class PageAboutEditScreen extends Screen
         $message = Arr::get($data, 'id', false) ? 'Настройка обновлена' : 'Настройка создана';
         Toast::info($message);
 
-        return redirect()->route('platform.about');
+        return redirect()->route('about');
     }
 
     public function remove(PageAboutSetting $aboutSetting): RedirectResponse
@@ -64,6 +64,6 @@ class PageAboutEditScreen extends Screen
 
         Toast::info('Удалён');
 
-        return redirect()->route('platform.about');
+        return redirect()->route('about');
     }
 }

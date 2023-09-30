@@ -35,7 +35,7 @@ class OfficeListScreen extends Screen
     {
         return [
             Link::make("Add")->icon('bs.plus-circle')
-                ->route('platform.offices.create'),
+                ->route('offices.create'),
         ];
     }
 

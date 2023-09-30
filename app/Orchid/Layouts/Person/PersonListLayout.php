@@ -55,7 +55,7 @@ class PersonListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.persons.edit', $user->id)
+                            ->route('persons.edit', $user->id)
                             ->icon('bs.pencil'),
 
                         Button::make(__('Delete'))

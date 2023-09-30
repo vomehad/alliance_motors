@@ -39,7 +39,7 @@ class VacancyListScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('bs.plus-circle')
-                ->route('platform.vacancies.create'),
+                ->route('vacancies.create'),
         ];
     }
 

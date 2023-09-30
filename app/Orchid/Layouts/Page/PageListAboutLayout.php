@@ -48,7 +48,7 @@ class PageListAboutLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.persons.edit', $about->id)
+                            ->route('persons.edit', $about->id)
                             ->icon('bs.pencil'),
 
                         Button::make(__('Delete'))

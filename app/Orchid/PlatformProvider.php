@@ -40,7 +40,7 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Офисы')
                 ->icon('bs.book')
-                ->route('platform.offices'),
+                ->route('offices'),
 
             Menu::make('Каталог')
                 ->icon('bs.auto')
@@ -48,15 +48,20 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Персонал')
                 ->icon('bs.person')
-                ->route('platform.persons'),
+                ->route('persons'),
 
             Menu::make('Вакансии')
                 ->icon('bs.vacancy')
-                ->route('platform.vacancies'),
+                ->route('vacancies'),
 
             Menu::make('Настройки страницы "О компании"')
                 ->icon('bs.about')
-                ->route('platform.about'),
+                ->route('about'),
+
+            Menu::make('Настройка фото контактов')
+                ->icon('film')
+                ->route('contacts')
+            ,
 
 //            Menu::make('Form Elements')
 //                ->icon('bs.journal')
