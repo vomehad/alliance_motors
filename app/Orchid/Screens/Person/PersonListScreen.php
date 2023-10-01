@@ -68,7 +68,7 @@ class PersonListScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return string[]|\Orchid\Screen\Layout[]
+     * @return iterable
      */
     public function layout(): iterable
     {

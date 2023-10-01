@@ -25,3 +25,7 @@ Route::prefix('settings')->group(function () {
     Route::get('/about', [SettingController::class, 'about'])->name('api.settings.about');
 });
 
+Route::prefix('contacts')->group(function () {
+    Route::get('photo', [SettingController::class, 'contactPhotos'])->name('api.contact.photo');
+});
+

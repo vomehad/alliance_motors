@@ -84,8 +84,9 @@ class PhotoEditScreen extends Screen
         $picture->save();
         $picture->attachment()->sync($request->input('photo.image', []));
         $photo = $picture->attachment()->first();
-        $picture->origin_name = $photo->origin_name;
+        $picture->origin_name = $photo->original_name;
         $picture->src = 'contacts/' . $photo->path . $photo->name;
+
         $picture->update();
 
         $message = Arr::get($data, 'id') ? 'Обновлена' : 'Добавлена';

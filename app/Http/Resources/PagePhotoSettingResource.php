@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\PageAboutSetting;
+use App\Models\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PageAboutSettingResource extends JsonResource
+class PagePhotoSettingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,14 +16,11 @@ class PageAboutSettingResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        /** @var PageAboutSetting $this */
+        /** @var Picture $this */
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'value' => $this->value,
-            'extra' => $this->extra,
-            'active' => $this->active,
+            'origin_name' => $this->origin_name,
+            'src' => $this->src,
         ];
     }
 }

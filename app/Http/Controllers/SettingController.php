@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PageAboutSettingCollection;
+use App\Http\Resources\PagePhotoSettingCollection;
 use App\Services\SiteService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 
 class SettingController extends Controller
 {
@@ -25,6 +25,13 @@ class SettingController extends Controller
     public function about(): JsonResponse
     {
         return (new PageAboutSettingCollection($this->siteService->pageAbout()))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+    public function contactPhotos(): JsonResponse
+    {
+        return (new PagePhotoSettingCollection($this->siteService->contactPhoto()))
             ->response()
             ->setStatusCode(Response::HTTP_OK);
     }

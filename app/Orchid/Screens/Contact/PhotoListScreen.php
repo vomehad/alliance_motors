@@ -21,8 +21,9 @@ class PhotoListScreen extends Screen
     {
         return [
             'photos' => Picture::query()
-                ->where(['entity' => 'contact_page'])
-                ->get(),
+                ->where(['entity' => 'contact.photo'])
+                ->paginate()
+            ,
         ];
     }
 

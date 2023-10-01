@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\PageAboutSetting;
 use App\Models\Person;
+use App\Models\Picture;
 use App\Models\Vacancy;
 use Illuminate\Support\Collection;
 
@@ -32,5 +33,12 @@ class SiteService
     public function pageAbout(): Collection
     {
         return PageAboutSetting::query()->get();
+    }
+
+    public function contactPhoto(): Collection
+    {
+        return Picture::query()
+            ->where(['entity' => 'contact.photo'])
+            ->get();
     }
 }

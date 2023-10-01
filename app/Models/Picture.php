@@ -7,10 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Attachment\Attachable;
+use Orchid\Screen\AsSource;
 
+/**
+ * Class Picture
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $origin_name
+ * @property string $src
+ * @property string $entity
+ * @property string $entity_id
+ */
 class Picture extends Model
 {
-    use HasFactory, SoftDeletes, Attachable;
+    use AsSource, HasFactory, SoftDeletes, Attachable;
 
     protected $table = 'pictures';
 
