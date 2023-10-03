@@ -31,14 +31,17 @@ class PhotoListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id', 'ID'),
-
-            TD::make('origin_name', 'Name'),
 
             TD::make('src', 'Картинка')
                 ->align(TD::ALIGN_CENTER)
-                ->render(fn (Picture $picture) => \Orchid\Screen\Fields\Picture::make('src'))
-            ,
+                ->width('200px')
+                ->render(fn (Picture $model) => // Please use view('path')
+                    "<img src='" . url('storage/contacts') . $model->src . "'
+                        alt='sample' class='mw-100 d-block img-fluid rounded-1 w-100'>
+                        <span class='small text-muted mt-1 mb-0'># {$model->id}</span>"
+                ),
+
+            TD::make('origin_name', 'Name'),
 
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)

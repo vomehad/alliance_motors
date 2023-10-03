@@ -19,7 +19,8 @@ class TabMenuExample extends TabMenu
                 ->route('platform.example.layouts'),
 
             Menu::make('Get Started')
-                ->route('platform.main'),
+//                ->route('platform.main')
+            ,
 
             Menu::make('Documentation')
                 ->url('https://orchid.software/en/docs'),
