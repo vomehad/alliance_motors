@@ -4,8 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Person;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class PersonSeeder extends Seeder
 {
@@ -14,7 +13,32 @@ class PersonSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [
+        $data = $this->getData();
+
+        foreach ($data as $person) {
+            [$name, $surname, $job] = $person;
+
+            if (!Person::query()->where(['name' => $name, 'surname' => $surname])->exists()) {
+                $this->addPerson($name, $surname, $job);
+            }
+        }
+    }
+
+    private function addPerson(string $name, string $surname, string $job): void
+    {
+        $user = new Person();
+        $user->name = $name;
+        $user->surname = $surname;
+        $user->job = $job;
+
+        if ($user->save()) {
+            (new ConsoleOutput())->writeln("Сотрудник $user->name $user->surname");
+        }
+    }
+
+    private function getData(): array
+    {
+        return [
             [
                 "name" => "Нибиуллин",
                 "surname" => "Константин",
@@ -76,15 +100,5 @@ class PersonSeeder extends Seeder
                 "job" => "Менеджер по продажам"
             ],
         ];
-
-        foreach ($data as $person) {
-            $user = new Person();
-            $user->name = Arr::get($person, 'name');
-            $user->surname = Arr::get($person, 'surname');
-            $user->job = Arr::get($person, 'job');
-
-            $user->save();
-        }
-
     }
 }
