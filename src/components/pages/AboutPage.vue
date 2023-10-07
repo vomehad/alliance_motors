@@ -54,6 +54,7 @@ export default {
           active: false,
         }
       ],
+      active: false,
     }
   },
   methods: {
@@ -273,7 +274,7 @@ export default {
                   v-for="vacancy in vacancies"
                   :key="vacancy.id"
               >
-                <div class="vakancies-item">
+                <div class="vakancies-item" :class="{'__active' : active}">
                   <div class="vakancies-item_text">
                     <h1>{{ vacancy.title }}</h1>
                     <span>
@@ -281,18 +282,24 @@ export default {
             </span>
                   </div>
                   <div class="vakancies-item_arrow">
-                    <button class="splide_my-btn-next vakancies_arrow"></button>
+                    <button class="splide_my-btn-next vakancies_arrow" @click="active=!active"></button>
                   </div>
                 </div>
 
-                <div class="vakancies-item_text_show">
+                <div class="vakancies-item_text_show" :class="{'__active' : active}">
                   {{ vacancy.description }}
                   <br>
                   <br>
                   <b>Требования:</b><br>
-                  {{ vacancy.requirements }}
+                  <p v-for="requirement in vacancy.requirements.split('||')">
+                    - {{ requirement }}
+                  </p>
+                  <br>
                   <b>Условия:</b><br>
-                  {{ vacancy.conditions }}
+                  <p v-for="condition in vacancy.conditions.split('||')">
+                    - {{ condition }}
+                  </p>
+                  <br>
                   <br>
                   <b>Контакты для связи:</b><br>
                   Телефон: <span><a href="tel:+78612054986">+7 (861) 205-49-86</a></span><br>
@@ -361,5 +368,8 @@ export default {
 </template>
 
 <style scoped>
-
+.__active {
+  padding: 1rem 24px;
+  max-height: 580px;
+}
 </style>
