@@ -20,7 +20,8 @@ class PagePhotoSettingResource extends JsonResource
         return [
             'id' => $this->id,
             'origin_name' => $this->origin_name,
-            'src' => $this->src,
+            'src' => $this->attachment->first()->url,
+//            'attachment' => $this->attachment,
         ];
     }
 }

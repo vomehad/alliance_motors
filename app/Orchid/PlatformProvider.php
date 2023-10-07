@@ -60,7 +60,7 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Настройка фото контактов')
                 ->icon('film')
-                ->route('contacts')
+                ->route('photos')
             ,
 
 //            Menu::make('Form Elements')

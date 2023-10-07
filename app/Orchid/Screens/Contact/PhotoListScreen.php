@@ -47,7 +47,7 @@ class PhotoListScreen extends Screen
         return [
             Link::make("Add")
                 ->icon('bs.plus-circle')
-                ->route('contacts.create')
+                ->route('photos.create')
         ];
     }
 

@@ -51,7 +51,7 @@ class PhotoListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('persons.edit', $photo->id)
+                            ->route('photos.edit', $photo->id)
                             ->icon('bs.pencil'),
 
                         Button::make(__('Delete'))

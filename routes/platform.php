@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Picture;
 use App\Orchid\Screens\Car\CarListScreen;
 use App\Orchid\Screens\Contact\PhotoEditScreen;
 use App\Orchid\Screens\Contact\PhotoListScreen;
@@ -106,14 +107,14 @@ Route::prefix('vacancies')->group(function() use ($main) {
             ->push(__('Vacancies'), route('vacancies'))
         );
 
-// Platform > Vacancies > Create
+    // Platform > Vacancies > Create
     Route::screen('/create', VacancyEditScreen::class)->name('vacancies.create')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent('vacancies')
             ->push(__('Vacancy'), route('vacancies.create'))
         );
 
-// Platform > Vacancies > Edit
+    // Platform > Vacancies > Edit
     Route::screen('/{vacancy}/edit', VacancyEditScreen::class)->name('vacancies.edit')
         ->breadcrumbs(fn(Trail $trail, $person) => $trail
             ->parent('vacancies')
@@ -146,17 +147,24 @@ Route::prefix('settings')->group(function() use ($main) {
 
 Route::prefix('contacts')->group(function() use ($main) {
     // Platform > Contacts > Photo
-    Route::screen('/photo', PhotoListScreen::class)->name('contacts')
+    Route::screen('/photo', PhotoListScreen::class)->name('photos')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent($main)
-            ->push(__('Photo'), route('contacts'))
+            ->push(__('Photo'), route('photos'))
         );
 
     // Platform > Contacts > Photo > Create
-    Route::screen('/photo/create', PhotoEditScreen::class)->name('contacts.create')
+    Route::screen('/photo/create', PhotoEditScreen::class)->name('photos.create')
         ->breadcrumbs(fn(Trail $trail) => $trail
-            ->parent('contacts')
-            ->push(__('Photo'), route('contacts.create'))
+            ->parent('photos')
+            ->push(__('Photo'), route('photos.create'))
+        );
+
+    // Platform > Contacts > Photo > Create
+    Route::screen('/photo/{photo}/edit', PhotoEditScreen::class)->name('photos.edit')
+        ->breadcrumbs(fn(Trail $trail, Picture $photo) => $trail
+            ->parent('photos')
+            ->push(__('Photo'), route('photos.edit', $photo))
         );
 });
 

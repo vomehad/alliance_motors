@@ -3,21 +3,19 @@
 namespace App\Orchid\Screens\Contact;
 
 use App\Http\Requests\PhotoRequest;
-use App\Models\Person;
 use App\Models\Picture;
 use App\Orchid\Layouts\Contact\PhotoEditLayout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Layout;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
 class PhotoEditScreen extends Screen
 {
-    private $photo;
-
     /**
      * Fetch data to be displayed on the screen.
      *
@@ -57,7 +55,6 @@ class PhotoEditScreen extends Screen
             Button::make(__('Remove'))
                 ->icon('bs.trash3')
                 ->method('remove')
-//                ->canSee()
         ];
     }
 
@@ -69,6 +66,11 @@ class PhotoEditScreen extends Screen
     public function layout(): iterable
     {
         return [
+            Layout::legend('photo', [
+                Sight::make('Pic')->render(fn (Picture $photo) => "<img src='" . url('storage/contacts') . $photo->src . "'
+                        alt='sample' class='mw-100 d-block img-fluid rounded-1'>
+                        <span class='small text-muted mt-1 mb-0'># {$photo->id}</span>")
+            ]),
             PhotoEditLayout::class
         ];
     }
@@ -85,7 +87,7 @@ class PhotoEditScreen extends Screen
         $picture->attachment()->sync($request->input('photo.image', []));
         $photo = $picture->attachment()->first();
         $picture->origin_name = $photo->original_name;
-        $picture->src = 'contacts/' . $photo->path . $photo->name;
+        $picture->src = "/{$photo->path}{$photo->name}.{$photo->extension}";
 
         $picture->update();
 
