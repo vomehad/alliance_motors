@@ -19,7 +19,7 @@ class AchievementSeeder extends Seeder
         foreach ($data as $achievement) {
             $name = Arr::get($achievement, 'name');
 
-            if (PageAboutSetting::query()->where(['name' => $name])->exists()) {
+            if (!PageAboutSetting::query()->where(['name' => $name])->exists()) {
                 $this->addAchievement($achievement);
             }
         }
