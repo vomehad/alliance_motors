@@ -20,14 +20,17 @@ class AchievementSeeder extends Seeder
             $name = Arr::get($achievement, 'name');
 
             if (PageAboutSetting::query()->where(['name' => $name])->exists()) {
-                $this->addAchievement();
+                $this->addAchievement($achievement);
             }
         }
     }
 
     private function addAchievement(array $achievement)
     {
-        [$name, $description, $value, $extra] = $achievement;
+        $name = Arr::get($achievement, 'name');
+        $description = Arr::get($achievement, 'description');
+        $value = Arr::get($achievement, 'value');
+        $extra = Arr::get($achievement, 'extra');
 
         $achievement = new PageAboutSetting();
         $achievement->name = $name;

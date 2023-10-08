@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Person;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class PersonSeeder extends Seeder
@@ -16,7 +17,9 @@ class PersonSeeder extends Seeder
         $data = $this->getData();
 
         foreach ($data as $person) {
-            [$name, $surname, $job] = $person;
+            $name = Arr::get($person, 'name');
+            $surname = Arr::get($person, 'surname');
+            $job = Arr::get($person, 'job');
 
             if (!Person::query()->where(['name' => $name, 'surname' => $surname])->exists()) {
                 $this->addPerson($name, $surname, $job);
