@@ -20,6 +20,7 @@ use App\Orchid\Screens\Page\PageAboutEditScreen;
 use App\Orchid\Screens\Page\PageAboutListScreen;
 use App\Orchid\Screens\Person\PersonEditScreen;
 use App\Orchid\Screens\Person\PersonListScreen;
+use App\Orchid\Screens\Phone\PhoneEditScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\Site\SiteListScreen;
@@ -35,6 +36,20 @@ $main = 'platform.index';
 
 // Platform
 Route::screen('/main', SiteListScreen::class)->name('platform.site');
+
+Route::prefix('phone')->group(function() use ($main) {
+    Route::screen('/', SiteListScreen::class)->name('phones')
+        ->breadcrumbs(fn(Trail $trail) => $trail
+            ->parent($main)
+            ->push(__('main.phones'), route('phones'))
+        );
+
+    Route::screen('/create', PhoneEditScreen::class)->name('phones.create')
+        ->breadcrumbs(fn(Trail $trail) => $trail
+            ->parent('phones')
+            ->push(__('global.create'), route('phones.create'))
+        );
+});
 
 Route::prefix('offices')->group(function() use ($main) {
     // Platform > Offices

@@ -25,8 +25,8 @@ services:
         depends_on:
             - mysql
             - redis
-            - meilisearch
-            - selenium
+#            - meilisearch
+#            - selenium
 #    mysql:
 #        image: 'mysql/mysql-server:8.0'
 #        ports:
@@ -49,13 +49,13 @@ services:
 #            timeout: 5s
     mysql:
         ports:
-            - 3306:3306
+            - "3306:3306"
         build:
             context: ./containers/mysql
             dockerfile: ./Dockerfile
-            args:
-                USER_ID: "$USER_ID"
-                GROUP_ID: "$GROUP_ID"
+#            args:
+#                USER_ID: "$USER_ID"
+#                GROUP_ID: "$GROUP_ID"
         container_name: docker_mysql
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}
@@ -65,7 +65,7 @@ services:
         restart: unless-stopped
         volumes:
             - ./logs/mysql:/var/log/mysql
-            - ./data/mysql:/var/lib/mysql
+            - 'sail-mysql:/var/lib/mysql'
         networks:
             - sail
     redis:
@@ -80,31 +80,31 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
-    meilisearch:
-        image: 'getmeili/meilisearch:v0.27.2'
-        ports:
-            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
-        volumes:
-            - 'sail-meilisearch:/meili_data'
-        networks:
-            - sail
-        healthcheck:
-            test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
-            retries: 3
-            timeout: 5s
-    mailhog:
-        image: 'mailhog/mailhog:latest'
-        ports:
-            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
-            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
-        networks:
-            - sail
-    selenium:
-        image: 'selenium/standalone-chrome'
-        volumes:
-            - '/dev/shm:/dev/shm'
-        networks:
-            - sail
+#    meilisearch:
+#        image: 'getmeili/meilisearch:v0.27.2'
+#        ports:
+#            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
+#        volumes:
+#            - 'sail-meilisearch:/meili_data'
+#        networks:
+#            - sail
+#        healthcheck:
+#            test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
+#            retries: 3
+#            timeout: 5s
+#    mailhog:
+#        image: 'mailhog/mailhog:latest'
+#        ports:
+#            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+#            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+#        networks:
+#            - sail
+#    selenium:
+#        image: 'selenium/standalone-chrome'
+#        volumes:
+#            - '/dev/shm:/dev/shm'
+#        networks:
+#            - sail
 networks:
     sail:
         driver: bridge
