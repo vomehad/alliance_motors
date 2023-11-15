@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PersonCollection;
 use App\Models\Car;
+use App\Models\PhoneNumber;
 use App\Services\CarService;
 use App\Services\DictService;
 use App\Services\SiteService;
@@ -56,5 +57,10 @@ class MainController extends Controller
     public function getVacancies(): Collection
     {
         return $this->siteService->getVacancies();
+    }
+
+    public function getAppNumber(): PhoneNumber
+    {
+        return PhoneNumber::query()->where(['type' => 'app'])->first();
     }
 }

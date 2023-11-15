@@ -5,6 +5,7 @@ namespace App\Orchid\Layouts\Phone;
 
 
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Switcher;
 use Orchid\Screen\Layouts\Rows;
 
 class PhoneEditLayout extends Rows
@@ -13,11 +14,11 @@ class PhoneEditLayout extends Rows
     {
         return [
             Input::make('phone.id')->hidden(),
-            Input::make('phone.name')
-                ->title(__('main.phone.name'))
+            Input::make('phone.number')
+                ->title(__('main.phone.number'))
                 ->required()
-                ->placeholder('Name'),
-            Input::make()
+                ->mask('+7 (999) 999 99-99'),
+            Switcher::make('phone.active')
         ];
     }
 }

@@ -21,4 +21,8 @@ class PhoneNumber extends Model
     use HasFactory, AsSource, SoftDeletes;
 
     protected $table = 'phone_numbers';
+
+    protected $fillable = [
+        'number'
+    ];
 }

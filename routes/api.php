@@ -29,3 +29,5 @@ Route::prefix('contacts')->group(function () {
     Route::get('photo', [SettingController::class, 'contactPhotos'])->name('api.contact.photo');
 });
 
+Route::get('/number/app', [MainController::class, 'getAppNumber'])->name('app.number');
+

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('phone_numbers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('number');
-            $table->string('type');
-            $table->string('description');
+            $table->string('type')->nullable();
+            $table->string('description')->nullable();
             $table->boolean('active')->default(true);
             $table->softDeletes();
             $table->timestamps();

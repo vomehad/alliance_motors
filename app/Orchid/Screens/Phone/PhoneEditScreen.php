@@ -6,12 +6,13 @@ namespace App\Orchid\Screens\Phone;
 
 use App\Models\PhoneNumber;
 use App\Orchid\Layouts\Phone\PhoneEditLayout;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 
 class PhoneEditScreen extends Screen
 {
-    private $phoneNumber;
+    private PhoneNumber|Model|null $phoneNumber;
 
     public function query(PhoneNumber $phoneNumber): iterable
     {
