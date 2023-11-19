@@ -31,3 +31,6 @@ Route::prefix('contacts')->group(function () {
 
 Route::get('/number/app', [MainController::class, 'getAppNumber'])->name('app.number');
 
+Route::post('/mail/application/{id}', [MainController::class, 'sendMail'])->name('api.send');
+
+

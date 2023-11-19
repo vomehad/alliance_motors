@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $id
  * @property string $name
+ *
+ * @property Brand $brand
  */
 class Model extends EloquentModel
 {
