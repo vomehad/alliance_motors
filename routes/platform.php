@@ -97,20 +97,20 @@ Route::prefix('persons')->group(function() use ($main) {
     Route::screen('/', PersonListScreen::class)->name('persons')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent($main)
-            ->push(__('Persons'), route('persons'))
+            ->push(__('person.breadcrumbs.list'), route('persons'))
         );
     // Platform > Persons > Create
     Route::screen('/create', PersonEditScreen::class)->name('persons.create')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent('persons')
-            ->push(__('Person'), route('persons.create'))
+            ->push(__('person.breadcrumbs.create'), route('persons.create'))
         );
 
     // Platform > Persons > Edit
     Route::screen('/{person}/edit', PersonEditScreen::class)->name('persons.edit')
         ->breadcrumbs(fn(Trail $trail, $person) => $trail
             ->parent('persons')
-            ->push(__('Person'), route('persons.edit', $person))
+            ->push(__('person.breadcrumbs.edit'), route('persons.edit', $person))
         );
 });
 

@@ -23,7 +23,8 @@ class CarListScreen extends Screen
 
     #[ArrayShape([
         'cars' => LengthAwarePaginator::class
-    ])] public function query(): iterable
+    ])]
+    public function query(): iterable
     {
         return [
             'cars' => $this->service->getAll([]),
@@ -32,12 +33,12 @@ class CarListScreen extends Screen
 
     public function name(): ?string
     {
-        return 'Car Management';
+        return 'Каталог авто';
     }
 
     public function description(): ?string
     {
-        return 'Cars';
+        return 'Список автомобилей на сайте';
     }
 
     public function commandBar(): iterable

@@ -43,7 +43,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('offices'),
 
             Menu::make('Каталог')
-                ->icon('bs.auto')
+                ->icon('bs.car-front')
                 ->route('platform.cars'),
 
             Menu::make('Персонал')
