@@ -7,6 +7,7 @@ use App\Services\DictService;
 use App\Services\ExpertService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class GetCarData extends Command
 {
@@ -44,6 +45,10 @@ class GetCarData extends Command
         $data = $this->expertService->getAutoStock();
 
         foreach ($data as $auto) {
+            if (!Arr::get($auto, 'mark_id')) {
+                Log::channel('cm_expert')->warning(Arr::get($auto, 'unique_id') . ' - не заполнено mark_id');
+                continue;
+            }
             $expertDto = $this->expertService->parseStock($auto);
 
             $brand = $this->dictService->createBrand($expertDto);
@@ -66,8 +71,10 @@ class GetCarData extends Command
 
             if ($car) {
                 $car = $this->cartService->updateCar($carDto, $car);
+                Log::channel('cm_expert')->info($car->expert_id . ' - авто обновлено');
             } else {
                 $car = $this->cartService->createCar($carDto, $expertDto);
+                Log::channel('cm_expert')->info($car->expert_id . ' - авто добавлено');
             }
 
             $this->cartService->addPictures(Arr::get($auto, 'images.image'), $car);
