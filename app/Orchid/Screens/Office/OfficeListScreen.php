@@ -23,12 +23,12 @@ class OfficeListScreen extends Screen
 
     public function name(): ?string
     {
-        return __('offices.page.title.main');
+        return __('offices.page.list.name');
     }
 
     public function description(): ?string
     {
-        return __('offices.page.description');
+        return __('offices.page.list.description');
     }
 
     public function commandBar(): iterable

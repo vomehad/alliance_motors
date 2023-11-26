@@ -56,21 +56,21 @@ Route::prefix('offices')->group(function() use ($main) {
     Route::screen('/', OfficeListScreen::class)->name('offices')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent($main)
-            ->push(__('Offices'), route('offices'))
+            ->push(__('offices.breadcrumbs.list'), route('offices'))
         );
 
 // Platform > Offices > Office
     Route::screen('/{office}/edit', OfficeEditScreen::class)->name('offices.edit')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent('offices')
-            ->push(__('Offices'), route('offices.edit'))
+            ->push(__('offices.breadcrumbs.edit'), route('offices.edit'))
         );
 
 // Platform > Offices > Office
     Route::screen('/create', OfficeEditScreen::class)->name('offices.create')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent('offices')
-            ->push(__('Offices'), route('offices.create'))
+            ->push(__('offices.breadcrumbs.create'), route('offices.create'))
         );
 });
 
@@ -97,20 +97,20 @@ Route::prefix('persons')->group(function() use ($main) {
     Route::screen('/', PersonListScreen::class)->name('persons')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent($main)
-            ->push(__('person.breadcrumbs.list'), route('persons'))
+            ->push(__('persons.breadcrumbs.list'), route('persons'))
         );
     // Platform > Persons > Create
     Route::screen('/create', PersonEditScreen::class)->name('persons.create')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent('persons')
-            ->push(__('person.breadcrumbs.create'), route('persons.create'))
+            ->push(__('persons.breadcrumbs.create'), route('persons.create'))
         );
 
     // Platform > Persons > Edit
     Route::screen('/{person}/edit', PersonEditScreen::class)->name('persons.edit')
         ->breadcrumbs(fn(Trail $trail, $person) => $trail
             ->parent('persons')
-            ->push(__('person.breadcrumbs.edit'), route('persons.edit', $person))
+            ->push(__('persons.breadcrumbs.edit'), route('persons.edit', $person))
         );
 });
 

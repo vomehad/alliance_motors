@@ -33,7 +33,7 @@ class PersonListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Персонал';
+        return __('persons.page.list.name');
     }
 
     /**
@@ -41,7 +41,7 @@ class PersonListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Сотрудники';
+        return __('persons.page.list.description');
     }
 
     public function permission(): ?iterable

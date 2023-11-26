@@ -26,8 +26,8 @@ class OfficeEditScreen extends Screen
     public function name(): ?string
     {
         return $this->office->exists
-            ? __('offices.page.title.edit')
-            : __('offices.page.title.new');
+            ? __('offices.page.form.edit.name')
+            : __('offices.page.form.new.name');
     }
 
     public function commandBar(): iterable
