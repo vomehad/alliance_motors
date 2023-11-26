@@ -20,24 +20,27 @@ class OfficeEditLayout extends Rows
                 ->max(128)
                 ->type('text')
                 ->required()
-                ->placeholder(__('office.form.name.placeholder')),
+                ->placeholder(__('offices.form.address.placeholder')),
 
             Input::make('office.tel')
-                ->title(__('office.form.tel.title'))
+                ->title(__('offices.form.tel.title'))
                 ->required()
                 ->mask('+7 (999) 999 99-99'),
 
             Input::make('office.geo')
-                ->title('office.form.geo.title')
+                ->title('offices.form.geo.title')
                 ->required()
                 ->type('text'),
 
             Input::make('office.email')
                 ->required()
                 ->type('email')
-                ->title('office.form.email.title'),
+                ->title('offices.form.email.title'),
 
-            Switcher::make('office.active'),
+            Switcher::make('office.active')
+                ->title(__('offices.form.active.title'))
+                ->sendTrueOrFalse()
+                ->value(true),
         ];
     }
 }

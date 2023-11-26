@@ -4,8 +4,11 @@
 namespace App\Orchid\Screens\Office;
 
 
+use App\Http\Requests\OfficeRequest;
 use App\Models\Office;
 use App\Orchid\Layouts\Office\OfficeEditLayout;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Arr;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 
@@ -22,14 +25,20 @@ class OfficeEditScreen extends Screen
 
     public function name(): ?string
     {
-        return $this->office->exists ? "Редактируем" : "Новый Офис";
+        return $this->office->exists
+            ? __('offices.page.title.edit')
+            : __('offices.page.title.new');
     }
 
     public function commandBar(): iterable
     {
         return [
-            Button::make('Save')->icon('bs.check-circle')->method('save'),
-            Button::make('Remove')->icon('bs.trash3')->method('remove'),
+            Button::make(__('offices.page.button.save'))
+                ->icon('bs.check-circle')
+                ->method('save'),
+            Button::make(__('offices.page.button.remove'))
+                ->icon('bs.trash3')
+                ->method('remove'),
         ];
     }
 
@@ -38,5 +47,15 @@ class OfficeEditScreen extends Screen
         return [
             OfficeEditLayout::class,
         ];
+    }
+
+    public function save(Office $office, OfficeRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
+
+        $office->fill(Arr::get($data, 'office'));
+        $office->save();
+
+        return redirect()->route('offices');
     }
 }

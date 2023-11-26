@@ -69,7 +69,7 @@ class Person extends Authenticatable
         'job',
     ];
 
-    public function presenter()
+    public function presenter(): PersonPresenter
     {
         return new PersonPresenter($this);
     }

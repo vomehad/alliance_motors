@@ -20,14 +20,6 @@ class PageAboutSettingRequest extends FormRequest
      *
      * @return array
      */
-    #[ArrayShape([
-        'about.id' => "string",
-        'about.name' => "string",
-        'about.description' => "string",
-        'about.value' => "string",
-        'about.extra' => "string",
-        'about.type' => "string",
-    ])]
     public function rules(): array
     {
         return [
