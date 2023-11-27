@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
@@ -47,6 +48,7 @@ use Orchid\Screen\AsSource;
  * @property CarColor $color
  * @property KppType $kpp
  * @property VehicleConfiguration $configuration
+ * @property Picture[]|Collection $pictures
  */
 class Car extends EloquentModel
 {
@@ -161,14 +163,14 @@ class Car extends EloquentModel
 
     public function getFuelType(): string
     {
-        list($fuel, $v, $power) = explode(',', $this->engine);
+        [$fuel, $v, $power] = explode(',', $this->engine);
 
         return trim($fuel);
     }
 
     public function getMotorType(): string
     {
-        list($fuel, $v, $power) = explode(',', $this->engine);
+        [$fuel, $v, $power] = explode(',', $this->engine);
 
         return trim($v) . ', ' . trim($power);
     }

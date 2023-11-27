@@ -3,92 +3,92 @@
 <head>
     <title>Заявка на кредит с сайта</title>
 
-{{--    <style type="text/css">--}}
-{{--        #outlook a {--}}
-{{--            padding: 0;--}}
-{{--        }--}}
+    {{--    <style type="text/css">--}}
+    {{--        #outlook a {--}}
+    {{--            padding: 0;--}}
+    {{--        }--}}
 
-{{--        body {--}}
-{{--            margin: 0;--}}
-{{--            padding: 0;--}}
-{{--            -webkit-text-size-adjust: 100%;--}}
-{{--            -ms-text-size-adjust: 100%;--}}
-{{--        }--}}
+    {{--        body {--}}
+    {{--            margin: 0;--}}
+    {{--            padding: 0;--}}
+    {{--            -webkit-text-size-adjust: 100%;--}}
+    {{--            -ms-text-size-adjust: 100%;--}}
+    {{--        }--}}
 
-{{--        table, td {--}}
-{{--            border-collapse: collapse;--}}
-{{--            mso-table-lspace: 0pt;--}}
-{{--            mso-table-rspace: 0pt;--}}
-{{--        }--}}
+    {{--        table, td {--}}
+    {{--            border-collapse: collapse;--}}
+    {{--            mso-table-lspace: 0pt;--}}
+    {{--            mso-table-rspace: 0pt;--}}
+    {{--        }--}}
 
-{{--        img {--}}
-{{--            border: 0;--}}
-{{--            height: auto;--}}
-{{--            line-height: 100%;--}}
-{{--            outline: none;--}}
-{{--            text-decoration: none;--}}
-{{--            -ms-interpolation-mode: bicubic;--}}
-{{--        }--}}
+    {{--        img {--}}
+    {{--            border: 0;--}}
+    {{--            height: auto;--}}
+    {{--            line-height: 100%;--}}
+    {{--            outline: none;--}}
+    {{--            text-decoration: none;--}}
+    {{--            -ms-interpolation-mode: bicubic;--}}
+    {{--        }--}}
 
-{{--        p {--}}
-{{--            display: block;--}}
-{{--            margin: 13px 0;--}}
-{{--        }</style>--}}
-{{--    <!--[if lte mso 11]>--}}
-{{--    <style type="text/css">--}}
-{{--        .mj-outlook-group-fix {--}}
-{{--            width: 100% !important;--}}
-{{--        }--}}
-{{--    </style>--}}
-{{--    <![endif]--><!--[if !mso]><!-->--}}
-{{--    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">--}}
-{{--    <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);</style>--}}
-{{--    <!--<![endif]-->--}}
-{{--    <style type="text/css">--}}
-{{--        @media only screen and (min-width: 480px) {--}}
-{{--            .mj-column-per-30 {--}}
-{{--                width: 30% !important;--}}
-{{--                max-width: 30%;--}}
-{{--            }--}}
+    {{--        p {--}}
+    {{--            display: block;--}}
+    {{--            margin: 13px 0;--}}
+    {{--        }</style>--}}
+    {{--    <!--[if lte mso 11]>--}}
+    {{--    <style type="text/css">--}}
+    {{--        .mj-outlook-group-fix {--}}
+    {{--            width: 100% !important;--}}
+    {{--        }--}}
+    {{--    </style>--}}
+    {{--    <![endif]--><!--[if !mso]><!-->--}}
+    {{--    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">--}}
+    {{--    <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);</style>--}}
+    {{--    <!--<![endif]-->--}}
+    {{--    <style type="text/css">--}}
+    {{--        @media only screen and (min-width: 480px) {--}}
+    {{--            .mj-column-per-30 {--}}
+    {{--                width: 30% !important;--}}
+    {{--                max-width: 30%;--}}
+    {{--            }--}}
 
-{{--            .mj-column-per-70 {--}}
-{{--                width: 70% !important;--}}
-{{--                max-width: 70%;--}}
-{{--            }--}}
+    {{--            .mj-column-per-70 {--}}
+    {{--                width: 70% !important;--}}
+    {{--                max-width: 70%;--}}
+    {{--            }--}}
 
-{{--            .mj-column-per-100 {--}}
-{{--                width: 100% !important;--}}
-{{--                max-width: 100%;--}}
-{{--            }--}}
-{{--        }--}}
-{{--    </style>--}}
-{{--    <style media="screen and (min-width:480px)">--}}
-{{--        .moz-text-html .mj-column-per-30 {--}}
-{{--            width: 30% !important;--}}
-{{--            max-width: 30%;--}}
-{{--        }--}}
+    {{--            .mj-column-per-100 {--}}
+    {{--                width: 100% !important;--}}
+    {{--                max-width: 100%;--}}
+    {{--            }--}}
+    {{--        }--}}
+    {{--    </style>--}}
+    {{--    <style media="screen and (min-width:480px)">--}}
+    {{--        .moz-text-html .mj-column-per-30 {--}}
+    {{--            width: 30% !important;--}}
+    {{--            max-width: 30%;--}}
+    {{--        }--}}
 
-{{--        .moz-text-html .mj-column-per-70 {--}}
-{{--            width: 70% !important;--}}
-{{--            max-width: 70%;--}}
-{{--        }--}}
+    {{--        .moz-text-html .mj-column-per-70 {--}}
+    {{--            width: 70% !important;--}}
+    {{--            max-width: 70%;--}}
+    {{--        }--}}
 
-{{--        .moz-text-html .mj-column-per-100 {--}}
-{{--            width: 100% !important;--}}
-{{--            max-width: 100%;--}}
-{{--        }--}}
-{{--    </style>--}}
-{{--    <style type="text/css">--}}
-{{--        @media only screen and (max-width: 480px) {--}}
-{{--            table.mj-full-width-mobile {--}}
-{{--                width: 100% !important;--}}
-{{--            }--}}
+    {{--        .moz-text-html .mj-column-per-100 {--}}
+    {{--            width: 100% !important;--}}
+    {{--            max-width: 100%;--}}
+    {{--        }--}}
+    {{--    </style>--}}
+    {{--    <style type="text/css">--}}
+    {{--        @media only screen and (max-width: 480px) {--}}
+    {{--            table.mj-full-width-mobile {--}}
+    {{--                width: 100% !important;--}}
+    {{--            }--}}
 
-{{--            td.mj-full-width-mobile {--}}
-{{--                width: auto !important;--}}
-{{--            }--}}
-{{--        }--}}
-{{--    </style>--}}
+    {{--            td.mj-full-width-mobile {--}}
+    {{--                width: auto !important;--}}
+    {{--            }--}}
+    {{--        }--}}
+    {{--    </style>--}}
 </head>
 <body>
 <table

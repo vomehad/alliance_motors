@@ -110,7 +110,8 @@ class MainController extends Controller
             'model' => $auto->configuration->model->name,
             'price' => $auto->price,
             'vin' => $auto->vin,
-            'link' => env('APP_FRONT_URL') . '/detail/' . $id
+            'link' => env('APP_FRONT_URL') . '/detail/' . $id,
+            'picture' => $auto->pictures->first()->value('src'),
         ];
 
 //        Mail::to(config('mail.from.address'))->send(new SampleMail($content));
