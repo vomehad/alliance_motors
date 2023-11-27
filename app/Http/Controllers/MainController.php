@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewAppRequest;
+use App\Http\Resources\EmailResource;
 use App\Http\Resources\PersonCollection;
 use App\Mail\SampleMail;
 use App\Models\Car;
@@ -64,7 +65,7 @@ class MainController extends Controller
         return PhoneNumber::query()->where(['type' => 'app'])->first();
     }
 
-    public function sendMail(NewAppRequest $request, int $id): string
+    public function sendMail(NewAppRequest $request, int $id): JsonResponse
     {
         $data = $request->validated();
 
@@ -85,12 +86,14 @@ class MainController extends Controller
             'price' => $auto->price,
             'vin' => $auto->vin,
             'link' => env('APP_FRONT_URL') . '/detail/' . $id,
-            'picture' => $auto->pictures->first()->value('src'),
+            'picture' => $auto->pictures->first()->src,
         ];
 
         Mail::to(config('mail.from.address'))->send(new SampleMail($content));
 
-        return "Email has been sent.";
+        return (new EmailResource("Email has been sent."))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
     }
 
     public function exampleMail($id)
@@ -109,12 +112,12 @@ class MainController extends Controller
             'price' => $auto->price,
             'vin' => $auto->vin,
             'link' => env('APP_FRONT_URL') . '/detail/' . $id,
-            'picture' => $auto->pictures->first()->value('src'),
+            'picture' => $auto->pictures->first()->src,
         ];
 
 //        Mail::to(config('mail.from.address'))->send(new SampleMail($content));
 
-        return view('emails.sample', [
+        return view('emails.application', [
             'content' => $content
         ]);
     }
