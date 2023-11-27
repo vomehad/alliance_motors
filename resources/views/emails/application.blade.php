@@ -235,9 +235,13 @@
                                 </tr>
                                 <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                        <div
-                                            style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:20px;font-weight:700;line-height:1;text-align:left;color:#03A678;">
-                                            <a color="#03A678" href="{{ $content['link'] }}" target="_blank">ссылка на alliancemotors.ru</a>
+                                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:20px;font-weight:700;line-height:1;text-align:left;color:#03A678;">
+                                            <p color="#03A678">ссылка на alliancemotors.ru</p>
+                                        </div>
+                                    </td>
+                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                        <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:20px;font-weight:700;line-height:1;text-align:left;color:#03A678;">
+                                            <a color="#03A678" href="{{ $content['link'] }}" target="_blank">{{ $content['link'] }}</a>
                                         </div>
                                     </td>
                                 </tr>
