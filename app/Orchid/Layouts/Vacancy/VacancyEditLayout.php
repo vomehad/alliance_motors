@@ -33,19 +33,19 @@ class VacancyEditLayout extends Rows
                 ->type('text')
                 ->max(128)
                 ->required()
-                ->title(__('Title'))
-                ->placeholder(__('Title')),
+                ->title(__('vacancies.form.title.label'))
+                ->placeholder(__('vacancies.form.title.placeholder')),
 
             Input::make('vacancy.description')
                 ->type('text')
                 ->max(1024)
                 ->required()
-                ->title(__('Description'))
-                ->placeholder(__('Description')),
+                ->title(__('vacancies.form.description.label'))
+                ->placeholder(__('vacancies.form.description.placeholder')),
 
             TextArea::make('vacancy.requirements')
                 ->required()
-                ->title(__('Requirements'))
+                ->title(__('vacancies.form.requirements.label'))
             ,
 
 //            Select::make('vacancy.requirements')
@@ -58,7 +58,7 @@ class VacancyEditLayout extends Rows
 
             TextArea::make('vacancy.conditions')
                 ->required()
-                ->title(__('Conditions'))
+                ->title(__('vacancies.form.conditions.label'))
             ,
 
 //            Select::make('vacancy.conditions')
@@ -72,19 +72,19 @@ class VacancyEditLayout extends Rows
             Input::make('vacancy.min')
                 ->type('number')
                 ->required()
-                ->title(__('Min'))
-                ->placeholder(__('Min')),
+                ->title(__('vacancies.form.min.label'))
+                ->placeholder(__('vacancies.form.min.placeholder')),
 
             Input::make('vacancy.max')
                 ->type('number')
                 ->required()
-                ->title(__('Max'))
-                ->placeholder(__('Max')),
+                ->title(__('vacancies.form.max.label'))
+                ->placeholder(__('vacancies.form.max.placeholder')),
 
             CheckBox::make('vacancy.active')
                 ->value(true)
                 ->required()
-                ->title(__('Active'))
+                ->title(__('vacancies.form.active.label'))
                 ->sendTrueOrFalse()
             ,
 

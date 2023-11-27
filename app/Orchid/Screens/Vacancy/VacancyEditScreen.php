@@ -35,7 +35,11 @@ class VacancyEditScreen extends Screen
 
     public function name(): ?string
     {
-        return $this->vacancy->exists ? "Редактируем" : "Новый сотрудник";
+        return $this->vacancy->exists
+            ? __('vacancies.page.form.edit.name')
+//            ? "Редактируем"
+            : __('vacancies.page.form.new.name');
+//            : "Новый сотрудник";
     }
 
     public function commandBar(): iterable

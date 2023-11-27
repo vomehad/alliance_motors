@@ -19,14 +19,14 @@ class VacancyListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('title', 'Title')
+            TD::make('title', __('vacancies.list.title.title'))
                 ->align(TD::ALIGN_LEFT)
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
             ,
 
-            TD::make('description', 'Description')
+            TD::make('description', __('vacancies.list.description.title'))
                 ->align(TD::ALIGN_LEFT)
                 ->sort()
             ,
@@ -45,9 +45,7 @@ class VacancyListLayout extends Table
                         Button::make(__('Delete'))
                             ->icon('bs.trash3')
                             ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
-                            ->method('remove', [
-                                'id' => $vacancy->id,
-                            ]),
+                            ->method('remove', ['id' => $vacancy->id]),
                     ])
                 ),
         ];

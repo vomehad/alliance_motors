@@ -23,7 +23,7 @@ class PhoneEditScreen extends Screen
 
     public function name(): ?string
     {
-        return $this->phoneNumber?->exists ? __('global.edit') : __('global.create');
+        return $this->phoneNumber?->exists ? __('global.edit') : __('Add');
     }
 
     public function commandBar(): iterable

@@ -16,11 +16,12 @@ class PhoneEditLayout extends Rows
             Input::make('phone.id')->hidden(),
 
             Input::make('phone.number')
-                ->title(__('phone.form.number.title'))
+                ->title(__('phones.form.number.title'))
                 ->required()
                 ->mask('+7 (999) 999 99-99'),
 
             Switcher::make('phone.active')
+                ->title(__('phones.form.active.title'))
         ];
     }
 }

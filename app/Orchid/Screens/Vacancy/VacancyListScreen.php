@@ -21,12 +21,12 @@ class VacancyListScreen extends Screen
 
     public function name(): ?string
     {
-        return 'Vacancy Management';
+        return __('vacancies.page.list.name');
     }
 
     public function description(): ?string
     {
-        return 'Vacancies';
+        return __('vacancies.page.list.description');
     }
 
     /**

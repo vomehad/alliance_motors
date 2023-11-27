@@ -29,18 +29,18 @@ class SiteListScreen extends Screen
 
     public function name(): ?string
     {
-        return 'Телефоны на сайте';
+        return __('phones.page.list.name');
     }
 
     public function description(): ?string
     {
-        return 'Управление телефонами';
+        return __('phones.page.list.description');
     }
 
     public function commandBar(): iterable
     {
         return [
-            Link::make(__("global.add"))
+            Link::make(__("Add"))
                 ->icon('bs.plus-circle')
                 ->route('phones.create')
         ];
@@ -53,9 +53,9 @@ class SiteListScreen extends Screen
     {
         return [
             Layout::block(PhoneEditLayout::class)
-                ->title(__('main.title'))
+                ->title(__('phones.form.title'))
                 ->description(__('main.description'))
-                ->commands(Button::make(__('global.save'))
+                ->commands(Button::make(__('Save'))
                     ->type(Color::BASIC)
                     ->icon('bs.check-circle')
                     ->method('save')

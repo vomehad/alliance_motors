@@ -51,7 +51,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('persons'),
 
             Menu::make('Вакансии')
-                ->icon('bs.vacancy')
+                ->icon('bs.basket3-fill')
                 ->route('vacancies'),
 
             Menu::make('Настройки страницы "О компании"')

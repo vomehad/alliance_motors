@@ -119,21 +119,21 @@ Route::prefix('vacancies')->group(function() use ($main) {
     Route::screen('/', VacancyListScreen::class)->name('vacancies')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent($main)
-            ->push(__('Vacancies'), route('vacancies'))
+            ->push(__('vacancies.breadcrumbs.list'), route('vacancies'))
         );
 
     // Platform > Vacancies > Create
     Route::screen('/create', VacancyEditScreen::class)->name('vacancies.create')
         ->breadcrumbs(fn(Trail $trail) => $trail
             ->parent('vacancies')
-            ->push(__('Vacancy'), route('vacancies.create'))
+            ->push(__('vacancies.breadcrumbs.edit'), route('vacancies.create'))
         );
 
     // Platform > Vacancies > Edit
     Route::screen('/{vacancy}/edit', VacancyEditScreen::class)->name('vacancies.edit')
         ->breadcrumbs(fn(Trail $trail, $person) => $trail
             ->parent('vacancies')
-            ->push(__('Vacancy'), route('vacancies.edit', $person))
+            ->push(__('vacancies.breadcrumbs.create'), route('vacancies.edit', $person))
         );
 });
 
