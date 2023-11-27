@@ -14,22 +14,17 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends Controller
 {
-    private DictService $distService;
-    private CarService $carService;
-    private SiteService $siteService;
-
-    public function __construct(DictService $distService, CarService $carService, SiteService $siteService)
-    {
-        $this->distService = $distService;
-        $this->carService = $carService;
-        $this->siteService = $siteService;
-    }
+    public function __construct(
+        private DictService $distService,
+        private CarService $carService,
+        private SiteService $siteService,
+    ) {}
 
     public function getBrands(): Collection
     {
