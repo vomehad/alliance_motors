@@ -14,6 +14,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,12 +66,13 @@ class MainController extends Controller
 
     public function sendMail(NewAppRequest $request, int $id): string
     {
+        $data = $request->validated();
+
         /** @var Car $auto */
         $auto = $this->carService->getOneById($id);
 
-        $data = $request->validated();
         $fio = "{$data['name']} {$data['family']}";
-        if ($data['o']) {
+        if (Arr::get($data, 'o', false)) {
             $fio .= " {$data['o']}";
         }
 
@@ -82,7 +84,8 @@ class MainController extends Controller
             'model' => $auto->configuration->model->name,
             'price' => $auto->price,
             'vin' => $auto->vin,
-            'link' => env('APP_FRONT_URL') . '/detail/' . $id
+            'link' => env('APP_FRONT_URL') . '/detail/' . $id,
+            'picture' => $auto->pictures->first()->value('src'),
         ];
 
         Mail::to(config('mail.from.address'))->send(new SampleMail($content));
