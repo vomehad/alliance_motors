@@ -49,10 +49,10 @@ class OfficeListLayout extends Table
                             ->route('offices.edit', $office->id)
                             ->icon('bs.pencil'),
 
-                        Button::make(__('Delete'))
+                        Button::make($office->active ? __('offices.list.button.off.label') : __('offices.list.button.on.label'))
                             ->icon('bs.trash3')
-                            ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
-                            ->method('remove', ['id' => $office->id]),
+                            ->confirm($office->active ? __('offices.list.button.off.confirm') : __('offices.list.button.on.confirm'))
+                            ->method('active', ['id' => $office->id]),
                     ])
                 ),
         ];

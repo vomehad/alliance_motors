@@ -28,6 +28,9 @@ Route::prefix('settings')->group(function () {
 Route::prefix('contacts')->group(function () {
     Route::get('photo', [SettingController::class, 'contactPhotos'])->name('api.contact.photo');
 });
+Route::prefix('offices')->group(function () {
+    Route::get('/', [MainController::class, 'getOffices'])->name('api.offices');
+});
 
 Route::get('/number/app', [MainController::class, 'getAppNumber'])->name('app.number');
 

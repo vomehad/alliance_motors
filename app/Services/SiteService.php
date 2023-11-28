@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\Office;
 use App\Models\PageAboutSetting;
 use App\Models\Person;
 use App\Models\Picture;
@@ -40,5 +41,10 @@ class SiteService
         return Picture::query()
             ->where(['entity' => 'contact.photo'])
             ->get();
+    }
+
+    public function getOffices(): Collection
+    {
+        return Office::query()->where(['active' => true])->get();
     }
 }

@@ -6,11 +6,8 @@ namespace App\Orchid\Screens\Office;
 
 use App\Models\Office;
 use App\Orchid\Layouts\Office\OfficeListLayout;
-use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\Input;
+use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class OfficeListScreen extends Screen
 {
@@ -31,14 +28,6 @@ class OfficeListScreen extends Screen
         return __('offices.page.list.description');
     }
 
-    public function commandBar(): iterable
-    {
-        return [
-            Link::make("Add")->icon('bs.plus-circle')
-                ->route('offices.create'),
-        ];
-    }
-
     /**
      * @inheritDoc
      */
@@ -47,5 +36,16 @@ class OfficeListScreen extends Screen
         return [
             OfficeListLayout::class,
         ];
+    }
+
+    public function active(int $id): RedirectResponse
+    {
+        /** @var Office $office */
+        $office = Office::query()->where(['id' => $id])->first();
+        $office->active = !$office->active;
+
+        $office->update();
+
+        return redirect()->route('offices');
     }
 }

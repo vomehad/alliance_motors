@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewAppRequest;
 use App\Http\Resources\EmailResource;
+use App\Http\Resources\OfficeCollection;
 use App\Http\Resources\PersonCollection;
 use App\Mail\SampleMail;
 use App\Models\Car;
@@ -58,6 +59,14 @@ class MainController extends Controller
     public function getVacancies(): Collection
     {
         return $this->siteService->getVacancies();
+    }
+
+    public function getOffices(): JsonResponse
+    {
+        $offices = $this->siteService->getOffices();
+        $resource = new OfficeCollection($offices);
+
+        return $resource->response()->setStatusCode(Response::HTTP_OK);
     }
 
     public function getAppNumber(): PhoneNumber|Model

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Office;
 use App\Models\Picture;
 use App\Orchid\Screens\Car\CarListScreen;
 use App\Orchid\Screens\Contact\PhotoEditScreen;
@@ -61,9 +62,9 @@ Route::prefix('offices')->group(function() use ($main) {
 
 // Platform > Offices > Office
     Route::screen('/{office}/edit', OfficeEditScreen::class)->name('offices.edit')
-        ->breadcrumbs(fn(Trail $trail) => $trail
+        ->breadcrumbs(fn(Trail $trail, Office $office) => $trail
             ->parent('offices')
-            ->push(__('offices.breadcrumbs.edit'), route('offices.edit'))
+            ->push(__('offices.breadcrumbs.edit'), route('offices.edit', $office))
         );
 
 // Platform > Offices > Office
