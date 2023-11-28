@@ -54,6 +54,7 @@ class OfficeEditScreen extends Screen
         $data = $request->validated();
 
         $office->fill(Arr::get($data, 'office'));
+        $office->tel = preg_replace('/\D+/', '', $office->tel);
         $office->save();
 
         return redirect()->route('offices');
