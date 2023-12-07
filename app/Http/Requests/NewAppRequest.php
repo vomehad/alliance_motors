@@ -10,8 +10,8 @@ class NewAppRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'family' => 'required|string',
-            'o' => 'nullable|string',
+//            'family' => 'nullable|string',
+//            'o' => 'nullable|string',
             'number' => 'required|string',
         ];
     }

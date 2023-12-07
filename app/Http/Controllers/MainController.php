@@ -81,14 +81,14 @@ class MainController extends Controller
         /** @var Car $auto */
         $auto = $this->carService->getOneById($id);
 
-        $fio = "{$data['name']} {$data['family']}";
-        if (Arr::get($data, 'o', false)) {
-            $fio .= " {$data['o']}";
-        }
+//        $fio = "{$data['name']} {$data['family']}";
+//        if (Arr::get($data, 'o', false)) {
+//            $fio .= " {$data['o']}";
+//        }
 
         $content = [
             'subject' => 'Заявка  на кредит с сайта',
-            'fio' => $fio,
+            'name' => $data['name'],
             'number' => $data['number'],
             'brand' => $auto->configuration->model->brand->name,
             'model' => $auto->configuration->model->name,
