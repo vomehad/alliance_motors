@@ -98,7 +98,7 @@ class MainController extends Controller
             'picture' => $auto->pictures->first()->src,
         ];
 
-        Mail::to(config('mail.from.address'))->send(new SampleMail($content));
+        Mail::to(config('mail.to.address'))->send(new SampleMail($content));
 
         return (new EmailResource("Email has been sent."))
             ->response()
