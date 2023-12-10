@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Http\Request;
@@ -34,6 +35,8 @@ Route::prefix('offices')->group(function () {
 
 Route::get('/number/app', [MainController::class, 'getAppNumber'])->name('app.number');
 
-Route::post('/mail/application/{id}', [MainController::class, 'sendMail'])->name('api.send');
-
+Route::prefix('mail')->group(function() {
+    Route::post('application/{id}', [MailController::class, 'sendMail'])->name('api.send');
+    Route::post('application', [MailController::class, 'sendAppCredit'])->name('api.send_credit');
+});
 
