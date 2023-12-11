@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\NewAppRequest;
+use App\Http\Requests\AppRequest;
+use App\Http\Requests\FeedbackRequest;
+use App\Http\Requests\TradeInRequest;
 use App\Http\Resources\EmailResource;
 use App\Mail\ApplicationMail;
 use App\Models\Car;
@@ -17,7 +19,7 @@ class MailController extends Controller
         private CarService $carService,
     ) {}
 
-    public function sendMail(NewAppRequest $request, int $id): JsonResponse
+    public function sendMail(AppRequest $request, int $id): JsonResponse
     {
         $data = $request->validated();
 
@@ -43,7 +45,7 @@ class MailController extends Controller
             ->setStatusCode(Response::HTTP_OK);
     }
 
-    public function sendAppCredit(NewAppRequest $request): JsonResponse
+    public function sendAppCredit(AppRequest $request): JsonResponse
     {
         $data = $request->validated();
 
@@ -53,7 +55,41 @@ class MailController extends Controller
             'number' => $data['number'],
         ];
 
-        Mail::to(config('mail.to.address'))->send(new ApplicationMail($content, 'application'));
+        Mail::to(config('mail.to.address'))->send(new ApplicationMail($content));
+
+        return (new EmailResource("Email has been sent."))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+    public function sendFeedback(FeedbackRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+
+        $content = [
+            'subject' => 'Письмо директору',
+            'name' => $data['name'],
+            'text' => $data['text'],
+        ];
+
+        Mail::to(config('mail.to.address'))->send(new ApplicationMail($content));
+
+        return (new EmailResource("Email has been sent."))
+            ->response()
+            ->setStatusCode(Response::HTTP_OK);
+    }
+
+    public function sendAppTradeIn(TradeInRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+
+        $content = [
+            'subject' => 'Заявка на TradeIn',
+            'name' => $data['name'],
+            'text' => $data['text'],
+        ];
+
+        Mail::to(config('mail.to.address'))->send(new ApplicationMail($content));
 
         return (new EmailResource("Email has been sent."))
             ->response()
@@ -69,7 +105,7 @@ class MailController extends Controller
 
         $content = [
             'subject' => 'Заявка  на кредит с сайта',
-            'fio' => $fio,
+            'name' => $fio,
             'number' => '+7 906 625 48 99',
             'brand' => $auto->configuration->model->brand->name,
             'model' => $auto->configuration->model->name,
@@ -77,6 +113,7 @@ class MailController extends Controller
             'vin' => $auto->vin,
             'link' => env('APP_FRONT_URL') . '/detail/' . $id,
             'picture' => $auto->pictures->first()->src,
+            'text' => 'Доступны только владельцам. Чтобы их получить, нужно зайти в личный кабинет → Документы и данные → Недвижимость. Отобразятся вид и адрес объекта недвижимости, его основные характеристики, права и ограничения, запрет на регистрацию без личного участия и другие сведения '
         ];
 
 //        Mail::to(config('mail.from.address'))->send(new SampleMail($content));

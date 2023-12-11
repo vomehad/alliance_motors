@@ -14,13 +14,12 @@ class BaseMail extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        public array $content,
-        public string $view = 'sample',
+        public array $content
     ) {}
 
     public function build(): BaseMail
     {
-        $view = "emails.$this->view";
+        $view = "emails.sample";
         $content = $this->content;
 
         return $this->subject($content['subject'])->view($view, ['content' => $content]);

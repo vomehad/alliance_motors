@@ -64,6 +64,7 @@
 
                 </tbody>
             </table>
+            @if(isset($content['link']))
             <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
                 <tbody>
                 <tr>
@@ -75,6 +76,7 @@
                 </tr>
                 </tbody>
             </table>
+            @endif
             <table align="center" width="600" height="20" border="0" cellspacing="0" cellpadding="0">
                 <tbody>
                 <tr>
@@ -116,6 +118,7 @@
                                             <p>{{ $content['number'] }}</p></div>
                                     </td>
                                 </tr>
+                                @if(isset($content['brand']))
                                 <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                         <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:700;line-height:1;text-align:left;color:#3E848C;">
@@ -126,6 +129,8 @@
                                             <p>{{ $content['brand'] }} {{ $content['model'] }}</p></div>
                                     </td>
                                 </tr>
+                                @endif
+                                @if(isset($content['price']))
                                 <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                         <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:700;line-height:1;text-align:left;color:#3E848C;">
@@ -136,6 +141,8 @@
                                             <p>{{ $content['price'] }}</p></div>
                                     </td>
                                 </tr>
+                                @endif
+                                @if(isset($content['vin']))
                                 <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                         <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:700;line-height:1;text-align:left;color:#3E848C;">
@@ -146,6 +153,8 @@
                                             <p>{{ $content['vin'] }}</p></div>
                                     </td>
                                 </tr>
+                                @endif
+                                @if(isset($content['link']))
                                 <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                         <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:20px;font-weight:700;line-height:1;text-align:left;color:#03A678;">
@@ -158,9 +167,23 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
+                        @if(isset($content['text']))
+                        <div class="">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td align="left" style="padding:12px 30px 0 30px">
+                                            {{ $content['text'] }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
                         <!--[if mso | IE]></td></tr></table><![endif]-->
                     </td>
                 </tr>
@@ -173,10 +196,6 @@
                 </tr>
                 </tbody>
             </table>
-
-
-
-            <!-- заголовок - начало -->
         </td>
     </tr>
     <tr>
