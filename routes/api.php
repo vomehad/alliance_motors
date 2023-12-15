@@ -36,9 +36,9 @@ Route::prefix('offices')->group(function () {
 Route::get('/number/app', [MainController::class, 'getAppNumber'])->name('app.number');
 
 Route::prefix('mail')->group(function() {
-    Route::post('application/{id}', [MailController::class, 'sendMail'])->name('api.send');
     Route::post('application/credit', [MailController::class, 'sendAppCredit'])->name('api.send_credit');
     Route::post('application/trade-in', [MailController::class, 'sendAppTradeIn'])->name('api.send_trade_in');
+    Route::post('application/{id}', [MailController::class, 'sendMail'])->name('api.send');
     Route::post('feedback', [MailController::class, 'sendFeedback'])->name('api.feedback');
 });
 
