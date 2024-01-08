@@ -12,6 +12,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 
 class CarService
 {
@@ -108,7 +109,17 @@ class CarService
             });
         }
 
-        return $query->paginate(9);
+        $sql = $query->toSql();
+
+        if (Cache::has($sql)) {
+            return Cache::get($sql);
+        }
+
+        $response = $query->paginate(9);
+
+        Cache::put($sql, $response, 30);
+
+        return $response;
     }
 
     public function getOneById(int $id): Car|EloquentModel
