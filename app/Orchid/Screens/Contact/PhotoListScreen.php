@@ -34,7 +34,7 @@ class PhotoListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'PhotoListScreen';
+        return 'Блок фото';
     }
 
     /**

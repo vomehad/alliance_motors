@@ -8,7 +8,6 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -54,7 +53,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.basket3-fill')
                 ->route('vacancies'),
 
-            Menu::make('Настройки страницы "О компании"')
+            Menu::make('Настройки "О компании"')
                 ->icon('bs.about')
                 ->route('about'),
 

@@ -180,6 +180,7 @@ class CarService
     public function addPictures(array $pictures, Car $car)
     {
         $this->removeByCar($car);
+        $sort = 100;
 
         foreach ($pictures as $img) {
             Picture::firstOrCreate([
@@ -187,12 +188,17 @@ class CarService
                 'src' => $img,
                 'entity' => Car::class,
                 'entity_id' => $car->id,
+                'sort' => $sort,
             ]);
+            $sort += 100;
         }
     }
 
     private function removeByCar(Car $car): void
     {
-        Picture::query()->where(['entity' => Car::class])->where(['entity_id' => $car->id])->delete();
+        Picture::query()
+            ->where(['entity' => Car::class])
+            ->where(['entity_id' => $car->id])
+            ->delete();
     }
 }

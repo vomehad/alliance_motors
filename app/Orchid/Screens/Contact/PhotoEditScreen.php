@@ -36,7 +36,7 @@ class PhotoEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'PhotoEditScreen';
+        return 'Новое фото';
     }
 
     /**
@@ -65,14 +65,21 @@ class PhotoEditScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [
-            Layout::legend('photo', [
-                Sight::make('Pic')->render(fn (Picture $photo) => "<img src='" . url('storage/contacts') . $photo->src . "'
+        $url = url('storage/contacts');
+        $legend = Layout::legend('photo', [
+            Sight::make('Pic')->render(fn (Picture $photo) => "<img src='{$url}{$photo->src}'
                         alt='sample' class='mw-100 d-block img-fluid rounded-1'>
                         <span class='small text-muted mt-1 mb-0'># {$photo->id}</span>")
-            ]),
+        ]);
+        $layout = [
             PhotoEditLayout::class
         ];
+
+        if (false) {
+            array_unshift($layout, $legend);
+        }
+
+        return $layout;
     }
 
     public function save(Picture $picture, PhotoRequest $request): RedirectResponse

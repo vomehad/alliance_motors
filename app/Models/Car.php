@@ -137,7 +137,7 @@ class Car extends EloquentModel
 
     public function pictures(): MorphMany
     {
-        return $this->morphMany(Picture::class, 'picturable', 'entity', 'entity_id');
+        return $this->morphMany(Picture::class, 'picturable', 'entity', 'entity_id')->orderBy('sort', 'ASC');
     }
 // ============================= end relations ===================================
 
