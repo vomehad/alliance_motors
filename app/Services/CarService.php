@@ -8,11 +8,13 @@ use App\Dto\CarDto;
 use App\Dto\ExpertDto;
 use App\Models\Car;
 use App\Models\Picture;
+use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class CarService
 {
@@ -117,7 +119,7 @@ class CarService
 
         $response = $query->paginate(9);
 
-        Cache::put($sql, $response, 30);
+        Cache::put($sql, $response, 60);
 
         return $response;
     }
@@ -190,26 +192,33 @@ class CarService
 
     public function addPictures(array $pictures, Car $car)
     {
-        $this->removeByCar($car);
+        $out = new ConsoleOutput();
         $sort = 100;
 
-        foreach ($pictures as $img) {
-            Picture::firstOrCreate([
-                'origin_name' => $img,
-                'src' => $img,
-                'entity' => Car::class,
-                'entity_id' => $car->id,
-                'sort' => $sort,
-            ]);
+        $out->writeln($car->presenter()->title() . " - start " . Carbon::now());
+
+        foreach ($pictures as $key => $img) {
+            $attached = $car->pictures->where('src', $img)->first();
+            if ($attached) {
+                $attached->sort = $sort;
+                $attached->update();
+            } else {
+                Picture::firstOrCreate([
+                    'origin_name' => $img,
+                    'src' => $img,
+                    'entity' => Car::class,
+                    'entity_id' => $car->id,
+                    'sort' => $sort,
+                ]);
+            }
+
+            unset($pictures[$key]);
+            $out->writeln($img . " - added | sort " . $sort);
             $sort += 100;
         }
-    }
 
-    private function removeByCar(Car $car): void
-    {
-        Picture::query()
-            ->where(['entity' => Car::class])
-            ->where(['entity_id' => $car->id])
-            ->delete();
+        foreach ($pictures as $picture) {
+            $car->pictures->reject(fn (Picture $pic) => $pic->src === $picture);
+        }
     }
 }
